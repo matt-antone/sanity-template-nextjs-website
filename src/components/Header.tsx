@@ -35,7 +35,7 @@ const Header: React.FunctionComponent<IHeaderProps> = async (props) => {
           </div>
           <nav>
             <ul className="flex space-x-4">
-              {nav.items &&
+              {nav && nav.items &&
                 nav.items.map((item: any) => {
                   return (
                     <li key={item._id}>
