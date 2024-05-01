@@ -21,3 +21,11 @@ export const FOOTER_NAVIGATION_QUERY = groq`*[_type == "navigation" && slug.curr
   },
 }[0]`;
 
+export const MOBILE_NAVIGATION_QUERY = groq`*[_type == "navigation" && slug.current == "mobile-navigation"]{
+  ...,
+  "items": items[]{
+    ...,
+    "link": navigationItemUrl.relativePath,
+    "page": navigationItemUrl.internalLink->,
+  },
+}[0]`;
