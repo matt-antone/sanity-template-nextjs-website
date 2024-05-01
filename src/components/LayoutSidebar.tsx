@@ -20,8 +20,8 @@ const LayoutSidebar: React.FunctionComponent<ILayoutSidebarProps> = ({
     <>
       <Header />
       <Container>
-          { heading && <LayoutHeading text={heading} /> }
-        <div className="w-full grid lg:grid-cols-10">
+        {heading && <LayoutHeading text={heading} />}
+        <div className="w-full grid lg:grid-cols-10 gap-12">
           <Main className="col-span-7">{children}</Main>
           <aside className="col-span-3">
             {widgets?.map((Widget, index) => (
