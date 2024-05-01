@@ -11,10 +11,7 @@ import { draftMode } from "next/headers";
 import { loadQuery } from "@/sanity/lib/store";
 import { PAGES_QUERY, PAGE_QUERY } from "@/src/lib/queries";
 import Page from "@/src/components/Page";
-import PagePreview from "@/src/components/PagePreview";
 import { client } from "@/sanity/lib/client";
-import Main from "@/src/components/Main";
-import Container from "@/src/components/Container";
 import LayoutFull from "@/src/components/LayoutFull";
 import LayoutHeading from "@/src/components/LayoutHeading";
 
