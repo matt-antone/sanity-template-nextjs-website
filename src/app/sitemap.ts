@@ -11,9 +11,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     data: { posts, pages },
   } = await loadQuery<SanityDocument>(SITEMAP_QUERY);
 
-  const getURL = (page:any)=>{
+  const getURL = (page:any,path:string = '')=>{
     return {
-      url: `${process.env.BASE_URL}/${page.slug}`,
+      url: `${process.env.BASE_URL}/${path}${page.slug}`,
       lastModified: page._updatedAt || page.date,
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -22,6 +22,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...pages.map((page: any) => getURL(page)),
-    ...posts.map((post: any) => getURL(post))
+    ...posts.map((post: any) => getURL(post,'posts/'))
   ]
 }
