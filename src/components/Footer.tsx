@@ -22,7 +22,7 @@ const Footer: React.FunctionComponent<IFooterProps> = async (props) => {
               {nav.items &&
                 nav.items.map((item: any) => {
                   return (
-                    <li key={item._id}>
+                    <li key={`${item._id}-footer`}>
                       <Link href={item.link || `/${item?.page?.slug?.current}`}>
                         {item.text}{" "}
                       </Link>

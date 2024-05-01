@@ -1,20 +1,21 @@
 import * as React from "react";
 import {
-  HEADER_NAVIGATION_QUERY,
   SITE_SETTINGS_QUERY,
+  HEADER_NAVIGATION_QUERY,
 } from "@/src/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { SanityDocument } from "next-sanity";
 import Container from "./Container";
-import Link from "next/link";
 import Image from "next/image";
+import MenuMain from "@/src/components/MenuMain";
+import MenuMobile from "@/src/components/MenuMobile";
 
 interface IHeaderProps {}
 
 const Header: React.FunctionComponent<IHeaderProps> = async (props) => {
   // Fetch the site settings and navigation items
   const settings = await client.fetch<SanityDocument>(SITE_SETTINGS_QUERY);
-  const nav = await client.fetch<SanityDocument>(HEADER_NAVIGATION_QUERY);
+  const mainNav = await client.fetch<SanityDocument>(HEADER_NAVIGATION_QUERY);
   return (
     <header>
       <Container>
@@ -33,20 +34,8 @@ const Header: React.FunctionComponent<IHeaderProps> = async (props) => {
               )}
             </a>
           </div>
-          <nav>
-            <ul className="flex space-x-4">
-              {nav.items &&
-                nav.items.map((item: any) => {
-                  return (
-                    <li key={item._id}>
-                      <Link href={item.link || `/${item?.page?.slug?.current}`}>
-                        {item.text}{" "}
-                      </Link>
-                    </li>
-                  );
-                })}
-            </ul>
-          </nav>
+          <MenuMain nav={mainNav}/>
+          <MenuMobile nav={mainNav}/>
         </div>
       </Container>
     </header>

@@ -2,7 +2,7 @@
 //File location: schemas/objects
 import { GrNavigate } from "react-icons/gr";
 
-export default {
+export default navItem = {
     name: 'navigationItem',
     title: 'Navigation Item',
     type: 'object',

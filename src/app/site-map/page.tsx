@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: QueryParams }) {
             {pages &&
               pages.map((page: any) => {
                 return (
-                  <li key={page._id} className="mb-4 block">
+                  <li key={`${page._id}-sitemap`} className="mb-4 block">
                     <a href={`/${page.slug}`}>{page.title}</a>
                   </li>
                 );
@@ -40,7 +40,7 @@ export default async function Page({ params }: { params: QueryParams }) {
             {posts &&
               posts.map((post: any) => {
                 return (
-                  <li key={post._id} className="mb-4 block">
+                  <li key={`${post._id}-sitemap`} className="mb-4 block">
                     <a href={`/posts/${post.slug}`}>{post.title}</a>
                   </li>
                 );
