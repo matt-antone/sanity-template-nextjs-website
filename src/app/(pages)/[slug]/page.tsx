@@ -1,5 +1,10 @@
 // ./app/[slug]/page.tsx
-import type { PageDocument, MetaDataProps, ResolvingMetadata, Metadata } from '@/src/types'
+import type {
+  PageDocument,
+  MetaDataProps,
+  ResolvingMetadata,
+  Metadata,
+} from "@/src/types";
 import { QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 
@@ -8,7 +13,10 @@ import { PAGES_QUERY, PAGE_QUERY } from "@/src/lib/queries";
 import Page from "@/src/components/Page";
 import PagePreview from "@/src/components/PagePreview";
 import { client } from "@/sanity/lib/client";
-
+import Main from "@/src/components/Main";
+import Container from "@/src/components/Container";
+import LayoutFull from "@/src/components/LayoutFull";
+import LayoutHeading from "@/src/components/LayoutHeading";
 
 // Generate Static Page Slugs
 export async function generateStaticParams() {
@@ -20,13 +28,13 @@ export async function generateStaticParams() {
 
 // Generate Metadata
 export async function generateMetadata(
-  { params: {slug}, searchParams }: MetaDataProps,
+  { params: { slug }, searchParams }: MetaDataProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const post = await client.fetch<PageDocument>(PAGE_QUERY, { slug })
-  const images = []
+  const post = await client.fetch<PageDocument>(PAGE_QUERY, { slug });
+  const images = [];
   if (post.image) {
-    images.push(post.image.asset.url)
+    images.push(post.image.asset.url);
   }
   return {
     title: post.title || null,
@@ -34,7 +42,7 @@ export async function generateMetadata(
     openGraph: {
       images,
     },
-  }
+  };
 }
 
 export default async function NormalPage({ params }: { params: QueryParams }) {
@@ -43,18 +51,11 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
     // cannot be set on the loadQuery function at the "top level"
     perspective: draftMode().isEnabled ? "previewDrafts" : "published",
   });
-  
+
   return (
-    <main>
-      {draftMode().isEnabled ? (
-        <>
-          <PagePreview initial={initial} params={params} />
-        </>
-      ) : (
-        <>
-          <Page {...initial.data} />
-        </>
-      )}
-    </main>
+    <LayoutFull>
+      <LayoutHeading text={initial.data.title}/>
+      <Page {...initial.data} />
+    </LayoutFull>
   );
 }
