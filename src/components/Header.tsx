@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   SITE_SETTINGS_QUERY,
   HEADER_NAVIGATION_QUERY,
+  MOBILE_NAVIGATION_QUERY
 } from "@/src/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { SanityDocument } from "next-sanity";
@@ -16,6 +17,7 @@ const Header: React.FunctionComponent<IHeaderProps> = async (props) => {
   // Fetch the site settings and navigation items
   const settings = await client.fetch<SanityDocument>(SITE_SETTINGS_QUERY);
   const mainNav = await client.fetch<SanityDocument>(HEADER_NAVIGATION_QUERY);
+  const mobileNav = await client.fetch<SanityDocument>(MOBILE_NAVIGATION_QUERY);
   return (
     <header>
       <Container>
@@ -35,7 +37,7 @@ const Header: React.FunctionComponent<IHeaderProps> = async (props) => {
             </a>
           </div>
           <MenuMain nav={mainNav}/>
-          <MenuMobile nav={mainNav}/>
+          <MenuMobile nav={mobileNav} settings={settings}/>
         </div>
       </Container>
     </header>
