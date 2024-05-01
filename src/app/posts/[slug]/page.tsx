@@ -5,10 +5,7 @@ import { draftMode } from "next/headers";
 import { client } from "@/sanity/lib/client";
 import { loadQuery } from "@/sanity/lib/store";
 import Post from "@/src/components/Post";
-import PostPreview from "@/src/components/PostPreview";
-import Main from '@/src/components/Main';
-import LayoutFull from '@/src/components/LayoutFull';
-import LayoutHeading from '@/src/components/LayoutHeading';
+import LayoutSidebar from '@/src/components/LayoutSidebar';
 
 // Generate Static Page Slugs
 export async function generateStaticParams() {
@@ -46,9 +43,8 @@ export default async function Page({ params }: { params: QueryParams }) {
   });
 
   return (
-    <LayoutFull>
-      <LayoutHeading text={initial.data.title} />
+    <LayoutSidebar heading={initial?.data?.title}>
       <Post {...initial.data} />
-    </LayoutFull>
+    </LayoutSidebar>
   )
 }

@@ -3,11 +3,9 @@ import { SanityDocument } from "next-sanity";
 import { draftMode } from "next/headers";
 
 import Posts from "@/src/components/Posts";
-import PostsPreview from "@/src/components/PostsPreview";
 import { loadQuery } from "@/sanity/lib/store";
 import { POSTS_QUERY } from "@/src/lib/queries";
-import LayoutFull from "@/src/components/LayoutFull";
-import LayoutHeading from "@/src/components/LayoutHeading";
+import LayoutSidebar from "@/src/components/LayoutSidebar";
 
 export const metadata: Metadata = {
   title: "Posts",
@@ -24,9 +22,8 @@ export default async function Page() {
   );
 
   return (
-    <LayoutFull>
-      <LayoutHeading text="Posts" />
+    <LayoutSidebar heading="Posts" widgets={[()=><p>Sidebar</p>]}>
       <Posts posts={initial.data} />
-    </LayoutFull>
+    </LayoutSidebar>
   );
 }

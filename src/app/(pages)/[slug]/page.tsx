@@ -54,7 +54,7 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
 
   return (
     <LayoutFull>
-      <LayoutHeading text={initial.data.title}/>
+      <LayoutHeading text={initial.data.title || "Untitled"}/>
       <Page {...initial.data} />
     </LayoutFull>
   );

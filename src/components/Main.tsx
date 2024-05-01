@@ -5,9 +5,9 @@ interface IMainProps {
   className?: string;
 }
 
-const Main: React.FunctionComponent<IMainProps> = ({ children, className }) => {
+const Main: React.FunctionComponent<IMainProps> = ({ children, className = '' }) => {
   return (
-    <main className="relative">
+    <main className={`relative ${className}`}>
       {children}
     </main>
   );
