@@ -1,7 +1,7 @@
 //File name: link.js
 //File location: schemas/navigation
 
-export default link = {
+export const link = {
   name: "navLink",
   type: "object",
   title: "Link",

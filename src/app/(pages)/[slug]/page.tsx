@@ -1,4 +1,3 @@
-// ./app/[slug]/page.tsx
 import type {
   PageDocument,
   MetaDataProps,
@@ -12,8 +11,34 @@ import { loadQuery } from "@/sanity/lib/store";
 import { PAGES_QUERY, PAGE_QUERY } from "@/src/lib/queries";
 import Page from "@/src/components/Page";
 import { client } from "@/sanity/lib/client";
-import LayoutFull from "@/src/components/LayoutFull";
+import ContentLayout from "@/src/components/ContentLayout";
 import LayoutHeading from "@/src/components/LayoutHeading";
+import Container from "@/src/components/Container";
+import { notFound } from "next/navigation";
+
+export default async function NormalPage({ params }: { params: QueryParams }) {
+  const initial = await loadQuery<PageDocument>(PAGE_QUERY, params, {
+    next: {
+      revalidate: 2.628e9,
+    },
+    // Because of Next.js, RSC and Dynamic Routes this currently
+    // cannot be set on the loadQuery function at the "top level"
+    perspective: draftMode().isEnabled ? "previewDrafts" : "published",
+  });
+
+  if (initial.data === null) {
+    notFound();
+  }
+
+return initial.data !== null && (
+    <Container>
+      <LayoutHeading text={initial.data.title || "Untitled"} />
+      <ContentLayout widgets={null}>
+        <Page {...initial.data} />
+      </ContentLayout>
+    </Container>
+  );
+}
 
 // Generate Static Page Slugs
 export async function generateStaticParams() {
@@ -30,29 +55,14 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const post = await client.fetch<PageDocument>(PAGE_QUERY, { slug });
   const images = [];
-  if (post.image) {
+  if (post?.image) {
     images.push(post.image.asset.url);
   }
-  return {
+  return post ? {
     title: post.title || null,
     description: post.excerpt || null,
     openGraph: {
       images,
     },
-  };
-}
-
-export default async function NormalPage({ params }: { params: QueryParams }) {
-  const initial = await loadQuery<PageDocument>(PAGE_QUERY, params, {
-    // Because of Next.js, RSC and Dynamic Routes this currently
-    // cannot be set on the loadQuery function at the "top level"
-    perspective: draftMode().isEnabled ? "previewDrafts" : "published",
-  });
-
-  return (
-    <LayoutFull>
-      <LayoutHeading text={initial.data.title || "Untitled"}/>
-      <Page {...initial.data} />
-    </LayoutFull>
-  );
+  } : {};
 }

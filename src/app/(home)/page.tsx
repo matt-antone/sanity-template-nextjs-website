@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LayoutFull from "@/src/components/LayoutFull";
+import Container from "@/src/components/Container";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -7,9 +7,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
+  // Load home page
+  
   return (
-    <LayoutFull>
+    <Container>
       Home
-    </LayoutFull>
+    </Container>
   );
 }

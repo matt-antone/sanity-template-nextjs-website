@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: QueryParams }) {
     data: { posts, pages },
   } = await loadQuery<SanityDocument>(SITEMAP_QUERY);
   return (
-    <LayoutFull>
+    <Container>
       <LayoutHeading text="Sitemap" />
       <div className="grid grid-cols-3 gap-8">
         <div>
@@ -48,6 +48,6 @@ export default async function Page({ params }: { params: QueryParams }) {
           </ul>
         </div>
       </div>
-    </LayoutFull>
+    </Container>
   );
 }

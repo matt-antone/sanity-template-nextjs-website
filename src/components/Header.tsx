@@ -2,7 +2,7 @@ import * as React from "react";
 import {
   SITE_SETTINGS_QUERY,
   HEADER_NAVIGATION_QUERY,
-  MOBILE_NAVIGATION_QUERY
+  MOBILE_NAVIGATION_QUERY,
 } from "@/src/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { SanityDocument } from "next-sanity";
@@ -23,21 +23,27 @@ const Header: React.FunctionComponent<IHeaderProps> = async (props) => {
       <Container>
         <div className="flex justify-between items-center py-4">
           <div>
-            <a href="/" className="text-xl font-bold block w-[200px]">
-              {settings?.siteLogo ? (
+            {settings?.siteLogo ? (
+              <a href="/" className="text-xl font-bold block w-[200px]">
                 <Image
                   src={settings?.siteLogo?.asset?.url}
                   width={settings.siteLogo.asset.metadata.dimensions.width}
                   height={settings.siteLogo.asset.metadata.dimensions.height}
                   alt={settings?.siteTitle || "Untitled"}
                 />
-              ) : (
-                settings?.siteTitle || "Untitled"
-              )}
-            </a>
+              </a>
+            ) : settings?.siteTitle ? (
+              <a href="/" className="text-xl font-boldx]">
+                {settings.siteTitle}
+              </a>
+            ) : (
+              <a href="/studio/structure/settings" className="text-blue-500">Add website name</a>
+            )}
           </div>
-          <MenuMain nav={mainNav}/>
-          <MenuMobile nav={mobileNav} settings={settings}/>
+          {mainNav && <MenuMain nav={mainNav} />}
+          {mobileNav && settings && (
+            <MenuMobile nav={mobileNav} settings={settings} />
+          )}
         </div>
       </Container>
     </header>

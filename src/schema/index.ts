@@ -19,9 +19,9 @@ import pages from './page'
 import { youtube } from './fields/youtube'
 import settings from './settings'
 import { linkImage } from './fields/image-link'
-import navigation from './navigation'
-import navLink from './navigation/link'
-import navItem from './navigation/navItem'
+import {navigation} from './navigation'
+import { link } from './navigation/link'
+import {navItem} from './navigation/navItem'
 import { vimeo } from './fields/vimeo'
 import profile from './profile'
 import home from './home'
@@ -42,9 +42,8 @@ export const schemaTypes: { types: SchemaTypeDefinition[] } = {
     youtube,
     linkImage,
     navigation,
-    navLink,
+    link,
     navItem,
     vimeo,
-
   ],
 }

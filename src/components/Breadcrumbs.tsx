@@ -3,9 +3,11 @@ import * as React from "react";
 import BC from "@marketsystems/nextjs13-appdir-breadcrumbs";
 import { titleCase } from "title-case";
 
-interface IBreadcrumbsProps {}
+interface IBreadcrumbsProps {
+  title: string;
+}
 
-const Breadcrumbs: React.FunctionComponent<IBreadcrumbsProps> = (props) => {
+const Breadcrumbs: React.FunctionComponent<IBreadcrumbsProps> = ({title}) => {
   return (
     <div>
       <BC

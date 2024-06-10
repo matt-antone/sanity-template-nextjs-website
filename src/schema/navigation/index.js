@@ -4,7 +4,7 @@
 import { GrNavigate } from "react-icons/gr";
 import { slug } from "@/src/schema/fields/slug";
 
-export default navigation = {
+export const navigation = {
     name: 'navigation',
     title: 'Navigation',
     type: 'document',

@@ -6,6 +6,8 @@ import Posts from "@/src/components/Posts";
 import { loadQuery } from "@/sanity/lib/store";
 import { POSTS_QUERY } from "@/src/lib/queries";
 import LayoutSidebar from "@/src/components/LayoutSidebar";
+import LayoutHeading from "@/src/components/LayoutHeading";
+import Container from "@/src/components/Container";
 
 export const metadata: Metadata = {
   title: "Posts",
@@ -22,8 +24,9 @@ export default async function Page() {
   );
 
   return (
-    <LayoutSidebar heading="Posts" widgets={[()=><p>Sidebar</p>]}>
-      <Posts posts={initial.data} />
-    </LayoutSidebar>
+    <Container>
+      <LayoutHeading text="Posts"/>
+      <Posts posts={initial.data} />    
+    </Container>
   );
 }

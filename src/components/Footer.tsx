@@ -16,10 +16,10 @@ const Footer: React.FunctionComponent<IFooterProps> = async (props) => {
     <footer>
       <Container>
         <div className="flex justify-center items-center py-4 gap-4">
-          <p>©{new Date().getFullYear()} {settings.siteTitle || "Untitled"}</p>
+          <p>©{new Date().getFullYear()} {settings?.siteTitle || "Untitled"}</p>
           <nav>
             <ul className="flex space-x-4">
-              {nav.items &&
+              {nav?.items &&
                 nav.items.map((item: any) => {
                   return (
                     <li key={`${item._key}-footer`}>
