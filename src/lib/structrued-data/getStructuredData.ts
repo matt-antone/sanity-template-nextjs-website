@@ -3,6 +3,7 @@ import { client } from "@/sanity/lib/client";
 import type { SanityDocument } from "next-sanity";
 import type { SettingsDocument } from "@/src/types";
 import { headers } from 'next/headers';
+import capitalize from "@/src/lib/capitalize";
 
 
 export default async function getStructuredData({
@@ -17,7 +18,7 @@ export default async function getStructuredData({
   const breadcrumbs = path && path.map( (item:string, i:number) => ({
     "@type": "ListItem",
     position: i + 2,
-    name: item,
+    name: item.split('-').map(capitalize).join(' '),
     item: `${process.env.BASE_URL}/${item}`,
   }))
   console.log({raw: headersList.get('referer')?.replace(process.env.BASE_URL || "", ''),path,breadcrumbs})
@@ -59,7 +60,7 @@ export default async function getStructuredData({
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://www.epgrlawyers.com/",
+            item: process.env.BASE_URL,
           },
           ...breadcrumbs,
           // { "@type": "ListItem", position: 2, name: "Darren S. Enenstein" },
