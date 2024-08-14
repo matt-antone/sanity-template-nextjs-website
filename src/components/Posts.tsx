@@ -2,13 +2,9 @@
 import { useState } from "react";
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
-import PageSidebar from "@/src/components/LayoutSidebar";
-import PageHeading from "@/src/components/LayoutHeading";
 import Thumbnail from "@/src/components/Thumbnail";
 import { PAGINATION_QUERY } from "@/src/lib/queries";
 import { client } from "@/sanity/lib/client";
-import { set } from "sanity";
-import LayoutFull from "./LayoutFull";
 
 export default function Posts({ posts }: { posts: SanityDocument[] }) {
   const [list, setList] = useState(posts || []);

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "flush": "rm -rf .next && yarn dev"
   },
   "dependencies": {
     "@marketsystems/nextjs13-appdir-breadcrumbs": "^1.0.4",
