@@ -17,3 +17,9 @@ export type PostDocument = SanityDocument &{
 export type PageDocument = SanityDocument & {
   title: string;
 }
+
+export type SettingsDocument = SanityDocument & {
+  siteTitle: string;
+  siteDescription: string;
+  siteLogo: SanityImageAssetDocument;
+}
