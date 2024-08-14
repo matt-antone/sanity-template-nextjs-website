@@ -43,4 +43,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 You'll need Algolia API keys and a Google Measurement ID to fully install.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmatt-antone%2Fsanity-template-nextjs-website&env=BASE_URL,NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID,NEXT_PUBLIC_ALGOLIA_APP_ID,NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,ALGOLIA_SEARCH_ADMIN_KEY&integration-ids=oac_hb2LITYajhRQ0i4QznmKH7gx,oac_VqOgBHqhEoFTPzGkPd7L0iH6&skippable-integrations=1)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmatt-antone%2Fsanity-template-nextjs-website&env=BASE_URL,NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID,NEXT_PUBLIC_ALGOLIA_APP_ID,NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,ALGOLIA_SEARCH_ADMIN_KEY&integration-ids=oac_VqOgBHqhEoFTPzGkPd7L0iH6,oac_hb2LITYajhRQ0i4QznmKH7gx,&skippable-integrations=2)

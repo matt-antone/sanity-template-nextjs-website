@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/src/components/Container";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -8,10 +9,17 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   // Load home page
-  
+
   return (
-    <Container>
-      Home
-    </Container>
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: '{}'}}
+          key="product-jsonld"
+        />
+      </Head>
+      <Container>Home</Container>
+    </>
   );
 }

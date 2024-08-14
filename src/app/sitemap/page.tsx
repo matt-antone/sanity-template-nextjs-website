@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { QueryParams, SanityDocument } from "next-sanity";
-import { draftMode } from "next/headers";
-
 import { loadQuery } from "@/sanity/lib/store";
 import { SITEMAP_QUERY } from "@/src/lib/queries";
 import Container from "@/src/components/Container";
-import LayoutFull from "@/src/components/LayoutFull";
 import LayoutHeading from "@/src/components/LayoutHeading";
 
 export const metadata: Metadata = {

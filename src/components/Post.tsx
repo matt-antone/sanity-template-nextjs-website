@@ -1,6 +1,4 @@
 import { PortableText } from "@portabletext/react";
-import LayoutHeading from "./LayoutHeading";
-import LayouSidebar from "./LayoutSidebar";
 import Image from "next/image";
 
 export default function Post(props: any) {
