@@ -9,6 +9,8 @@ import { singletonTools } from "sanity-plugin-singleton-tools";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { schemaTypes } from "@/src/schema";
 import { structure } from "@/src/schema/structure";
+import { vercelDeployTool } from 'sanity-plugin-vercel-deploy'
+
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
@@ -30,5 +32,6 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
     // Add the "unsplashImageAsset" plugin
     unsplashImageAsset(),
+    vercelDeployTool(),
   ],
 });

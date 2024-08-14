@@ -39,6 +39,7 @@
     "sanity-lighthouse-plugin": "^1.1.0",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "sanity-plugin-singleton-tools": "^1.0.1",
+    "sanity-plugin-vercel-deploy": "^3.3.4",
     "styled-components": "^6.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
