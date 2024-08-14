@@ -12,7 +12,15 @@ export default async function getStructuredData({
 }) {
   const settings = await client.fetch<SettingsDocument>(SITE_SETTINGS_QUERY);
   const headersList = headers();
-  const path = headersList.get('referer')?.split('/').slice(3)
+  const rawPath = headersList.get('referer')?.replace(process.env.BASE_URL || "", '') || '';
+  const path = rawPath.length > 1 ? rawPath.split('/').slice(3) : []
+  const breadcrumbs = path && path.map( (item:string, i:number) => ({
+    "@type": "ListItem",
+    position: i + 2,
+    name: item,
+    item: `${process.env.BASE_URL}/${item}`,
+  }))
+  console.log({raw: headersList.get('referer')?.replace(process.env.BASE_URL || "", ''),path,breadcrumbs})
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -53,7 +61,8 @@ export default async function getStructuredData({
             name: "Home",
             item: "https://www.epgrlawyers.com/",
           },
-          { "@type": "ListItem", position: 2, name: "Darren S. Enenstein" },
+          ...breadcrumbs,
+          // { "@type": "ListItem", position: 2, name: "Darren S. Enenstein" },
         ],
       },
       {
