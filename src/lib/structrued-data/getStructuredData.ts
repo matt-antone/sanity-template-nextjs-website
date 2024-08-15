@@ -22,6 +22,101 @@ export default async function getStructuredData({
     name: i+1 == path.length ? post.title : item.split('-').map(capitalize).join(' '),
     item: `${process.env.BASE_URL}/${item}`,
   }))
+
+const sample = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.epgrlawyers.com/practiceareas/appellate-law/",
+      "url": "https://www.epgrlawyers.com/practiceareas/appellate-law/",
+      "name": "Appellate Law - Practice Area - EPGR Lawyers",
+      "isPartOf": { "@id": "https://www.epgrlawyers.com/#website" },
+      "primaryImageOfPage": {
+        "@id": "https://www.epgrlawyers.com/practiceareas/appellate-law/#primaryimage"
+      },
+      "image": {
+        "@id": "https://www.epgrlawyers.com/practiceareas/appellate-law/#primaryimage"
+      },
+      "thumbnailUrl": "https://www.epgrlawyers.com/wp-content/uploads/2019/07/Appellate_Law.jpg",
+      "datePublished": "2019-06-27T17:06:23+00:00",
+      "dateModified": "2023-08-01T12:05:12+00:00",
+      "description": "Appellate Law - Practice Area - EPGR Lawyers - https://www.epgrlawyers.com/",
+      "breadcrumb": {
+        "@id": "https://www.epgrlawyers.com/practiceareas/appellate-law/#breadcrumb"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": ["https://www.epgrlawyers.com/practiceareas/appellate-law/"]
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "inLanguage": "en-US",
+      "@id": "https://www.epgrlawyers.com/practiceareas/appellate-law/#primaryimage",
+      "url": "https://www.epgrlawyers.com/wp-content/uploads/2019/07/Appellate_Law.jpg",
+      "contentUrl": "https://www.epgrlawyers.com/wp-content/uploads/2019/07/Appellate_Law.jpg",
+      "width": 752,
+      "height": 359,
+      "caption": "Appellate_Law"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.epgrlawyers.com/practiceareas/appellate-law/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.epgrlawyers.com/"
+        },
+        { "@type": "ListItem", "position": 2, "name": "Appellate Law" }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.epgrlawyers.com/#website",
+      "url": "https://www.epgrlawyers.com/",
+      "name": "EPGR Lawyers",
+      "description": "Thinking Outside the Box",
+      "publisher": { "@id": "https://www.epgrlawyers.com/#organization" },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.epgrlawyers.com/?s={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      ],
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.epgrlawyers.com/#organization",
+      "name": "EPGR Lawyers",
+      "url": "https://www.epgrlawyers.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "inLanguage": "en-US",
+        "@id": "https://www.epgrlawyers.com/#/schema/logo/image/",
+        "url": "https://www.epgrlawyers.com/wp-content/uploads/2022/05/cropped-EPG_logo.png",
+        "contentUrl": "https://www.epgrlawyers.com/wp-content/uploads/2022/05/cropped-EPG_logo.png",
+        "width": 240,
+        "height": 49,
+        "caption": "EPGR Lawyers"
+      },
+      "image": { "@id": "https://www.epgrlawyers.com/#/schema/logo/image/" }
+    }
+  ]
+}
+
+
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -82,5 +177,5 @@ export default async function getStructuredData({
       },
     ],
   };
-  return structuredData;
+  return sample;
 }
