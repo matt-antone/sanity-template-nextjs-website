@@ -18,7 +18,7 @@ export default async function getStructuredData({
   const breadcrumbs = path && path.map( (item:string, i:number) => ({
     "@type": "ListItem",
     position: i + 2,
-    name: item.split('-').map(capitalize).join(' '),
+    name: i+1 == path.length ? post.title : item.split('-').map(capitalize).join(' '),
     item: `${process.env.BASE_URL}/${item}`,
   }))
   console.log({raw: headersList.get('referer')?.replace(process.env.BASE_URL || "", '').length,rawPath,path,breadcrumbs})
