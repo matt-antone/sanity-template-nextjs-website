@@ -5,7 +5,7 @@ import SkipMenu from '@/src/components/SkipMenu';
 import Header from "@/src/components/Header";
 import Footer from "@/src/components/Footer";
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // set viewport
 export const viewport: Viewport = {
@@ -27,6 +27,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({children}) => {
         <Header />
         {children}
         <Footer />
+        <SpeedInsights />
         {/* add google tag manager */}
         { process.env.NEXT_PUBLIC_GOOGLE_TM && <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TM} />}
         { process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID} />}
