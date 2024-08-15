@@ -13,7 +13,8 @@ export default async function getStructuredData({
 }) {
   const settings = await client.fetch<SettingsDocument>(SITE_SETTINGS_QUERY);
   const headersList = headers();
-  const rawPath = headersList.get('x-current-path')?.replace(process.env.BASE_URL || "", '') || '';
+  const currentPath = headersList.get('x-current-path');
+  const rawPath = currentPath?.replace(process.env.BASE_URL || "", '') || '';
   const path = rawPath?.split('/') || []
   const breadcrumbs = path && path.map( (item:string, i:number) => ({
     "@type": "ListItem",
@@ -26,23 +27,23 @@ export default async function getStructuredData({
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": headersList.get('x-current-path'),
-        url: headersList.get('x-current-path'),
+        "@id": currentPath,
+        url: currentPath,
         name: post.title,
         isPartOf: { "@id": `${process.env.BASE_URL}/#website` },
-        about: { "@id": `${process.env.BASE_URL}/#organization` },
+        // about: { "@id": `${process.env.BASE_URL}/#organization` },
         datePublished: post.date,
         dateModified: post._updatedAt,
         description: post.description,
-        breadcrumb: { "@id": `${process.env.BASE_URL}/#breadcrumb` },
+        breadcrumb: { "@id": `${currentPath}/#breadcrumb` },
         inLanguage: "en-US",
         potentialAction: [
-          { "@type": "ReadAction", target: [`${process.env.BASE_URL}/`] },
+          { "@type": "ReadAction", target: [`${currentPath}/`] },
         ],
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `${process.env.BASE_URL}/${path?.join("/")}/#breadcrumb`,
+        "@id": `${currentPath}/#breadcrumb`,
         itemListElement: [
           {
             "@type": "ListItem",
