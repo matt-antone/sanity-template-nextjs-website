@@ -42,22 +42,7 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
       <Container>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.website) }}
-        id="page-jsonld"
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.organization) }}
-        id="page-jsonld"
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.breadcrumbList) }}
-        id="page-jsonld"
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.webpage) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         id="page-jsonld"
       />
 
