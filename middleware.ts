@@ -40,7 +40,8 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
     response.headers.set('Referrer-Policy', 'strict-origin')
     response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
     response.headers.set('X-XSS-Protection', '1; mode=block')
-  
+    
   }
+  response.headers.set("x-current-path", req.nextUrl.pathname)
   return response
 }
