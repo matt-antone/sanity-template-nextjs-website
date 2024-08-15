@@ -21,7 +21,9 @@ export default async function getStructuredData({
     name: i+1 == path.length ? post.title : item.split('-').map(capitalize).join(' '),
     item: `${process.env.BASE_URL}/${item}`,
   }))
+  
   const website = {
+    "@context": "https://schema.org/",
     "@type": "WebSite",
     "@id": `${process.env.BASE_URL}/#website`,
     url: process.env.BASE_URL,
@@ -32,6 +34,7 @@ export default async function getStructuredData({
   }
 
   const organization =  {
+    "@context": "https://schema.org/",
     "@type": "Organization",
     "@id": `${process.env.BASE_URL}/#organization`,
     name: settings.siteTitle || "Untitled",
@@ -50,6 +53,7 @@ export default async function getStructuredData({
   }
 
   const breadcrumbList = {
+    "@context": "https://schema.org/",
     "@type": "BreadcrumbList",
     "@id": `${process.env.BASE_URL}/${path?.join("/")}/#breadcrumb`,
       // "https://www.epgrlawyers.com/team-members/darren-s-enenstein/#breadcrumb",
@@ -66,6 +70,7 @@ export default async function getStructuredData({
   }
 
   const webpage = {
+    "@context": "https://schema.org/",
     "@type": "WebPage",
     "@id": headersList.get('referer'),
     url: headersList.get('referer'),
