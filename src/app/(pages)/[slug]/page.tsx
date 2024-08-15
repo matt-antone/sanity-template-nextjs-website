@@ -40,11 +40,27 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
   return (
     initial.data !== null && (
       <Container>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-          id="page-jsonld"
-        />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.website) }}
+        id="page-jsonld"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.organization) }}
+        id="page-jsonld"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.breadcrumbList) }}
+        id="page-jsonld"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.webpage) }}
+        id="page-jsonld"
+      />
+
         <LayoutHeading text={initial.data.title || "Untitled"} />
         <ContentLayout widgets={null}>
           <Page {...initial.data} />
