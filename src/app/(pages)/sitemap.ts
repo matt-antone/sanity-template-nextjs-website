@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { loadQuery } from "@/sanity/lib/store";
-import { SITEMAP_QUERY } from "@/src/lib/queries";
+import { SITEMAP_QUERY } from "@/lib/queries";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const {

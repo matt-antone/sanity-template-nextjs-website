@@ -3,7 +3,7 @@ import {
   SITE_SETTINGS_QUERY,
   HEADER_NAVIGATION_QUERY,
   MOBILE_NAVIGATION_QUERY,
-} from "@/src/lib/queries";
+} from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { SanityDocument } from "next-sanity";
 import Container from "./Container";

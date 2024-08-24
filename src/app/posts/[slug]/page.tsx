@@ -1,5 +1,5 @@
 import type { Metadata, ResolvingMetadata, MetaDataProps, PostDocument } from '@/src/types'
-import { POST_QUERY, POSTS_ALL_QUERY } from "@/src/lib/queries";
+import { POST_QUERY, POSTS_ALL_QUERY } from "@/lib/queries";
 import { QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 import { client } from "@/sanity/lib/client";

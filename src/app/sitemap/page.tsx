@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { QueryParams, SanityDocument } from "next-sanity";
 import { loadQuery } from "@/sanity/lib/store";
-import { SITEMAP_QUERY } from "@/src/lib/queries";
+import { SITEMAP_QUERY } from "@/lib/queries";
 import Container from "@/src/components/Container";
 import LayoutHeading from "@/src/components/LayoutHeading";
 

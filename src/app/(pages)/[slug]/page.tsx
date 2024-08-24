@@ -7,15 +7,13 @@ import type {
 import { QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 import { loadQuery } from "@/sanity/lib/store";
-import { PAGES_QUERY, PAGE_QUERY } from "@/src/lib/queries";
+import { PAGES_QUERY, PAGE_QUERY } from "@/lib/queries";
 import Page from "@/src/components/Page";
 import { client } from "@/sanity/lib/client";
 import ContentLayout from "@/src/components/ContentLayout";
 import LayoutHeading from "@/src/components/LayoutHeading";
 import Container from "@/src/components/Container";
 import { notFound } from "next/navigation";
-import getStructuredData from "@/src/lib/structrued-data/getStructuredData";
-import Head from "next/head";
 
 export default async function NormalPage({ params }: { params: QueryParams }) {
   const initial = await loadQuery<PageDocument>(PAGE_QUERY, params, {
@@ -31,20 +29,14 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
     notFound();
   }
 
-  const structuredData = await getStructuredData({
-    post: initial.data,
-  });
-
-  console.log(structuredData);
-
   return (
     initial.data !== null && (
       <Container>
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         id="page-jsonld"
-      />
+      /> */}
 
         <LayoutHeading text={initial.data.title || "Untitled"} />
         <ContentLayout widgets={null}>

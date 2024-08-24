@@ -2,7 +2,7 @@ import * as React from "react";
 import Container from "./Container";
 import { client } from "@/sanity/lib/client";
 
-import { FOOTER_NAVIGATION_QUERY, SITE_SETTINGS_QUERY } from "@/src/lib/queries";
+import { FOOTER_NAVIGATION_QUERY, SITE_SETTINGS_QUERY } from "@/lib/queries";
 import { QueryParams, SanityDocument } from "next-sanity";
 import Link from "next/link";
 

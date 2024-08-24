@@ -7,9 +7,10 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { singletonTools } from "sanity-plugin-singleton-tools";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
-import { schemaTypes } from "@/src/schema";
-import { structure } from "@/src/schema/structure";
+import { schemaTypes } from "@/lib/schema";
+import { structure } from "@/lib/schema/structure";
 import { vercelDeployTool } from 'sanity-plugin-vercel-deploy'
+import {media, mediaAssetSource} from 'sanity-plugin-media'
 
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
@@ -33,5 +34,14 @@ export default defineConfig({
     // Add the "unsplashImageAsset" plugin
     unsplashImageAsset(),
     vercelDeployTool(),
+    media()
   ],
+  form: {
+    // Don't use this plugin when selecting files only (but allow all other enabled asset sources)
+    file: {
+      assetSources: previousAssetSources => {
+        return previousAssetSources.filter(assetSource => assetSource !== mediaAssetSource)
+      }
+    }
+  }
 });

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
 import Thumbnail from "@/src/components/Thumbnail";
-import { PAGINATION_QUERY } from "@/src/lib/queries";
+import { PAGINATION_QUERY } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
 
 export default function Posts({ posts }: { posts: SanityDocument[] }) {
