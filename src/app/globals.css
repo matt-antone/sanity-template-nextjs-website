@@ -131,7 +131,7 @@
   inset: 0 0 0 0;
   /* left: 50%; */
   transform: rotateY(var(--rotateY)) translateZ(var(--tw-translate-z))/* translateX(-100%) translateZ(36vw)*/ ;
-  @apply translate-z-[36vw] xl:translate-z-[600px];
+  @apply translate-z-[175px] sm:translate-z-[300px] md:translate-z-[350px] lg:translate-z-[500px] xl:translate-z-[600px];
 }
 
 .gallery3d .slider .item img {
