@@ -39,41 +39,58 @@ export default async function Page() {
         id="page-jsonld"
       /> */}
       {initial.data.gallery && (
-        <>
-          <h1 className="text-[10rem] font-black relative z-50 mt-10 text-center leading-none uppercase drop-shadow-lg dro">
+        <div className="max-w-screen overflow-hidden">
+          <h1 className="text-[4rem] md:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-black relative z-50 mt-10 text-center leading-none uppercase drop-shadow-lg">
             Dark
             <br />
             Angels
           </h1>
 
-          <div className="relative flex flex-col items-center mb-[30vw]">
+          <div className="relative flex items-center justify-center mb-16 h-[30vw]">
             <div
               className={
-                "gallery3d w-full text-center flex justify-center items-start absolute -top-12 z-50 h-[36vw]"
+                "gallery3d flex justify-center items-center relative z-50 h-auto"
               }
             >
-              <div className="slider transform mx-autoj mt-[11vw]">
+              <div
+                className={
+                  "slider flex justify-center " +
+                  "w-[80px] h-[80px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] xl:w-[270px] xl:h-[270px]" +
+                  ""
+                }
+              >
                 {initial.data.gallery.reverse().map((image: any, i: number) => {
                   const count = initial.data.gallery.length;
-                  const rotateY = i * (360 / count);
+                  const rotateY = Math.floor(i * (360 / count));
                   const styles = {
                     "--rotateY": `${rotateY}deg`,
                   } as React.CSSProperties;
                   return (
                     image.asset && (
-                      <div className="item" key={image._key} style={styles}>
-                        <Image
-                          src={`${image.asset.url}?w=500&h=500&fit=crop&dpr=2`}
-                          alt={image.alt}
-                          width={200}
-                          height={200}
-                          className="hover:scale-125 transition"
-                        />
+                      <div
+                        className="item z-10 flex justify-center items-center item w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] xl:w-[270px] xl:h-[270px] bg-gray-800"
+                        key={image._key}
+                        style={styles}
+                      >
+                        <div className="item-inner p-[2px] flex justify-center items-center absolute inset-[1px]">
+                          <div className="absolute inset-0 z-50">
+                            <Image
+                              src={`${image.asset.url}?w=500&h=500&fit=crop&dpr=2`}
+                              alt={image.asset.altText}
+                              width={500}
+                              height={500}
+                              className="block hover:scale-125"
+                            />
+                          </div>
+                        </div>
+                        <hr className="w-[200vw]s border-green-700" />
+                        {/* <caption className="py-2 text-left text-white text-xs bg-black">{image.asset.altText}{`${rotateY}deg`}</caption> */}
                       </div>
                     )
                   );
                 })}
               </div>
+              s{" "}
             </div>
             {/* <Image
               src="https://cdn.sanity.io/images/6eag1k58/production/ca4eafb52a6b350ee58ce7c206cc9c97deae0be3-3024x3024.jpg"
@@ -88,7 +105,7 @@ export default async function Page() {
               <PortableText value={initial.data.body} />
             </Container>
           </div>
-        </>
+        </div>
       )}
     </>
   );

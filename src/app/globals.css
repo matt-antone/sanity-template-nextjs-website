@@ -69,47 +69,70 @@
 }
 
 .gallery3d {
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-  overflow: hidden;
-
+  /* width: 100vw;
+  height: auto; */
+  /* overflow: hidden; */
 }
 
 .gallery3d .slider {
-  position: absolute;
-  width: 10vw;
-  height: 12.5vw;
+  height: 12vw;
+  position: relative;
   transform-style: preserve-3d;
-  transform: perspective(100vw) rotateZ(15deg) rotateX(6deg);
+  transform: perspective(200%) translateX(-100%);
   animation: autoRun 60s linear infinite;
   transition: all 0.1s;
-  @apply transform-gpu;
+  /* @apply transform-gpu; */
 }
 
 @keyframes autoRun {
-  from{
-    transform: 
-      perspective(100vw)
-      rotateX(4deg)
-      rotateY(0deg)
-      rotateZ(0deg)
-  }to{
-    transform: 
-      perspective(100vw)
-      rotateX(4deg)
-      rotateY(360deg)
-      rotateZ(0deg)
+  from {
+    transform: perspective(100vw) rotateY(0deg) rotateZ(0deg);
+  }
+  to {
+    transform: perspective(100vw) rotateY(360deg) rotateZ(0deg);
+  }
+}
+
+.slider .item-inner::before {
+  opacity: 0.7;
+  content: "";
+  display: block;
+  background: conic-gradient(
+    black 0%,
+    #0f5103 70%,
+    #2bd30d 90%,
+    #8df770 99%,
+    #000000 100% /* #0f5103 75%, */
+  );
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  animation: rotate 3s linear infinite;
+  z-index: -1;
+  /* top: 50%;
+  left: 50%;
+  margin-top: -50%;
+  margin-left: -50%; */
+  /* transform: translate(-50%, -50%); */
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 
 .gallery3d .slider .item {
+  overflow: hidden;
   position: absolute;
-  inset: 0 0 0 0; 
-  transform: 
-    rotateY(var(--rotateY))
-    translateZ(42vw);
-    /* @apply transform-gpu; */
+  inset: 0 0 0 0;
+  /* left: 50%; */
+  transform: rotateY(var(--rotateY)) /* translateX(-100%) */ translateZ(36vw);
+  /* @apply transform-gpu; */
 }
 .gallery3d .slider .item img {
   width: 100%;
