@@ -78,10 +78,9 @@
   height: 12vw;
   position: relative;
   transform-style: preserve-3d;
-  transform: perspective(200%) translateX(-100%);
+  transform: perspective(100vw) translateX(-100%);
   animation: autoRun 60s linear infinite;
   transition: all 0.1s;
-  /* @apply transform-gpu; */
 }
 
 @keyframes autoRun {
@@ -131,9 +130,10 @@
   position: absolute;
   inset: 0 0 0 0;
   /* left: 50%; */
-  transform: rotateY(var(--rotateY)) /* translateX(-100%) */ translateZ(36vw);
-  /* @apply transform-gpu; */
+  transform: rotateY(var(--rotateY)) translateZ(var(--tw-translate-z))/* translateX(-100%) translateZ(36vw)*/ ;
+  @apply translate-z-[36vw] xl:translate-z-[600px];
 }
+
 .gallery3d .slider .item img {
   width: 100%;
   height: 100%;

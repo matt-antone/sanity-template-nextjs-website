@@ -40,7 +40,7 @@ export default async function Page() {
       /> */}
       {initial.data.gallery && (
         <div className="max-w-screen overflow-hidden">
-          <h1 className="text-[4rem] md:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-black relative z-50 mt-10 text-center leading-none uppercase drop-shadow-lg">
+          <h1 className="text-[5rem] md:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-black relative z-50 mt-10 text-center leading-none uppercase drop-shadow-lg">
             Dark
             <br />
             Angels
@@ -55,7 +55,7 @@ export default async function Page() {
               <div
                 className={
                   "slider flex justify-center " +
-                  "w-[80px] h-[80px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] xl:w-[270px] xl:h-[270px]" +
+                  "w-[50px] h-[50px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] xl:w-[270px] xl:h-[270px]" +
                   ""
                 }
               >
@@ -68,7 +68,7 @@ export default async function Page() {
                   return (
                     image.asset && (
                       <div
-                        className="item z-10 flex justify-center items-center item w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] xl:w-[270px] xl:h-[270px] bg-gray-800"
+                        className="item z-10 flex justify-center items-center item w-[60px] h-[60px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] xl:w-[270px] xl:h-[270px] bg-gray-800"
                         key={image._key}
                         style={styles}
                       >
@@ -79,7 +79,7 @@ export default async function Page() {
                               alt={image.asset.altText}
                               width={500}
                               height={500}
-                              className="block hover:scale-125"
+                              className="block hover:scale-125 transition-all"
                             />
                           </div>
                         </div>
