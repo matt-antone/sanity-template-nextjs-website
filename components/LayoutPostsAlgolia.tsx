@@ -6,7 +6,7 @@ import Thumbnail from "@/components/Thumbnail";
 import { PAGINATION_QUERY } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
 
-export default function Posts({ posts }: { posts: SanityDocument[] }) {
+export default function LayoutPostsAlgolia({ posts }: { posts: SanityDocument[] }) {
   const [list, setList] = useState(posts || []);
   const [lastDate, setLastDate] = useState(
     posts.length > 0 ? posts[posts.length - 1].date : null

@@ -1,18 +1,14 @@
 import * as React from 'react';
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "700"],
-});
+const inter = Inter({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
 interface IFontsProps {
   children: React.ReactNode
 }
 
 const Fonts: React.FunctionComponent<IFontsProps> = ({children}) => {
-  return <div className={montserrat.className}>{children}</div>;
+  return <div className={inter.className}>{children}</div>;
 };
 
 export default Fonts;

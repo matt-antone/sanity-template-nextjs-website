@@ -2,7 +2,7 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { components } from '@/components/blocks';
 
-export default function Post(props: any) {
+export default function LayoutPost(props: any) {
   const { title = "Untitled", image = null, body = null } = props;
 
   return (
