@@ -1,6 +1,5 @@
-"use client";
 import * as React from 'react';
-import { motion } from "framer-motion";
+import PageTransition from '@/src/components/PageTransition';
 
 interface ITemplateProps {
   children: React.ReactNode
@@ -8,14 +7,9 @@ interface ITemplateProps {
 
 const Template: React.FunctionComponent<ITemplateProps> = (props) => {
   return (
-    <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y:20, opacity: 0 }}
-      transition={{ duration: 0.1, ease: "easeInOut" }}
-    >
+    <PageTransition>
       {props.children}
-    </motion.div>
+    </PageTransition>
   );
 };
 
