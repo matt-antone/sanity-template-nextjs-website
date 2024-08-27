@@ -1,7 +1,7 @@
 import Container from "@/src/components/Container";
 import * as React from "react";
-import LayoutHeading from "../../components/LayoutHeading";
-import ContentLayout from "../../components/ContentLayout";
+import LayoutHeading from "@/src/components/LayoutHeading";
+import ContentLayout from "@/src/components/ContentLayout";
 
 interface INotFoundProps {}
 
