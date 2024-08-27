@@ -13,7 +13,12 @@ export const metadata: Metadata = {
 export default async function Page({ params }: { params: QueryParams }) {
   const {
     data: { posts, pages },
-  } = await loadQuery<SanityDocument>(SITEMAP_QUERY);
+  } = await loadQuery<SanityDocument>(SITEMAP_QUERY,{},{
+    next: {
+      revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+    },
+  }
+);
   return (
     <Container>
       <LayoutHeading text="Sitemap" />

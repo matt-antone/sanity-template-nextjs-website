@@ -19,11 +19,8 @@ export default async function Page() {
     { slug: "home" },
     {
       next: {
-        revalidate: 2.628e9,
+        revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
       },
-      // Because of Next.js, RSC and Dynamic Routes this currently
-      // cannot be set on the loadQuery function at the "top level"
-      perspective: draftMode().isEnabled ? "previewDrafts" : "published",
     }
   );
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SanityDocument } from "next-sanity";
 import { draftMode } from "next/headers";
 
-import Posts from "@/components/Posts";
+import LayoutPosts from "@/components/LayoutPosts";
 import { loadQuery } from "@/sanity/lib/store";
 import { POSTS_QUERY } from "@/lib/queries";
 import LayoutHeading from "@/components/LayoutHeading";
@@ -18,14 +18,16 @@ export default async function Page() {
     POSTS_QUERY,
     {},
     {
-      perspective: draftMode().isEnabled ? "previewDrafts" : "published",
+      next: {
+        revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+      },
     }
   );
 
   return (
     <Container>
       <LayoutHeading text="Posts"/>
-      <Posts posts={initial.data} />    
+      <LayoutPosts posts={initial.data} />    
     </Container>
   );
 }
