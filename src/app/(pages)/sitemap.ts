@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const getURL = (page:any,path:string = '')=>{
     return {
-      url: `${process.env.BASE_URL}/${path}${page.slug}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/${path}${page.slug}`,
       lastModified: page._updatedAt || page.date,
       changeFrequency: 'monthly',
       priority: 0.8,
