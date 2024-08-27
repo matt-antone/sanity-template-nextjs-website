@@ -1,5 +1,6 @@
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
+import { components } from '@/components/blocks';
 
 export default function Post(props: any) {
   const { title = "Untitled", image = null, body = null } = props;
@@ -19,7 +20,7 @@ export default function Post(props: any) {
       </div>
       {body ? (
         <div className="prose">
-          <PortableText value={body} />
+          <PortableText value={body} components={components}/>
         </div>
       ) : null}
     </div>

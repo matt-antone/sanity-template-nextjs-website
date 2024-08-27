@@ -66,4 +66,14 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .breadcrumbs li:not(:first-of-type)::before {
+    content: "/";
+    @apply mr-3 text-black font-normal no-underline !important;
+  }
+  
+  .breadcrumbs li:not(:last-of-type) a {
+    @apply font-normal underline !important;
+  }
 }
+

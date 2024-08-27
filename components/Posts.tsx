@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
-import Thumbnail from "@/src/components/Thumbnail";
+import Thumbnail from "@/components/Thumbnail";
 import { PAGINATION_QUERY } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
 

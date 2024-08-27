@@ -12,6 +12,8 @@
   "dependencies": {
     "@marketsystems/nextjs13-appdir-breadcrumbs": "^1.0.4",
     "@next/third-parties": "^14.2.3",
+    "@radix-ui/react-dropdown-menu": "^2.1.1",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@sanity/client": "^6.12.4",
     "@sanity/icons": "^2.8",

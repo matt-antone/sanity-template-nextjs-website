@@ -12,11 +12,12 @@ const Breadcrumbs: React.FunctionComponent<IBreadcrumbsProps> = ({title}) => {
     <div>
       <BC
         //styles are in globals.css
-        containerClassName="breadcrumbs mt-4"
+        containerClassName="breadcrumbs mt-2"
         listClassName="flex gap-4"
-        inactiveItemClassName="text-sm text-gray-500 relative"
-        activeItemClassName="text-sm font-bold relative"
+        inactiveItemClassName="text-sm text-darkblue relative"
+        activeItemClassName="text-sm font-bold relative line-clamp-1"
         rootLabel="Home"
+        // seperator={<span className="text-darkblue">/</span>}
         transformLabel={(title) => titleCase(title).replaceAll("-", " ")}
       />
     </div>

@@ -4,9 +4,9 @@ import { QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 import { client } from "@/sanity/lib/client";
 import { loadQuery } from "@/sanity/lib/store";
-import Post from "@/src/components/Post";
-import LayoutHeading from '@/src/components/LayoutHeading';
-import Container from '@/src/components/Container';
+import Post from "@/components/Post";
+import LayoutHeading from '@/components/LayoutHeading';
+import Container from '@/components/Container';
 
 // Generate Static Page Slugs
 export async function generateStaticParams() {

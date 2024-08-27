@@ -3,7 +3,7 @@ import * as fields from './fields'
 import { GrArticle } from "react-icons/gr";
 
 export default defineType({
-  name: 'posts',
+  name: 'post',
   title: 'Posts',
   type: 'document',
   icon: GrArticle,

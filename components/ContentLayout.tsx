@@ -10,7 +10,7 @@ const ContentLayout: React.FunctionComponent<IContentLayoutProps> = ({
   widgets,
 }) => {
   return (
-    <div className={`grid grid-cols-12 gap-16`}>
+    <div className={``}>
       <main
         id="content"
         className={widgets ? "col-span-12 lg:col-span-9" : "col-span-12"}

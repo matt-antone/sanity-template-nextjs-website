@@ -2,7 +2,7 @@ import type { PageDocument, Metadata } from "@/src/types";
 import { draftMode } from "next/headers";
 import { loadQuery } from "@/sanity/lib/store";
 import { HOME_PAGE_QUERY } from "@/lib/queries";
-import Container from "@/src/components/Container";
+import Container from "@/components/Container";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";

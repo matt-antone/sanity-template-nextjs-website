@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PageTransition from '../components/PageTransition';
+import PageTransition from '@/components/PageTransition';
 
 interface ITemplateProps {
   children: React.ReactNode

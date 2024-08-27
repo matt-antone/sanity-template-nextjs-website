@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { QueryParams, SanityDocument } from "next-sanity";
 import { loadQuery } from "@/sanity/lib/store";
 import { SITEMAP_QUERY } from "@/lib/queries";
-import Container from "@/src/components/Container";
-import LayoutHeading from "@/src/components/LayoutHeading";
+import Container from "@/components/Container";
+import LayoutHeading from "@/components/LayoutHeading";
 
 export const metadata: Metadata = {
   title: "Sitemap",

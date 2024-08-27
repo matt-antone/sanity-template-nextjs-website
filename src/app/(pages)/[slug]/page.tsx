@@ -8,11 +8,11 @@ import { QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 import { loadQuery } from "@/sanity/lib/store";
 import { PAGES_QUERY, PAGE_QUERY } from "@/lib/queries";
-import Page from "@/src/components/Page";
+import Page from "@/components/Page";
 import { client } from "@/sanity/lib/client";
-import ContentLayout from "@/src/components/ContentLayout";
-import LayoutHeading from "@/src/components/LayoutHeading";
-import Container from "@/src/components/Container";
+import ContentLayout from "@/components/ContentLayout";
+import LayoutHeading from "@/components/LayoutHeading";
+import Container from "@/components/Container";
 import { notFound } from "next/navigation";
 
 export default async function NormalPage({ params }: { params: QueryParams }) {

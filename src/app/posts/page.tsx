@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { SanityDocument } from "next-sanity";
 import { draftMode } from "next/headers";
 
-import Posts from "@/src/components/Posts";
+import Posts from "@/components/Posts";
 import { loadQuery } from "@/sanity/lib/store";
 import { POSTS_QUERY } from "@/lib/queries";
-import LayoutHeading from "@/src/components/LayoutHeading";
-import Container from "@/src/components/Container";
+import LayoutHeading from "@/components/LayoutHeading";
+import Container from "@/components/Container";
 
 export const metadata: Metadata = {
   title: "Posts",

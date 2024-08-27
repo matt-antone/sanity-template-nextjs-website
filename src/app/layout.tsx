@@ -1,9 +1,9 @@
 import type { Viewport } from '@/src/types'
 import "@/src/app/globals.css";
 import * as React from 'react';
-import SkipMenu from '@/src/components/SkipMenu';
-import Header from "@/src/components/Header";
-import Footer from "@/src/components/Footer";
+import SkipMenu from '@/components/SkipMenu';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Inter } from "next/font/google";
