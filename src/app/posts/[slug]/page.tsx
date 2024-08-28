@@ -7,6 +7,7 @@ import { loadQuery } from "@/sanity/lib/store";
 import Post from "@/components/LayoutPost";
 import LayoutHeading from '@/components/LayoutHeading';
 import Container from '@/components/Container';
+import { getStructuredPost } from '@/lib/structuredData';
 
 // Generate Static Page Slugs
 export async function generateStaticParams() {
@@ -35,6 +36,8 @@ export async function generateMetadata(
   }
 }
 
+
+
 // Page Component
 export default async function Page({ params }: { params: QueryParams }) {
   const initial = await loadQuery<PostDocument>(POST_QUERY, params, {
@@ -43,8 +46,11 @@ export default async function Page({ params }: { params: QueryParams }) {
     perspective: draftMode().isEnabled ? "previewDrafts" : "published",
   });
 
+  const structuredData = await getStructuredPost(initial.data, params.slug);
+
   return (
     <Container>
+      <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} id="post-jsonld" />
       <LayoutHeading text={initial?.data?.title || "Untitled"}/>
       <Post {...initial.data} />
     </Container>
