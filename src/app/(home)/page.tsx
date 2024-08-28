@@ -27,7 +27,6 @@ export default async function Page() {
   if (initial.data === null) {
     notFound();
   }
-  console.log(initial.data);
   return (
     <>
       {/* <script

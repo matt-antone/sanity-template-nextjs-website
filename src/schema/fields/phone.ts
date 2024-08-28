@@ -9,10 +9,7 @@ export const phone = {
     if (typeof phone === 'undefined') {
       return true // Allow undefined values
     }
-    console.log(phone)
     const phoneString = String(phone);
-    console.log(phoneString)
-    console.log(isValidPhoneNumber(phoneString))
     return isValidPhoneNumber(phoneString) ? true : 'Please enter a valid phone number';
     return true;
     // return isValidPhoneNumber(phone) ? true : 'Please enter a valid phone number'
