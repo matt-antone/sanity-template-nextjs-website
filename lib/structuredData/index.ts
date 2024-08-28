@@ -4,6 +4,7 @@ import type { SanityDocument } from "sanity";
 export const getStructuredPage = async (page: any, section?: string | null) => {
   // Get the organization
   const organization = await getStructuredMainOrganization();
+  console.log("section", section);
   return page
     ? {
         "@context": "https://schema.org",

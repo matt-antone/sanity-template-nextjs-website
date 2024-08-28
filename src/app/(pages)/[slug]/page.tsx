@@ -12,6 +12,7 @@ import LayoutHeading from "@/components/LayoutHeading";
 import Container from "@/components/Container";
 import { notFound } from "next/navigation";
 import LayoutPage from "@/components/LayoutPage";
+import { getStructuredPage } from "@/lib/structuredData";
 
 export default async function NormalPage({ params }: { params: QueryParams }) {
   const initial = await loadQuery<PageDocument>(PAGE_QUERY, params, {
@@ -24,14 +25,18 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
     notFound();
   }
 
+  const structuredData = await getStructuredPage(initial.data);
+
+  // console.log(structuredData)
+
   return (
     initial.data !== null && (
       <Container>
-        {/* <script
+        <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         id="page-jsonld"
-      /> */}
+      />
 
         <LayoutHeading text={initial.data.title || "Untitled"} />
         <LayoutPage {...initial.data} />
