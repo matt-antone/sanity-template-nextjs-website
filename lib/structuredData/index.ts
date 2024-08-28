@@ -14,8 +14,8 @@ export const getStructuredPage = async (
     name: page.title,
     description: page.description || "",
     url: section
-      ? `https://www.sanity.io/${section}/${page.slug.current}`
-      : `https://www.sanity.io/${page?.slug?.current}`,
+      ? `${process.env.NEXT_PUBLIC_BASE_URL}/${section}/${page.slug.current}`
+      : `${process.env.NEXT_PUBLIC_BASE_URL}/${page?.slug?.current}`,
     publisher: organization,
   } : null;
 };
@@ -31,8 +31,8 @@ export const getStructuredPost = async (post: any, section?: string) => {
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": section
-      ? `https://www.sanity.io/${section}/${post.slug.current}`
-      : `https://www.sanity.io/${post?.slug?.current}`,
+      ? `${process.env.NEXT_PUBLIC_BASE_URL}/${section}/${post.slug.current}`
+      : `${process.env.NEXT_PUBLIC_BASE_URL}/${post?.slug?.current}`,
     },
   };
 };
@@ -44,8 +44,8 @@ export const getStructuredPerson = async (person: any, section?: string) => {
     "@type": "Person",
     name: person.title,
     url: section
-    ? `https://www.sanity.io/${section}/${person.slug.current}`
-    : `https://www.sanity.io/${person?.slug?.current}`,
+    ? `${process.env.NEXT_PUBLIC_BASE_URL}/${section}/${person.slug.current}`
+    : `${process.env.NEXT_PUBLIC_BASE_URL}/${person?.slug?.current}`,
     sameAs: person.sameAs,
   };
 };
@@ -58,7 +58,6 @@ export const getStructuredMainOrganization = async () => {
   );
   console.log(organization);
   return {
-    "@context": "https://schema.org",
     "@type": "Organization",
     name: organization?.name || "",
     url: organization?.homepage || "",
