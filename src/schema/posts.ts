@@ -16,6 +16,17 @@ export default defineType({
     fields.image,
     fields.categories,
     fields.tags,
+    {
+      type: "array",
+      name: "profiles",
+      title: "Related Profiles",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "profile" }],
+        },
+      ]
+    },
   ],
   preview: {
     select: {
