@@ -4,7 +4,7 @@ import { QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 import { client } from "@/sanity/lib/client";
 import { loadQuery } from "@/sanity/lib/store";
-import Post from "@/components/Post";
+import Post from "@/components/LayoutPost";
 import LayoutHeading from '@/components/LayoutHeading';
 import Container from '@/components/Container';
 
