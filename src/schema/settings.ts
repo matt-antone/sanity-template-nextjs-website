@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { GrSettingsOption } from "react-icons/gr";
-import { localBusinessType } from "../../lib/schema/fields/localBusinessType";
+import { localBusinessType } from "@/src/schema/fields/localBusinessType";
 import * as fields from "./fields";
 export default defineType({
   name: "settings",

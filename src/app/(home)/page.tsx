@@ -6,6 +6,7 @@ import Container from "@/components/Container";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
+import { getStructuredPage } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -24,16 +25,18 @@ export default async function Page() {
     }
   );
 
+  const structuredData = await getStructuredPage(initial.data);
+
   if (initial.data === null) {
     notFound();
   }
   return (
     <>
-      {/* <script
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         id="page-jsonld"
-      /> */}
+      />
     </>
   );
 }
