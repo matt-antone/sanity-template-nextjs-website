@@ -23,7 +23,7 @@ const ShareButtons: React.FunctionComponent<IShareButtonsProps> = ({
 }) => {
   return (
     <div className="flex flex-row gap-4">
-      <EmailShareButton url={url}>
+      {/* <EmailShareButton url={url}>
         <EmailIcon size={32} round />
         <span className="sr-only">Share by Email</span>
       </EmailShareButton>
@@ -42,7 +42,7 @@ const ShareButtons: React.FunctionComponent<IShareButtonsProps> = ({
       <TwitterShareButton url={url}>
         <TwitterIcon size={32} round />
         <span className="sr-only">Share on Twitter</span>
-      </TwitterShareButton>
+      </TwitterShareButton> */}
     </div>
   );
 };

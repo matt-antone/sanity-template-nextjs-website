@@ -8,8 +8,6 @@ export const HEADER_NAVIGATION_QUERY = groq`*[_type == "navigation" && slug.curr
   ...,
   "items": items[]{
     ...,
-    "link": navigationItemUrl.relativePath,
-    "page": navigationItemUrl.internalLink->,
   },
 }[0]`;
 export const FOOTER_NAVIGATION_QUERY = groq`*[_type == "navigation" && slug.current == "footer-navigation"]{

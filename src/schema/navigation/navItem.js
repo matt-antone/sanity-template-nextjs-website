@@ -17,6 +17,13 @@ export const navItem = {
             name: "navigationItemUrl",
             type: "navLink", 
             title: "Navigation Item URL"
+          },
+          {
+            name: "children",
+            type: "array",
+            title: "Dropdown Items",
+            of: [{ type: "navigationItem" }],
+            description: "Optional sub-navigation items",
           }
     ]
 }

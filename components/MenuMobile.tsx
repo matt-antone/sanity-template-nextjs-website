@@ -2,19 +2,16 @@
 import * as React from "react";
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+// import {
+//   NavigationMenu,
+//   NavigationMenuContent,
+//   NavigationMenuItem,
+//   NavigationMenuLink,
+//   NavigationMenuList,
+//   NavigationMenuTrigger,
+// } from "@/components/ui/navigation-menu";
 
 import { BiMenu } from "react-icons/bi";
-
-import Image from "next/image";
-import Container from "./Container";
 
 interface IMenuMobileProps {
   nav: SanityDocument;
@@ -24,7 +21,7 @@ interface IMenuMobileProps {
 const MenuMobile = ({ nav, settings }: IMenuMobileProps) => {
   return (
     <div className="lg:hidden flex items-center">
-      <NavigationMenu>
+      {/* <NavigationMenu>
         <NavigationMenuList className="w-full">
           <NavigationMenuItem>
             <NavigationMenuTrigger className="flex items-center gap-2 m-0 p-0">
@@ -50,7 +47,7 @@ const MenuMobile = ({ nav, settings }: IMenuMobileProps) => {
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
-      </NavigationMenu>
+      </NavigationMenu> */}
     </div>
   );
 };

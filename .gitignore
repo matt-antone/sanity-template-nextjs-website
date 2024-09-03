@@ -39,6 +39,5 @@ next-env.d.ts
 dist
 .sanity
 sanity.cli.ts
-sanity.config.ts
 
 src/app/studio

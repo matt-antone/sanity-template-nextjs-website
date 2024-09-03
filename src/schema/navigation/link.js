@@ -7,16 +7,10 @@ export const link = {
   title: "Link",
   fields: [
     {
-      title: "Internal Link",
-      name: "internalLink",
-      description: "Select pages for navigation",
-      type: "reference",
-      to: [{ type: "page" }],
-    },
-    {
       name: "relativePath",
       type: "string",
       title: "Relative Path",
+      description: "Use relative paths for internal links like /blog/ ",
     },
     {
       name: "externalUrl",

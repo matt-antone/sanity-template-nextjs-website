@@ -27,8 +27,6 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
 
   const structuredData = await getStructuredPage(initial.data);
 
-  // console.log(structuredData)
-
   return (
     initial.data !== null && (
       <Container>
