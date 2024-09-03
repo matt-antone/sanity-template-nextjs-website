@@ -21,7 +21,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
     default-src self ${process.env.NEXT_PUBLIC_BASE_URL} ${allowedOrigins.join(' ')};
     img-src self ${process.env.NEXT_PUBLIC_BASE_URL} ${allowedOrigins.join(' ')};
     script-src self ${process.env.NEXT_PUBLIC_BASE_URL} ${allowedOrigins.join(' ')};
-    style-src self 'unsafe-inline' ${process.env.NEXT_PUBLIC_BASE_URL};
+    style-src self unsafe-inline ${process.env.NEXT_PUBLIC_BASE_URL};
     font-src self ${process.env.NEXT_PUBLIC_BASE_URL}; 
     connect-src self ${process.env.NEXT_PUBLIC_BASE_URL} ${allowedOrigins.join(' ')};
   `
