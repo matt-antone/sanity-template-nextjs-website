@@ -1,50 +1,113 @@
-import type { NextFetchEvent, NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import type { NextFetchEvent, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-export function middleware(req: NextRequest, ev: NextFetchEvent) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
+export function middleware(request: NextRequest, ev: NextFetchEvent) {
+  // check to see if it should return a 410 error
+  const pathname = request.nextUrl.pathname;
 
-  const allowedOrigins:string[] = [
-    'https://*.algolia.net',
-    'https://*.algolianet.com',
-    'https://*.algolia.io',
-    // 'https://res.cloudinary.com', // if using cloudinary
-    'https://*.googleapis.com',
-    'https://*.google-analytics.com',
-    'https://*.googletagmanager.com',
-    "https://*.sanity.io",
-    'https://*.vimeo.com',
-    'https://*.youtube.com',
-  ]
+  // Report a 410 error for pages we do not support
+  const fragments = [
+    ".html",
+    ".shtml",
+    ".php",
+    "/wp-",
+    "/tag",
+    "/category",
+    "/author",
+  ];
 
-  if(process.env.NEXT_PUBLIC_BASE_URL){
-    allowedOrigins.push(process.env.NEXT_PUBLIC_BASE_URL)
+  const is410 = (pathname: string) => {
+    let isInvalid = false;
+    fragments.forEach((fragment) => {
+      if (pathname.includes(fragment) && !isInvalid) {
+        isInvalid = true;
+      }
+    });
+    return isInvalid;
+  };
+
+  if (is410(pathname)) {
+    return NextResponse.rewrite(new URL("/410", request.url), { status: 410 });
+  }
+  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+
+  const allowedOrigins: string[] = [
+    "*.algolia.net",
+    "*.algolianet.com",
+    "*.algolia.io",
+    "*.googleapis.com",
+    "*.google-analytics.com",
+    "*.googletagmanager.com",
+    "*.sanity.io",
+    "*.vimeo.com",
+    "*.youtube.com",
+    "vercel.live",
+    "www.googletagmanager.com",
+    "www.google-analytics.com",
+  ];
+
+  if(process.env.NODE_ENV === "development"){
+    allowedOrigins.push("http://localhost:*");
   }
 
-  const ContentSecurityPolicy = `
-    default-src self ${allowedOrigins.join(' ')};
-    img-src self ${allowedOrigins.join(' ')};
-    script-src self ${allowedOrigins.join(' ')} 'nonce-${nonce}';
-    style-src self ${allowedOrigins.join(' ')} 'nonce-${nonce}';
-    font-src self ${allowedOrigins.join(' ')}; 
-    connect-src self ${allowedOrigins.join(' ')};
-  `
-  console.log("middleware")
+  const cspHeader = `
+    default-src 'self' ${allowedOrigins.join(' ')};
+    connect-src 'self' ${allowedOrigins.join(' ')};
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""} ${allowedOrigins.join(' ')};
+    style-src 'self' ${process.env.NODE_ENV === "development" ? "'unsafe-inline'" :  `'nonce-${nonce}'`} ${allowedOrigins.join(' ')};
+    img-src 'self' blob: data:  ${allowedOrigins.join(' ')};
+    media-src 'self' blob: data: ${allowedOrigins.join(' ')};
+    font-src 'self' data:;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+`;
 
-  const response = NextResponse.next()
-  //   response.headers.set('Content-Type', 'text/html; charset=utf-8')
-  //   response.headers.set('Access-Control-Allow-Origin', `self ${allowedOrigins.join(' ')}`)
-  //   response.headers.set('X-DNS-Prefetch-Control','on')
-  //   response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate')
-  
-  //   response.headers.set('x-nonce', nonce)
-  //   response.headers.set('Content-Security-Policy', ContentSecurityPolicy.replace(/\n/g, ''))
-  //   response.headers.set('X-Frame-Options', 'sameorigin')
-  //   response.headers.set('X-Content-Type-Options', 'nosniff')
-  //   response.headers.set('Referrer-Policy', 'strict-origin')
-  //   response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
-  //   response.headers.set('X-XSS-Protection', '1; mode=block')
-    
-  // response.headers.set("x-current-path", req.nextUrl.pathname)
-  return response
+  // Replace newline characters and spaces
+  const contentSecurityPolicyHeaderValue = cspHeader
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-nonce", nonce);
+
+  requestHeaders.set(
+    "Content-Security-Policy",
+    contentSecurityPolicyHeaderValue
+  );
+
+  requestHeaders.set("Content-Security-Policy-Report-Only", "default-src https:; report-uri /endpoint")
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+  response.headers.set(
+    "Content-Security-Policy",
+    contentSecurityPolicyHeaderValue
+  );
+
+  return response;
 }
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    {
+      source: "/((?!api|_next/static|_next/image|favicon.ico).*)",
+      missing: [
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "purpose", value: "prefetch" },
+      ],
+    },
+  ],
+};

@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --experimental-https",
     "lint": "next lint",
-    "flush": "rm -rf .next && yarn dev"
+    "flush": "rm -rf .next && next dev --experimental-https"
   },
   "dependencies": {
     "@marketsystems/nextjs13-appdir-breadcrumbs": "^1.0.4",
