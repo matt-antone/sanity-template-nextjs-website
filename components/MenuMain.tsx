@@ -30,7 +30,7 @@ interface IMenuMainProps {
 const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
 
   return (
-    <NavigationMenu className="w-full">
+    <NavigationMenu className="w-full hidden lg:block">
       <NavigationMenuList className="w-full justify-center">
         {nav?.items &&
           nav.items.map((item: any) => {
