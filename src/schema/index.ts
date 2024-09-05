@@ -1,7 +1,4 @@
-export * from './fields'
-
 import { SchemaTypeDefinition } from 'sanity'
-
 import blockContent from './blockContent'
 import posts from './posts'
 import category from './category'
@@ -16,6 +13,7 @@ import { vimeo } from './fields/vimeo'
 import profile from './profile'
 import home from './home'
 import { gallery } from './fields/gallery'
+import testimonial from './testimonial'
 
 export const schemaTypes: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -27,6 +25,7 @@ export const schemaTypes: { types: SchemaTypeDefinition[] } = {
     pages,
     posts,
     profile,
+    testimonial,
 
     /* object types */
     category,
