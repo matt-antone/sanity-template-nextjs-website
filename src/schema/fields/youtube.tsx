@@ -23,16 +23,18 @@ export const youtube = defineType({
     block: (props: any) => {
       return props.renderDefault({
         ...props,
-        renderPreview: () => (
-          <Box padding={2}>
-            <p style={{ fontSize: 12, marginTop: 0 }}>YouTube Preview</p>
-            {props?.value?.url ? (
-              <ReactPlayer {...props.value} width={320} height={180} />
-            ) : (
-              <p>Please enter a url.</p>
-            )}
-          </Box>
-        ),
+        renderPreview: () => {
+          return (
+            <Box padding={2}>
+              <p style={{ fontSize: 12, marginTop: 0 }}>YouTube Preview</p>
+              {props?.value?.url ? (
+                <ReactPlayer {...props.value} width={320} height={180} />
+              ) : (
+                <p>Please enter a url.</p>
+              )}
+            </Box>
+          );
+        },
       });
     },
   },
