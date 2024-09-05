@@ -1,17 +1,22 @@
 import { Image } from "./Image";
 import Link from "next/link";
+import Player from "@/components/VideoPlayer";
+
 export const components = {
   types: {
-    image: ({ value }: any) => <Image image={value} />,
+    image: ({ value }: any) => value && <div className="not-prose my-12"><Image image={value} /></div>,
     button: ({ value }: any) => {
-      return (
+      return value?.link && (
         <Link href={value.link} className="not-prose button">
           {value.text}
         </Link>
       );
     },
     embedCode: ({value}:any) => {
-      return <div className="not-prose aspect-video mx-auto" dangerouslySetInnerHTML={{ __html: value.code }} />
+      return value?.code && <div className="not-prose aspect-video mx-auto" dangerouslySetInnerHTML={{ __html: value.code }} />
+    },
+    youtube: ({ value }: any) => {
+      return <div className="not-prose aspect-video mx-auto my-12 max-w-[640px]"><Player {...value} /></div>;
     },
   },
 

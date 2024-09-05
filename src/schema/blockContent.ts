@@ -68,10 +68,9 @@ export default defineType({
     {
       type: 'youtube',
     },
-  
-    {
-      type: 'vimeo',
-    },
+    // {
+    //   type: 'vimeo',
+    // },
     // {
     //   type: 'gallery',
     // },

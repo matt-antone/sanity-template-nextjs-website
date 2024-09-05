@@ -14,13 +14,13 @@ export const Image: React.FunctionComponent<IImageProps> = (props) => {
     <NextImage
       src={builder
         .image(props.image)
-        .width(400)
+        .width(640)
         .dpr(2)
         .auto("format")
         .url()}
       alt={props?.image?.alt || ""}
-      width={400}
-      height={300}
+      width={640}
+      height={480}
       className="mb-16 mx-auto"
     />
   );
