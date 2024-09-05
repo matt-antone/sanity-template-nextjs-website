@@ -12,7 +12,7 @@ const PageTransition: React.FunctionComponent<IPageTransitionProps> = ({children
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y:20, opacity: 0 }}
-      transition={{ duration: 0.1, ease: "easeInOut" }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       {children}
     </motion.div>
