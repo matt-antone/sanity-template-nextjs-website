@@ -41,6 +41,12 @@ export default defineType({
           fields: [
             defineField({
               type: "string",
+              name: "title",
+              title: "Title",
+              description: "Used to identify this organization in sanity.",
+            }),
+            defineField({
+              type: "string",
               name: "name",
               title: "Name",
             }),
@@ -92,7 +98,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: "siteTitle",
+      title: "title",
     },
     prepare(selection) {
       return { ...selection };

@@ -26,6 +26,7 @@ export const localBusinessType = {
         value: "HomeAndConstructionBusiness",
       },
       { title: "Internet Cafe", value: "InternetCafe" },
+      { title: "Legal Service", value: "LegalService" },
       { title: "Library", value: "Library" },
       { title: "Lodging Business", value: "LodgingBusiness" },
       { title: "Medical Business", value: "MedicalBusiness" },
