@@ -7,14 +7,17 @@ export async function POST(req: Request) {
   console.log({ _type, _id, slug, operation });
   switch (true) {
     case _type ==="home":
+      console.log("clear home cache");
       revalidateTag("home");
       revalidateTag("sitemap");
       break;
     case _type === "page":
+      console.log(`clear ${slug} cache`);
       revalidateTag(slug);
       revalidateTag("sitemap");
       break;
     case _type === "post":
+      console.log(`clear ${slug} cache`);
       revalidateTag(slug);
       revalidateTag("posts");
       revalidateTag("home");
