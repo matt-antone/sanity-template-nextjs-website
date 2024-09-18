@@ -6,7 +6,7 @@ export const SITEMAP_QUERY = groq`{
     date,
     "slug": slug.current,
   }|order(title asc),
-  "posts": *[_type == "posts"]|order(date desc){
+  "posts": *[_type == "post"]|order(date desc){
     title,
     date,
     _updatedAt,
