@@ -12,3 +12,4 @@ export * from "./email";
 export * from "./url";
 export * from "./gallery";
 export * from "./phone";
+export * from "./sections";

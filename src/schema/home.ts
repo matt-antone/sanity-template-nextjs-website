@@ -15,6 +15,7 @@ export default defineType({
     fields.title,
     fields.excerpt,
     fields.body,
+    fields.sections,
     fields.gallery,
   ],
   preview: {

@@ -41,8 +41,8 @@ export default defineType({
           fields: [
             defineField({
               type: "string",
-              name: "title",
-              title: "Title",
+              name: "label",
+              title: "Label",
               description: "Used to identify this organization in sanity.",
             }),
             defineField({
@@ -92,13 +92,22 @@ export default defineType({
             fields.email,
             fields.gallery,
           ],
+          preview: {
+            select: {
+              title: "label",
+            },
+            prepare(selection) {
+              return { ...selection };
+            },
+          },
+        
         }),
       ],
     }),
   ],
   preview: {
     select: {
-      title: "title",
+      title: "siteTitle",
     },
     prepare(selection) {
       return { ...selection };

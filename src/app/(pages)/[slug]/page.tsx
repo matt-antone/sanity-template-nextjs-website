@@ -18,6 +18,7 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
   const initial = await loadQuery<PageDocument>(PAGE_QUERY, params, {
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+      tags: [params.slug],
     },
   });
 
@@ -35,8 +36,6 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         id="page-jsonld"
       />
-
-        <LayoutHeading text={initial.data.title || "Untitled"} />
         <LayoutPage {...initial.data} />
       </Container>
     )

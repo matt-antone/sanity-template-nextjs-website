@@ -22,7 +22,12 @@ export async function generateMetadata(
   { params: {slug}, searchParams }: MetaDataProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const post = await client.fetch<PostDocument>(POST_QUERY, { slug })
+  const post = await client.fetch<PostDocument>(POST_QUERY, { slug },{
+    next: {
+      revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+      tags: [slug],
+    },
+  })
   const images = []
   if (post.image) {
     images.push(post.image.asset.url)
@@ -41,9 +46,10 @@ export async function generateMetadata(
 // Page Component
 export default async function Page({ params }: { params: QueryParams }) {
   const initial = await loadQuery<PostDocument>(POST_QUERY, params, {
-    // Because of Next.js, RSC and Dynamic Routes this currently
-    // cannot be set on the loadQuery function at the "top level"
-    perspective: draftMode().isEnabled ? "previewDrafts" : "published",
+    next: {
+      revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+      tags: [params.slug],
+    },
   });
 
   const structuredData = await getStructuredPost(initial.data, params.slug);

@@ -16,6 +16,7 @@ export default async function Page({ params }: { params: QueryParams }) {
   } = await loadQuery<SanityDocument>(SITEMAP_QUERY,{},{
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+      tags: ["sitemap"],
     },
   }
 );
