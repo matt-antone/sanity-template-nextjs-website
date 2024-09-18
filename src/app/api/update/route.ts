@@ -2,7 +2,7 @@
 import { revalidateTag } from 'next/cache';
  
 export async function POST(req: Request) {
-  console.log({req})
+  console.log(await req.json()) 
   // revalidateTag('pages');
   return new Response(JSON.stringify({ message: 'Hello, Next.js!' }));
 }
