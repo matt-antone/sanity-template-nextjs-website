@@ -8,7 +8,7 @@ export default function LayoutPost(props: any) {
   return (
     <div className="">
       <div className="relative">
-        {image ? (
+        {image?.asset ? (
           <Image
             src={`${image.asset.url}?w=640`}
             alt={image.alt}
