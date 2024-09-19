@@ -11,6 +11,7 @@ export const updateAlgoliaPost = async (index: string, post: any) => {
   try {
     console.log("updating post", { index, post });
     const transformed = transformPostsToSearchObjects([post]);
+    console.log({ count: transformed.length, transformed });
     // Add record to an index
     const algoliaResponse = await client.replaceAllObjects({
       indexName: index,
