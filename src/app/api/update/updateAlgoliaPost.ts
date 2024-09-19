@@ -1,8 +1,8 @@
 import { algoliasearch } from "algoliasearch";
 
-const appID = "NEXT_PUBLIC_ALGOLIA_APP_ID";
+const appID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 // API key with `addObject` and `editSettings` ACL
-const apiKey = "ALGOLIA_API_KEY";
+const apiKey = process.env.ALGOLIA_SEARCH_ADMIN_KEY as string;
 
 
 export const updateAlgoliaPost = async (index:string, post: any) => {
