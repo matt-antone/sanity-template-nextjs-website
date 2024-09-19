@@ -1,4 +1,6 @@
 import { algoliasearch } from "algoliasearch";
+import { transformPostsToSearchObjects } from "@/lib/transformPostsToSearchObjects.mjs";
+import { blocksToText } from "@/lib/blocksToText.mjs";
 
 const appID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 // API key with `addObject` and `editSettings` ACL
@@ -9,10 +11,11 @@ export const updateAlgoliaPost = async (index: string, post: any) => {
   const client = algoliasearch(appID, apiKey);
   try {
     console.log("updating post", { index, post });
+    const transformed = transformPostsToSearchObjects([post]);
     // Add record to an index
     const algoliaResponse = await client.replaceAllObjects({
       indexName: index,
-      objects: [post],
+      objects: transformed,
       batchSize: 1000,
     });
     console.log({algoliaResponse});
