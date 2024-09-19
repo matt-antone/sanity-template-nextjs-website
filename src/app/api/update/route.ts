@@ -5,6 +5,7 @@ import { loadQuery } from "@/sanity/lib/store";
 import { POST_ALGOLIA_QUERY } from "@/lib/queries";
 import { updateAlgoliaPost } from "./updateAlgoliaPost";
 import { addAlgoliaPost } from "./addAlgoliaPost";
+import { deleteAlgoliaPost } from "./deleteAlgoliaPost";
 
 
 export async function POST(req: Request) {
@@ -46,6 +47,7 @@ export async function POST(req: Request) {
         );
         operation === "update" && updateAlgoliaPost("posts", data);          
         operation === "create" && addAlgoliaPost("posts", data);
+        operation === "delete" && deleteAlgoliaPost("posts", data);
       } catch (error) {
         console.log(error);
       }
