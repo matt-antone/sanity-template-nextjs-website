@@ -1,6 +1,6 @@
 import { algoliasearch } from "algoliasearch";
 
-const appID = "ALGOLIA_APPLICATION_ID";
+const appID = "NEXT_PUBLIC_ALGOLIA_APP_ID";
 // API key with `addObject` and `editSettings` ACL
 const apiKey = "ALGOLIA_API_KEY";
 
