@@ -21,6 +21,7 @@ export const PAGINATION_QUERY = groq`*[_type == "post" && date < $lastDate] | or
 
 
 export const POST_ALGOLIA_QUERY = groq`*[_type == "post" && slug.current == $slug]{
+  "objectID": _id,
    _id,
    title,
    "slug": slug.current,
