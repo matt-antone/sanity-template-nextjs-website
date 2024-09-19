@@ -10,9 +10,6 @@ export const deleteAlgoliaPost = async (index: string, post: any) => {
   const client = algoliasearch(appID, apiKey);
   try {
     console.log("delete post", { index, post });
-    const transformed = transformPostsToSearchObjects([post]);
-    console.log({ count: transformed.length, transformed });
-    // Add record to an index
     const algoliaResponse = await client.deleteObjects({
       indexName: index,
       objectIDs: [post._id],
