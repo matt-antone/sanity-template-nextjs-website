@@ -10,11 +10,12 @@ export const updateAlgoliaPost = async (index:string, post: any) => {
     console.log("updating post", {index, post})
     const client = algoliasearch(appID, apiKey);
     // Add record to an index
-    await client.replaceAllObjects({
+    const algoliaResponse = await client.replaceAllObjects({
       indexName: index,
       objects: [post],
     });
-      
+    console.log({ algoliaResponse });
+    return algoliaResponse
   } catch (error) {
     console.log(error);     
   }
