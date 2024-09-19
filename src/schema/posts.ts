@@ -27,6 +27,7 @@ export default defineType({
         },
       ]
     },
+    fields.gallery,
   ],
   preview: {
     select: {
