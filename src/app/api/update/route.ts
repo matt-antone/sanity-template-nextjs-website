@@ -3,6 +3,7 @@ import type { PostDocument } from "@/src/types";
 import { revalidateTag } from "next/cache";
 import { loadQuery } from "@/sanity/lib/store";
 import { POST_ALGOLIA_QUERY } from "@/lib/queries";
+import { blocksToText } from "@/lib/blocksToText.mjs";
 
 export async function POST(req: Request) {
   const {
@@ -40,6 +41,7 @@ export async function POST(req: Request) {
           },
         }
       );
+      data.body = blocksToText(data.body);
       updateAlgoliaPost("posts", data);
       break;
     default:
