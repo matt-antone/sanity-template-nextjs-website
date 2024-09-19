@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
-import { InstantSearch, Configure, Hits, Pagination } from "react-instantsearch";
+import {
+  InstantSearch,
+  Configure,
+  Hits,
+  Pagination,
+} from "react-instantsearch";
 import page from "@/src/schema/page";
 
 const searchClient = algoliasearch(
@@ -22,17 +27,17 @@ const paginationClasses = {
   nextPageItem: "", //The next page element.
   lastPageItem: "", //The last page element.
   link: "", //The link of each item.
-}
+};
 
-function Hit({ hit }:any) {
+function Hit({ hit }: any) {
   return (
     <article className="mb-6">
       <header>
-      <h1 className="text-xl">{hit.title}</h1>
+        <h1 className="text-xl">{hit.title}</h1>
       </header>
       <p>{hit.excerpt || hit.body}</p>
     </article>
-  )
+  );
 }
 
 export default function LayoutPostsAlgolia() {
@@ -43,10 +48,17 @@ export default function LayoutPostsAlgolia() {
         analytics={false}
         // filters="free_shipping:true"
         hitsPerPage={10}
+        attributesToRetrieve={[
+          "title", // list of attributes to retrieve
+          "slug",
+          "image",
+          "excerpt",
+          "date",
+        ]}
       />
-      <Pagination classNames={paginationClasses}/>
+      <Pagination classNames={paginationClasses} />
       <Hits hitComponent={Hit} />
-      <Pagination classNames={paginationClasses}/>
+      <Pagination classNames={paginationClasses} />
     </InstantSearch>
   );
 }
