@@ -13,8 +13,9 @@ export const updateAlgoliaPost = async (index: string, post: any) => {
     const algoliaResponse = await client.replaceAllObjects({
       indexName: index,
       objects: [post],
+      batchSize: 1000,
     });
-    console.log(algoliaResponse);
+    console.log({algoliaResponse});
     console.log(`🎉 Sucessfully added records to Algolia search (${index}).`);
     return algoliaResponse;
   } catch (error) {
