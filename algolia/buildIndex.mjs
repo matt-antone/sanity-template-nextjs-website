@@ -1,4 +1,5 @@
 import { algoliasearch } from "algoliasearch";
+import { blocksToText } from "../lib/blocksToText.mjs";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -25,23 +26,6 @@ const transformPostsToSearchObjects = (posts) => {
     : null;
   return nPosts;
 };
-
-const defaults = { nonTextBehavior: "remove" };
-
-function blocksToText(blocks, opts = {}) {
-  const options = Object.assign({}, defaults, opts);
-  return blocks
-    .map((block) => {
-      if (block._type !== "block" || !block.children) {
-        return options.nonTextBehavior === "remove"
-          ? ""
-          : `[${block._type} block]`;
-      }
-
-      return block.children.map((child) => child.text).join("");
-    })
-    .join("\n\n");
-}
 
 export const buildIndex = async (indexName, posts) => {
   try {
