@@ -47,7 +47,7 @@ export async function POST(req: Request) {
         );
         operation === "update" && updateAlgoliaPost("posts", data);          
         operation === "create" && addAlgoliaPost("posts", data);
-        operation === "delete" && deleteAlgoliaPost("posts", data);
+        operation === "delete" && deleteAlgoliaPost("posts", _id);
       } catch (error) {
         console.log(error);
       }
