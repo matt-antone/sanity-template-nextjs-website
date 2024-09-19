@@ -1,6 +1,5 @@
 import { algoliasearch } from "algoliasearch";
 import { transformPostsToSearchObjects } from "@/lib/transformPostsToSearchObjects.mjs";
-import { blocksToText } from "@/lib/blocksToText.mjs";
 
 const appID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 // API key with `addObject` and `editSettings` ACL
