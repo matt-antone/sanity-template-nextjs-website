@@ -15,6 +15,7 @@ export const updateAlgoliaPost = async (index:string, post: any) => {
       objects: [post],
     });
     console.log({ algoliaResponse });
+    console.log(`🎉 Sucessfully added records to Algolia search (${index}).`);
     return algoliaResponse
   } catch (error) {
     console.log(error);     
