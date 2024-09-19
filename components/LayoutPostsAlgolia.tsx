@@ -33,6 +33,7 @@ function Hit({ hit }: any) {
   return (
     <article className="mb-6">
       <header>
+        <time>{new Date(hit.date).toLocaleDateString('en-US')}</time>
         <h1 className="text-xl">{hit.title}</h1>
       </header>
       <p>{hit.excerpt || hit.body}</p>
