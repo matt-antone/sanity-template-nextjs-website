@@ -5,8 +5,8 @@ import { InstantSearch, Configure, Hits, Pagination } from "react-instantsearch"
 import page from "@/src/schema/page";
 
 const searchClient = algoliasearch(
-  process.env.NEXT_PUBLIC_AGOLIA_APP_ID as string,
-  process.env.NEXT_PUBLIC_AGOLIA_SEARCH_KEY as string
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY as string
 );
 
 const paginationClasses = {
