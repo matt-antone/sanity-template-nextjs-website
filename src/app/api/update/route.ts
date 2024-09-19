@@ -4,6 +4,9 @@ import { revalidateTag } from "next/cache";
 import { loadQuery } from "@/sanity/lib/store";
 import { POST_ALGOLIA_QUERY } from "@/lib/queries";
 import { blocksToText } from "@/lib/blocksToText.mjs";
+import { updateAlgoliaPost } from "./updateAlgoliaPost";
+
+
 
 export async function POST(req: Request) {
   const {
@@ -54,9 +57,6 @@ export async function POST(req: Request) {
   // revalidateTag('pages');
   return new Response(JSON.stringify({ message: "Thanks!" }));
 }
-
-import type { NextApiRequest, NextApiResponse } from "next";
-import { updateAlgoliaPost } from "./updateAlgoliaPost";
 
 type ResponseData = {
   message: string;

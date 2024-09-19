@@ -6,11 +6,16 @@ const apiKey = process.env.ALGOLIA_SEARCH_ADMIN_KEY as string;
 
 
 export const updateAlgoliaPost = async (index:string, post: any) => {
-  console.log("updating post", {index, post})
-  const client = algoliasearch(appID, apiKey);
-  // Add record to an index
-  await client.replaceAllObjects({
-    indexName: index,
-    objects: [post],
-  });
+  try {
+    console.log("updating post", {index, post})
+    const client = algoliasearch(appID, apiKey);
+    // Add record to an index
+    await client.replaceAllObjects({
+      indexName: index,
+      objects: [post],
+    });
+      
+  } catch (error) {
+    console.log(error);     
+  }
 }
