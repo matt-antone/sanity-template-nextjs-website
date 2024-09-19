@@ -31,18 +31,22 @@ export async function POST(req: Request) {
       revalidateTag("posts");
       revalidateTag("home");
       revalidateTag("sitemap");
-      const { data } = await loadQuery<PostDocument>(
-        POST_ALGOLIA_QUERY,
-        { slug: slug },
-        {
-          next: {
-            revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
-            tags: [slug],
-          },
-        }
-      );
-      data.body = blocksToText(data.body);
-      updateAlgoliaPost("posts", data);
+      try {
+        const { data } = await loadQuery<PostDocument>(
+          POST_ALGOLIA_QUERY,
+          { slug: slug },
+          {
+            next: {
+              revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+              tags: [slug],
+            },
+          }
+        );
+        data.body = blocksToText(data.body);
+        updateAlgoliaPost("posts", data);          
+      } catch (error) {
+        console.log(error);
+      }
       break;
     default:
       break;
