@@ -56,7 +56,6 @@ export default function LayoutPostsAlgolia() {
           "excerpt",
           "date",
         ]}
-        sortFacetValuesBy="date"
       />
       <Pagination classNames={paginationClasses} />
       <Hits hitComponent={Hit} />

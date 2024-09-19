@@ -4,7 +4,7 @@ import { revalidateTag } from "next/cache";
 import { loadQuery } from "@/sanity/lib/store";
 import { POST_ALGOLIA_QUERY } from "@/lib/queries";
 import { updateAlgoliaPost } from "./updateAlgoliaPost";
-
+import { addAlgoliaPost } from "./addAlgoliaPost";
 
 
 export async function POST(req: Request) {
@@ -44,7 +44,8 @@ export async function POST(req: Request) {
             },
           }
         );
-        updateAlgoliaPost("posts", data);          
+        operation === "update" && updateAlgoliaPost("posts", data);          
+        operation === "create" && addAlgoliaPost("posts", data);
       } catch (error) {
         console.log(error);
       }
