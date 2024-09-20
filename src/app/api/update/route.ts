@@ -37,22 +37,25 @@ export async function POST(req: Request) {
         switch (operation) {
           case "update":
           case "create":
-            const { data } = await loadQuery<PostDocument>(
-              POST_ALGOLIA_QUERY,
-              { slug: slug },
-              {
-                next: {
-                  revalidate:
-                    process.env.NODE_ENV === "production" ? 2.628e9 : 0,
-                  tags: [slug],
-                },
-              }
-            );
+            console.log(`create or update`, slug);
             setTimeout(async () => {
+              console.log(`waited 5 seconds to create or update`, slug);
+              const { data } = await loadQuery<PostDocument>(
+                POST_ALGOLIA_QUERY,
+                { slug: slug },
+                {
+                  next: {
+                    revalidate:
+                      process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+                    tags: [slug],
+                  },
+                }
+              );
               await updateAlgoliaPost("posts", data);
             }, 5000);
             break;
           case "delete":
+            console.log(`delete`, _id);
             await deleteAlgoliaPost("posts", _id);
             break;
           default:
