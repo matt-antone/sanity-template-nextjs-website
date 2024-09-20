@@ -13,10 +13,9 @@ export const updateAlgoliaPost = async (index: string, post: any) => {
     const client = algoliasearch(appID, apiKey);
 
     //replace the objects
-    const algoliaResponse = await client.replaceAllObjects({
+    const algoliaResponse = await client.saveObjects({
       indexName: index,
       objects: transformed,
-      batchSize: 1000,
     });
     console.log({ algoliaResponse });
     // check the output of the response in the console

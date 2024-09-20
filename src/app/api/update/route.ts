@@ -45,9 +45,19 @@ export async function POST(req: Request) {
             },
           }
         );
-        operation === "update" && await updateAlgoliaPost("posts", data);          
-        operation === "create" && await addAlgoliaPost("posts", data);
-        operation === "delete" && await deleteAlgoliaPost("posts", _id);
+        switch (operation) {
+          case "update":
+            updateAlgoliaPost("posts", data); 
+            break;
+          case "create":
+            addAlgoliaPost("posts", data);
+            break;
+          case "delete":
+            deleteAlgoliaPost("posts", _id);
+            break;
+          default:
+            break;
+        }
       } catch (error) {
         console.log(error);
       }
