@@ -1,4 +1,3 @@
-"use server";
 import type { PostDocument } from "@/src/types";
 import { revalidateTag } from "next/cache";
 import { loadQuery } from "@/sanity/lib/store";
@@ -7,71 +6,56 @@ import { updateAlgoliaPost } from "./updateAlgoliaPost";
 import { addAlgoliaPost } from "./addAlgoliaPost";
 import { deleteAlgoliaPost } from "./deleteAlgoliaPost";
 
-export async function POST(req: Request) {
-  const {
-    _type,
-    _id,
-    slug,
-    operation,
-  }: { _type: string; _id: string; slug: string; operation: string } =
-    await req.json();
-  console.log({ _type, _id, slug, operation });
-  switch (true) {
-    case _type === "home":
-      console.log("clear home cache");
-      revalidateTag("home");
-      revalidateTag("sitemap");
-      break;
-    case _type === "page":
-      console.log(`clear ${slug} cache`);
-      revalidateTag(slug);
-      revalidateTag("sitemap");
-      break;
-    case _type === "post":
-      console.log(`clear ${slug} cache`);
-      revalidateTag(slug);
-      revalidateTag("posts");
-      revalidateTag("home");
-      revalidateTag("sitemap");
-      try {
-        switch (operation) {
-          case "update":
-          case "create":
-            console.log(`create or update`, slug);
-            setTimeout(async () => {
-              console.log(`waited 5 seconds to create or update`, slug);
-              const { data } = await loadQuery<PostDocument>(
-                POST_ALGOLIA_QUERY,
-                { slug: slug },
-                {
-                  next: {
-                    revalidate:
-                      process.env.NODE_ENV === "production" ? 2.628e9 : 0,
-                    tags: [slug],
-                  },
-                }
-              );
-              await updateAlgoliaPost("posts", data);
-            }, 5000);
-            break;
-          case "delete":
-            console.log(`delete`, _id);
-            await deleteAlgoliaPost("posts", _id);
-            break;
-          default:
-            break;
-        }
-      } catch (error) {
-        console.log(error);
-      }
-      break;
-    default:
-      break;
-  }
-  // revalidateTag('pages');
-  return new Response(JSON.stringify({ message: "Thanks!" }));
+enum DocumentType {
+  Home = "home",
+  Page = "page",
+  Post = "post",
 }
 
-type ResponseData = {
-  message: string;
+const getRevalidateTags = (docType: string, slug: string) => {
+  switch (docType) {
+    case DocumentType.Home:
+      return ["home", "sitemap"];
+    case DocumentType.Page:
+      return [slug, "sitemap"];
+    case DocumentType.Post:
+      return [slug, "posts", "home", "sitemap"];
+    default:
+      return [];
+  }
 };
+
+export async function POST(req: Request) {
+  const { _type, _id, slug, operation } = await req.json();
+
+  const revalidateTags = getRevalidateTags(_type, slug);
+  revalidateTags.forEach((tag) => revalidateTag(tag));
+
+  if (_type === DocumentType.Post) {
+    try {
+      switch (operation) {
+        case "update":
+        case "create":
+          const { data } = await loadQuery<PostDocument>(
+            POST_ALGOLIA_QUERY,
+            { slug },
+            {
+              next: {
+                revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+                tags: [slug],
+              },
+            }
+          );
+          // Update Algolia post logic here
+          await updateAlgoliaPost("posts", data);
+          break;
+        case "delete":
+          // Delete Algolia post logic here
+          await deleteAlgoliaPost("posts", _id);
+          break;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
