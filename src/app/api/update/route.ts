@@ -48,7 +48,7 @@ export async function POST(req: Request) {
         switch (operation) {
           case "update":
           case "create":
-            setTimeout(() => updateAlgoliaPost("posts", data), 1000);
+            setTimeout(async () => await updateAlgoliaPost("posts", data), 1000);
           break;
           case "delete":
             deleteAlgoliaPost("posts", _id);
