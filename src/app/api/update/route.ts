@@ -5,6 +5,7 @@ import { POST_ALGOLIA_QUERY } from "@/lib/queries";
 import { updateAlgoliaPost } from "./updateAlgoliaPost";
 import { addAlgoliaPost } from "./addAlgoliaPost";
 import { deleteAlgoliaPost } from "./deleteAlgoliaPost";
+import { set } from "sanity";
 
 enum DocumentType {
   Home = "home",
@@ -36,18 +37,22 @@ export async function POST(req: Request) {
       switch (operation) {
         case "update":
         case "create":
-          const { data } = await loadQuery<PostDocument>(
-            POST_ALGOLIA_QUERY,
-            { slug },
-            {
-              next: {
-                revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
-                tags: [slug],
-              },
-            }
-          );
-          // Update Algolia post logic here
-          await updateAlgoliaPost("posts", data);
+          await setTimeout(async () => {
+            const { data } = await loadQuery<PostDocument>(
+              POST_ALGOLIA_QUERY,
+              { slug },
+              {
+                next: {
+                  revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+                  tags: [slug],
+                },
+              }
+            );
+            console.log("got data?",data);
+            // Update Algolia post logic here
+            await updateAlgoliaPost("posts", data);
+              
+          },5000)
           break;
         case "delete":
           // Delete Algolia post logic here
