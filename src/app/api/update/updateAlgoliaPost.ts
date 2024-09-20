@@ -13,14 +13,13 @@ export const updateAlgoliaPost = async (index: string, post: any) => {
     const transformed = transformPostsToSearchObjects([post]);
     console.log({ count: transformed.length, transformed });
     // Add record to an index
-    const algoliaResponse = client.replaceAllObjects({
+    client.replaceAllObjects({
       indexName: index,
       objects: transformed,
       batchSize: 1000,
     }).then((res) => console.log(res));
     // console.log({algoliaResponse});
     // console.log(`🎉 Sucessfully added records to Algolia search (${index}).`);
-    return algoliaResponse;
   } catch (error) {
     console.log(error,{appID, apiKey});
   }
