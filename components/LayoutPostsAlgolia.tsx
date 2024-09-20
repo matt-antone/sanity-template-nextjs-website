@@ -31,6 +31,7 @@ const paginationClasses = {
 
 function Hit({ hit }: any) {
   return (
+    <a href={`/posts/${hit.slug}`}>
     <article className="mb-6">
       <header>
         <time>{new Date(hit.date).toLocaleDateString('en-US')}</time>
@@ -38,6 +39,7 @@ function Hit({ hit }: any) {
       </header>
       <p>{hit.excerpt || hit.body}</p>
     </article>
+    </a>
   );
 }
 

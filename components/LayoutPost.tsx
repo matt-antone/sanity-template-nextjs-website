@@ -1,9 +1,9 @@
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import { components } from '@/components/blocks';
+import { components } from "@/components/blocks";
 
 export default function LayoutPost(props: any) {
-  const { title = "Untitled", image = null, body = null } = props;
+  const { title = "Untitled", image = null, body = null, date = '' } = props;
 
   return (
     <div className="">
@@ -20,7 +20,8 @@ export default function LayoutPost(props: any) {
       </div>
       {body ? (
         <div className="prose">
-          <PortableText value={body} components={components}/>
+          <time>{new Date(date).toLocaleDateString("en-US")}</time>
+          <PortableText value={body} components={components} />
         </div>
       ) : null}
     </div>
