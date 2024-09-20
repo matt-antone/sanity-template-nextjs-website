@@ -7,7 +7,6 @@ import { updateAlgoliaPost } from "./updateAlgoliaPost";
 import { addAlgoliaPost } from "./addAlgoliaPost";
 import { deleteAlgoliaPost } from "./deleteAlgoliaPost";
 
-
 export async function POST(req: Request) {
   const {
     _type,
@@ -35,23 +34,26 @@ export async function POST(req: Request) {
       revalidateTag("home");
       revalidateTag("sitemap");
       try {
-        const { data } = await loadQuery<PostDocument>(
-          POST_ALGOLIA_QUERY,
-          { slug: slug },
-          {
-            next: {
-              revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
-              tags: [slug],
-            },
-          }
-        );
         switch (operation) {
           case "update":
           case "create":
-            setTimeout(async () => await updateAlgoliaPost("posts", data), 1000);
-          break;
+            const { data } = await loadQuery<PostDocument>(
+              POST_ALGOLIA_QUERY,
+              { slug: slug },
+              {
+                next: {
+                  revalidate:
+                    process.env.NODE_ENV === "production" ? 2.628e9 : 0,
+                  tags: [slug],
+                },
+              }
+            );
+            setTimeout(async () => {
+              await updateAlgoliaPost("posts", data);
+            }, 5000);
+            break;
           case "delete":
-            deleteAlgoliaPost("posts", _id);
+            await deleteAlgoliaPost("posts", _id);
             break;
           default:
             break;
