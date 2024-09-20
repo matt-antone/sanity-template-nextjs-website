@@ -47,11 +47,9 @@ export async function POST(req: Request) {
         );
         switch (operation) {
           case "update":
-            updateAlgoliaPost("posts", data); 
-            break;
           case "create":
-            addAlgoliaPost("posts", data);
-            break;
+            updateAlgoliaPost("posts", data); 
+          break;
           case "delete":
             deleteAlgoliaPost("posts", _id);
             break;
