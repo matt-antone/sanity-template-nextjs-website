@@ -54,6 +54,7 @@ export async function POST(req: Request) {
           await deleteAlgoliaPost("posts", _id);
           break;
       }
+      return Response.json({ success: true });
     } catch (error) {
       console.error(error);
     }
