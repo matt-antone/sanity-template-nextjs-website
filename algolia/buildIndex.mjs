@@ -3,21 +3,20 @@ import { transformPostsToSearchObjects } from "../lib/transformPostsToSearchObje
 import dotenv from "dotenv";
 dotenv.config();
 
+const appID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "";
+const apiKey = process.env.ALGOLIA_SEARCH_ADMIN_KEY || "";
+
+
 export const buildIndex = async (indexName, posts) => {
   try {
+    
     const transformed = transformPostsToSearchObjects(posts);
-    // // initialize the client with your environment variables
-    const client = algoliasearch(
-      process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
-      process.env.ALGOLIA_SEARCH_ADMIN_KEY
-    );
+    //initialize the client with your environment variables
+    const client = algoliasearch(appID, apiKey);
 
-    // // initialize the index with your index name
-    // const index = client.initIndex(indexName);
-
-    // // save the objects!
+    //replace the objects
     const algoliaResponse = await client.replaceAllObjects({
-      indexName: "posts",
+      indexName,
       objects: transformed,
       batchSize: 1000,
     });
