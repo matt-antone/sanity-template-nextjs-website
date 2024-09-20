@@ -27,36 +27,20 @@ const getRevalidateTags = (docType: string, slug: string) => {
 };
 
 export async function POST(req: Request) {
-  const { _type, _id, slug, operation } = await req.json();
+  const post = await req.json();
 
-  const revalidateTags = getRevalidateTags(_type, slug);
+  const revalidateTags = getRevalidateTags(post._type, post.slug);
   revalidateTags.forEach((tag) => revalidateTag(tag));
 
-  if (_type === DocumentType.Post) {
+  if (post._type === DocumentType.Post) {
     try {
-      switch (operation) {
+      switch (post.operation) {
         case "update":
         case "create":
-          await setTimeout(async () => {
-            const { data } = await loadQuery<PostDocument>(
-              POST_ALGOLIA_QUERY,
-              { slug },
-              {
-                next: {
-                  revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
-                  tags: [slug],
-                },
-              }
-            );
-            console.log("got data?",data);
-            // Update Algolia post logic here
-            await updateAlgoliaPost("posts", data);
-              
-          },5000)
+          await updateAlgoliaPost("posts", post);
           break;
         case "delete":
-          // Delete Algolia post logic here
-          await deleteAlgoliaPost("posts", _id);
+          await deleteAlgoliaPost("posts", post._id);
           break;
       }
       return Response.json({ success: true });
