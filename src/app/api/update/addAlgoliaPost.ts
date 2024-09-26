@@ -3,7 +3,7 @@ import { transformPostsToSearchObjects } from "@/lib/transformPostsToSearchObjec
 
 const appID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 // API key with `addObject` and `editSettings` ACL
-const apiKey = process.env.ALGOLIA_SEARCH_ADMIN_KEY as string;
+const apiKey = process.env.ALGOLIA_SEARCH_WRITE_KEY as string;
 
 export const addAlgoliaPost = async (index: string, post: any) => {
   console.log("creating client", { index, post });

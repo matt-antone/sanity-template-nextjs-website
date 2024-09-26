@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const appID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
-const apiKey = process.env.ALGOLIA_SEARCH_ADMIN_KEY as string;
+const apiKey = process.env.ALGOLIA_SEARCH_WRITE_KEY as string;
 
 export const updateAlgoliaPost = async (index: string, post: any) => {
   try {
