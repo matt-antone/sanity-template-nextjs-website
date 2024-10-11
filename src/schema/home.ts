@@ -13,7 +13,7 @@ export default defineType({
   fields: [
     fields.createdDate,
     fields.title,
-    fields.excerpt,
+    fields.description,
     fields.body,
     fields.sections,
     fields.gallery,

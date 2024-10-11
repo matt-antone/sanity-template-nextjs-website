@@ -11,7 +11,7 @@ export type MetaDataProps = {
 
 export type PostDocument = SanityDocument &{
   title: string;
-  excerpt: string;
+  description: string;
 }
 
 export type PageDocument = SanityDocument & {

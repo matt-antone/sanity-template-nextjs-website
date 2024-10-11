@@ -37,7 +37,7 @@ export const getPosts = async () => {
    profiles[]->{
      title,
    },
-   excerpt,
+   description,
    image{"url": asset->url,"altText": asset->altText},
    gallery[]{"url": asset->url,"altText": asset->altText},
  }`

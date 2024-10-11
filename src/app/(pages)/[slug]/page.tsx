@@ -63,7 +63,7 @@ export async function generateMetadata(
   return post
     ? {
         title: post.title || null,
-        description: post.excerpt || null,
+        description: post.description || null,
         openGraph: {
           images,
         },

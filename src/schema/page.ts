@@ -11,7 +11,7 @@ export default defineType({
     fields.createdDate,
     fields.title,
     fields.slug,
-    fields.excerpt,
+    fields.description,
     fields.body,
   ],
   preview: {

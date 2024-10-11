@@ -33,7 +33,7 @@ export const POST_ALGOLIA_QUERY = groq`*[_type == "post" && slug.current == $slu
    profiles[]->{
      title,
    },
-   excerpt,
+   description,
    image{"url": asset->url,"altText": asset->altText},
    gallery[]{"url": asset->url,"altText": asset->altText},
  }[0]`;

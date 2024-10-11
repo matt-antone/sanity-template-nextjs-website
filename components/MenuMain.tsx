@@ -5,144 +5,134 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  // DropdownMenuLabel,
-  // DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
-import { FaAngleDown } from "react-icons/fa6";
+import { FaAngleDown, FaAngleRight } from "react-icons/fa6";
 import Fonts from "./Fonts";
-
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import slugify from "slugify";
 
 interface IMenuMainProps {
   nav: SanityDocument;
 }
 
 const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
-
   return (
-    <NavigationMenu className="w-full hidden lg:block">
-      <NavigationMenuList className="w-full justify-center">
-        {nav?.items &&
-          nav.items.map((item: any) => {
-            return item.children ? (
-              <NavigationMenuItem
-                key={`${item._key || item?.navigationItemUrl.relativePath || item?.externalUrl}-main`}
-                className=""
-              >
-                <NavigationMenuTrigger>{item.text}</NavigationMenuTrigger>
-                <NavigationMenuContent className="flex flex-col gap-8 p-8">
-                  {item.children.map((child: any) => {
-                    return (
-                        <Link
-                          href={
-                            child.navigationItemUrl?.relativePath ||
-                            child?.navigationItemUrl?.externalUrl ||
-                            "#"
-                          }
-                          key={`${child._key}-main`}
-                          className="whitespace-nowrap"
-                          target={
-                            child?.navigationItemUrl?.externalUrl
-                              ? "new"
-                              : "_self"
-                          }
-                          rel={
-                            child?.navigationItemUrl?.externalUrl
-                              ? "noopener noreferrer"
-                              : ""
-                          }
-                          >
-                          {child.text}
-                        </Link>
-                    );
-                  })}
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ) : (
-              <NavigationMenuItem
-                key={`${item?.navigationItemUrl?.relativePath || item?.navigationItemUrl?.externalUrl}-main`}
-              >
-                <Link
-                  href={
-                    item?.navigationItemUrl?.relativePath ||
-                    item?.navigationItemUrl?.external ||
-                    "#"
-                  }
+    nav && (
+      <nav className="hidden lg:block">
+        <ul className="flex space-x-3">
+          {/* Top Level */}
+          {nav?.items &&
+            nav.items.map((item: any) => {
+              console.log(item);
+              return (
+                <li
+                  key={`${slugify(item.text)}-main`}
+                  className="text-lg flex items-center gap-1"
                 >
-                  {item.text}
-                </Link>
-              </NavigationMenuItem>
-            );
-          })}
-      </NavigationMenuList>
-    </NavigationMenu>
+                  {!item.children && (
+                    <Link
+                      href={
+                        item?.navigationItemUrl?.relativePath ||
+                        `/${item?.page?.slug?.current}`
+                      }
+                      className="uppercase text-navigation text-sm font-medium"
+                      tabIndex={0}
+                    >
+                      {item.text}
+                    </Link>
+                  )}
+                  {item.children && (
+                    // Sub Level
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="flex items-center gap-1">
+                        <span className="uppercase text-navigation text-sm font-medium">
+                          {item.text}
+                        </span>
+                        <FaAngleDown className="text-navigation w-3 h-3" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="p-4 mt-4 rounded-none">
+                        {item.children.map((child: any) => {
+                          console.log(child.text);
+                          return (
+                            <div key={`${slugify(child.text)}-main`} className="flex items-center gap-1 justify-between">
+                              {!child.children && (
+                                <DropdownMenuItem
+                                  key={`${child._id}-main`}
+                                  className=""
+                                >
+                                  <Link
+                                    href={
+                                      child?.navigationItemUrl?.relativePath ||
+                                      `/${child?.page?.slug?.current}`
+                                    }
+                                    className="uppercase text-navigation whitespace-nowrap font-medium"
+                                  >
+                                    {child.text}
+                                  </Link>
+                                </DropdownMenuItem>
+                              )}
+                              {child.children && (
+                                <DropdownMenuSub>
+                                  <DropdownMenuSubTrigger  className="uppercase text-navigation whitespace-nowrap w-full flex items-center gap-1 justify-between">
+                                    <div className="">
+                                      <span className="uppercase text-navigation whitespace-nowrap font-medium">
+                                        {child.text}
+                                      </span>
+                                    </div>
+                                  </DropdownMenuSubTrigger>
+                                  <DropdownMenuSubContent
+                                    className="p-4 rounded-none"
+                                    // side="right"
+                                    sideOffset={32}
+                                    // align="start"
+                                  >
+                                    {child.children.map((item: any) => {
+                                      console.log(item);
+                                      return (
+                                        <DropdownMenuItem
+                                          asChild
+                                          key={`${slugify(item.text)}-main`}
+                                        >
+                                          <Link
+                                            href={
+                                              item?.link ||
+                                              item?.navigationItemUrl
+                                                ?.relativePath ||
+                                              `/${item?.page?.slug?.current}`
+                                            }
+                                            className="uppercase text-navigation whitespace-nowrap font-medium"
+                                          >
+                                            <Fonts>
+                                              <span className="block">
+                                                {item.text}
+                                              </span>
+                                            </Fonts>
+                                          </Link>
+                                        </DropdownMenuItem>
+                                      );
+                                    })}
+                                  </DropdownMenuSubContent>
+                                </DropdownMenuSub>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  )}  
+                </li>
+              );
+            })}
+            <li>
+              <button>stuff</button>
+            </li>
+        </ul>
+      </nav>
+    )
   );
-  // return (
-  //   nav && (
-  //     <nav className="hidden lg:block">
-  //       <ul className="flex space-x-5">
-  //         {nav?.items &&
-  //           nav.items.map((item: any) => {
-  //             return (
-  //               <li
-  //                 key={`${item.link || item?.navigationItemurl?.relativePath || `/${item?.page?.slug?.current}`}-main`}
-  //                 className="text-lg flex items-center gap-1"
-  //               >
-  //                 <Link
-  //                   href={
-  //                     item.link ||
-  //                     item?.navigationItemurl?.relativePath ||
-  //                     `/${item?.page?.slug?.current}`
-  //                   }
-  //                 >
-  //                   {item.text}{" "}
-  //                 </Link>
-  //                 {item.children && (
-  //                   <DropdownMenu>
-  //                     <DropdownMenuTrigger>
-  //                       <span className="sr-only">Open menu</span>
-  //                       <FaAngleDown />
-  //                     </DropdownMenuTrigger>
-  //                     <DropdownMenuContent className="px-12 py-8 mt-4 rounded-none">
-  //                       {item.children.map((child: any) => {
-  //                         return (
-  //                           <DropdownMenuItem asChild key={`${child._id}-main`}>
-  //                             <Link
-  //                               href={
-  //                                 child?.link ||
-  //                                 child?.navigationItemUrl?.relativePath ||
-  //                                 `/${child?.page?.slug?.current}`
-  //                               }
-  //                             >
-  //                               <Fonts>
-  //                                 <span className="block text-lg py-2">
-  //                                   {child.text}
-  //                                 </span>
-  //                               </Fonts>
-  //                             </Link>
-  //                           </DropdownMenuItem>
-  //                         );
-  //                       })}
-  //                     </DropdownMenuContent>
-  //                   </DropdownMenu>
-  //                 )}
-  //               </li>
-  //             );
-  //           })}
-  //       </ul>
-  //     </nav>
-  //   )
-  // );
 };
 
 export default MenuMain;

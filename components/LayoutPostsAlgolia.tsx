@@ -37,7 +37,7 @@ function Hit({ hit }: any) {
         <time>{new Date(hit.date).toLocaleDateString('en-US')}</time>
         <h1 className="text-xl">{hit.title}</h1>
       </header>
-      <p>{hit.excerpt || hit.body}</p>
+      <p>{hit.description || hit.body}</p>
     </article>
     </a>
   );
@@ -55,7 +55,7 @@ export default function LayoutPostsAlgolia() {
           "title", // list of attributes to retrieve
           "slug",
           "image",
-          "excerpt",
+          "description",
           "date",
         ]}
       />
