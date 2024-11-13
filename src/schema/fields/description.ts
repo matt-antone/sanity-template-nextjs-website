@@ -1,6 +1,6 @@
 export const description = {
   name: 'description',
-  title: 'Excerpt',
+  title: 'Description',
   type: 'text',
   rows: 4,
 }
