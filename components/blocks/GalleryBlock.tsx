@@ -24,6 +24,7 @@ export const GalleryBlock: React.FunctionComponent<IGalleryProps> = ({
         );
         return (
           <img
+            key={image.asset._ref}
             src={`${asset?.url}?w=200&h=200&fit=crop&dpr=2&auto=format`}
             alt={asset.altText || ""}
             width={200}
