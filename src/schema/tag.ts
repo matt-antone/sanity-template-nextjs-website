@@ -4,12 +4,12 @@ import { GrTag } from "react-icons/gr";
 
 
 export default defineType({
-  name: 'category',
-  title: 'Categories',
+  name: 'tag',
+  title: 'Tags',
   type: 'document',
-  description: 'Add categories to the site. This will help with SEO and categorization.',
+  description: 'Add tags to the site. This will help with SEO and categorization.',
   icon: GrTag,
   fields: [
-    fields.title,
+    {...fields.title, description: 'Enter the tag.'},
   ],
 })

@@ -11,17 +11,20 @@ export const navItem = {
           {
             name: "text",
             type: "string",
-            title: "Navigation Text"
+            title: "Navigation Text",
+            description: 'Enter the text for the navigation item.'
           },
           {
             name: "navigationItemUrl",
             type: "navLink", 
-            title: "Navigation Item URL"
+            title: "Navigation Item URL",
+            description: 'Select the link for the navigation item.'
           },
           {
             name: "children",
             type: "array",
             title: "Dropdown Items",
+            description: 'Add dropdown items to the navigation item.',
             of: [{ type: "navigationItem" }],
             description: "Optional sub-navigation items",
           }

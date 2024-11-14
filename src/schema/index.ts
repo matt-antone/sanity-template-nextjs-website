@@ -14,28 +14,32 @@ import profile from './profile'
 import home from './home'
 import { gallery } from './fields/gallery'
 import testimonial from './testimonial'
+import tag from './tag'
+import { galleryBlock } from './fields/gallery-block'
 
 export const schemaTypes: { types: SchemaTypeDefinition[] } = {
   types: [
     /* singletons */
     home,
-    settings,
 
     /* post types */
-    pages,
     posts,
+    pages,
     profile,
     testimonial,
+    category,
+    tag,
+    navigation,
+    settings,
 
     /* object types */
-    category,
     youtube,
     linkImage,
-    navigation,
     link,
     navItem,
     vimeo,
     gallery,
+    galleryBlock,
     blockContent,
   ],
 }

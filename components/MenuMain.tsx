@@ -26,7 +26,6 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
           {/* Top Level */}
           {nav?.items &&
             nav.items.map((item: any) => {
-              console.log(item);
               return (
                 <li
                   key={`${slugify(item.text)}-main`}
@@ -55,7 +54,6 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="p-4 mt-4 rounded-none">
                         {item.children.map((child: any) => {
-                          console.log(child.text);
                           return (
                             <div key={`${slugify(child.text)}-main`} className="flex items-center gap-1 justify-between">
                               {!child.children && (
@@ -90,7 +88,6 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                                     // align="start"
                                   >
                                     {child.children.map((item: any) => {
-                                      console.log(item);
                                       return (
                                         <DropdownMenuItem
                                           asChild

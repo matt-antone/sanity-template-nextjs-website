@@ -1,14 +1,15 @@
-import { defineField, defineType } from 'sanity'
+import { defineType } from 'sanity'
 import * as fields from './fields'
-import { GrArticle } from "react-icons/gr";
+import { GrBlockQuote } from "react-icons/gr";
 
 export default defineType({
   name: 'testimonial',
   title: 'Testimonials',
   type: 'document',
-  icon: GrArticle,
+  description: 'Add a testimonial to the site.',
+  icon: GrBlockQuote,
   fields: [
-    fields.createdDate,
+    fields.date,
     fields.title,
     fields.body,
     {
@@ -16,18 +17,8 @@ export default defineType({
       name: "cite",
       title: "Citation",
     },
-    {
-      type: "array",
-      name: "profiles",
-      title: "Related Profiles",
-      description: "Optional. Select profiles for this testimonial.",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "profile" }],
-        },
-      ]
-    },
+    fields.url,
+    fields.relatedProfiles,
   ],
   preview: {
     select: {

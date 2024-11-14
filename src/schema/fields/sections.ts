@@ -1,6 +1,7 @@
 export const sections = {
   name: "sections",
   title: "Sections",
+  description: 'Add content sections to the page.',
   type: "array",
   of: [
     {

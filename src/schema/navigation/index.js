@@ -13,13 +13,15 @@ export const navigation = {
         {
             name: "title",
             type: "string",
-            title: "Title"
+            title: "Title",
+            description: 'Enter the title of the menu.'
           },
           slug,
           {
             name: "items",
             type: "array",
             title: "Navigation items",
+            description: 'Add the items to the menu.',
             of: [{ type: "navigationItem" }]
           }
     ]

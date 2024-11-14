@@ -1,4 +1,5 @@
-import { Image } from "./Image";
+import { ImageBlock } from "./ImageBlock";
+import { GalleryBlock } from "./GalleryBlock";
 import Link from "next/link";
 import Player from "@/components/VideoPlayer";
 
@@ -7,7 +8,13 @@ export const components = {
     image: ({ value }: any) =>
       value && (
         <div className="not-prose my-12">
-          <Image image={value} />
+          <ImageBlock image={value} />
+        </div>
+      ),
+    galleryBlock: ({ value }: any) =>
+      value && (
+        <div className="not-prose my-12">
+          <GalleryBlock {...value} />
         </div>
       ),
     button: ({ value }: any) => {

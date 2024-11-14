@@ -8,7 +8,7 @@ interface IImageProps {
   image: SanityAsset;
 }
 
-export const Image: React.FunctionComponent<IImageProps> = (props) => {
+export const ImageBlock: React.FunctionComponent<IImageProps> = (props) => {
   const builder = imageUrlBuilder(client);
   return (
     <NextImage

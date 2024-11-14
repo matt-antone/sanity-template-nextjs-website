@@ -8,13 +8,13 @@ export default defineType({
   type: "document",
   icon: FaPerson,
   fields: [
-    fields.createdDate,
+    fields.date,
     fields.title,
     fields.slug,
+    fields.name,
     fields.description,
     fields.email,
-    { ...fields.image, title: "Thumbnail", name: "thumbnail" },
-    { ...fields.image, title: "Profile Image", name: "profileImage" },
+    fields.image,
     {
       type: "array",
       name: "socialLinks",
@@ -47,11 +47,7 @@ export default defineType({
   preview: {
     select: {
       title: "title",
-      media: "thubmnail",
+      media: "image",
     },
-    // prepare(selection) {
-    //   const { author } = selection;
-    //   return { ...selection, subtitle: author && `by ${author}` };
-    // },
   },
 });

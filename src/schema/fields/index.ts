@@ -1,6 +1,6 @@
 export * from "./body";
 export * from "./categories";
-export * from "./created-date";
+export * from "./date";
 export * from "./description";
 export * from "./slug";
 export * from "./tags";
@@ -13,3 +13,6 @@ export * from "./url";
 export * from "./gallery";
 export * from "./phone";
 export * from "./sections";
+export * from "./name";
+export * from "./related-profiles";
+export * from "./gallery-block";

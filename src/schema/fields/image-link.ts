@@ -3,6 +3,7 @@ export const linkImage = ({
   type: 'image',
   name: 'linkImage',
   title: 'Image',
+  description: 'Add an image to the link.',
   preview: {
     select: {
       alt: 'alt',

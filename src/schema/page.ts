@@ -1,28 +1,26 @@
-import { defineField, defineType } from 'sanity'
+import { defineType } from 'sanity'
 import * as fields from './fields'
-import { GrDocument } from "react-icons/gr";
+import { RiPagesLine } from "react-icons/ri";
 
 export default defineType({
   name: 'page',
   title: 'Pages',
   type: 'document',
-  icon: GrDocument,
+  description: 'Add a page to the site.',
+  icon: RiPagesLine,
   fields: [
-    fields.createdDate,
+    fields.date,
     fields.title,
     fields.slug,
     fields.description,
     fields.body,
+    fields.gallery,
+    fields.relatedProfiles,
   ],
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
-      media: 'featuredImage.src',
-    },
-    prepare(selection) {
-      const { author } = selection
-      return { ...selection, subtitle: author && `by ${author}` }
+      media: 'gallery.0.asset',
     },
   },
 })

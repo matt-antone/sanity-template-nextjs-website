@@ -7,6 +7,7 @@ export default defineType({
   title: "Settings",
   type: "document",
   icon: GrSettingsOption,
+  description: 'Settings for the site.',
   options: {
     singleton: true, // Identify this document as a singleton
   },

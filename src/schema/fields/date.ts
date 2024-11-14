@@ -1,4 +1,4 @@
-export const createdDate = {
+export const date= {
   name: "date",
   title: "Date",
   type: "datetime",
