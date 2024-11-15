@@ -2,6 +2,7 @@ import * as React from 'react';
 import {PortableText} from '@portabletext/react';
 import {components} from '@/components/blocks';
 import LayoutHeading from "@/components/LayoutHeading";
+import Prose from './Prose';
 
 interface ILayouPageProps {
   title?: string;
@@ -12,7 +13,9 @@ const LayoutPage: React.FunctionComponent<ILayouPageProps> = ({body,title}) => {
   return body && (
     <div>
       <LayoutHeading text={title || "Untitled"} />
-      <PortableText value={body} components={components} />
+      <Prose>
+        <PortableText value={body} components={components} />
+      </Prose>
     </div>
   );
 };

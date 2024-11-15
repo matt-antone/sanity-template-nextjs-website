@@ -32,7 +32,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = async ({ children }) => {
           <Footer />
         </Fonts>
         {/* add google tag manager */}
-        <SpeedInsights />
+        {/* <SpeedInsights />
         {process.env.NEXT_PUBLIC_GOOGLE_TM && (
           <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TM} />
         )}
@@ -40,7 +40,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = async ({ children }) => {
           <GoogleAnalytics
             gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID}
           />
-        )}
+        )} */}
       </body>
     </html>
   );

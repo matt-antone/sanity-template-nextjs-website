@@ -7,6 +7,14 @@ interface IAppProps {
 }
 
 const VideoPlayer: React.FunctionComponent<IAppProps> = (props) => {
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
   return (
     <ReactPlayer
       url={props.url}

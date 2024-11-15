@@ -11,7 +11,7 @@ export const POSTS_QUERY = groq`*[_type == "post" && defined(slug)]  | order(dat
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug]{
   ...,
-  image{...,asset->},
+  gallery[]{...,asset->},
 }[0]`;
 
 export const PAGINATION_QUERY = groq`*[_type == "post" && date < $lastDate] | order(date desc) [0...4] {

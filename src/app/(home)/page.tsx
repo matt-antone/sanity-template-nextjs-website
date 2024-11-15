@@ -1,13 +1,13 @@
 import type { PageDocument, Metadata } from "@/src/types";
-import { draftMode } from "next/headers";
 import { loadQuery } from "@/sanity/lib/store";
 import { HOME_PAGE_QUERY } from "@/lib/queries";
 import Container from "@/components/Container";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { PortableText } from "@portabletext/react";
 import { getStructuredPage } from "@/lib/structuredData";
 import LayoutPage from "@/components/LayoutPage";
+import Prose from "@/components/Prose";
+import { PortableText } from "@portabletext/react";
+import { components } from "@/components/blocks";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -22,7 +22,7 @@ export default async function Page() {
     {
       next: {
         revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
-        tags: ["home","posts"],
+        tags: ["home", "posts"],
       },
     }
   );
@@ -34,12 +34,14 @@ export default async function Page() {
   }
   return (
     <Container>
-    <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    id="page-jsonld"
-  />
-    <LayoutPage {...initial.data} />
-  </Container>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        id="page-jsonld"
+      />
+      <Prose>
+        <PortableText value={initial.data.body} components={components} />
+      </Prose>
+    </Container>
   );
 }

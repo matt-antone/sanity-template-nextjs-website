@@ -3,6 +3,7 @@ import { GalleryBlock } from "./GalleryBlock";
 import Link from "next/link";
 import Player from "@/components/VideoPlayer";
 
+
 export const components = {
   types: {
     image: ({ value }: any) =>

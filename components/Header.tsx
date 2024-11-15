@@ -24,7 +24,7 @@ const Header = async (props: IHeaderProps) => {
   return (
     <header className="relative z-50">
       <Container>
-        <div className="flex justify-start items-center py-4 md:py-8 gap-12">
+        <div className="flex justify-between items-center py-4 md:py-8 gap-12">
           <div>
             {settings?.siteLogo ? (
               <Link href="/" className="block w-[175px] lg:w-[300px]">

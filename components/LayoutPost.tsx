@@ -1,28 +1,29 @@
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { components } from "@/components/blocks";
+import Prose from "./Prose";
 
 export default function LayoutPost(props: any) {
-  const { title = "Untitled", image = null, body = null, date = '' } = props;
-
+  const { body = null, date = '', gallery = [] } = props;
+  console.log(gallery);
   return (
     <div className="">
       <div className="relative">
-        {image?.asset ? (
+        { gallery.length>0 && gallery[0]?.asset?.url && (
           <Image
-            src={`${image.asset.url}?w=640`}
-            alt={image.alt}
-            width={image.asset.metadata.dimensions.width}
-            height={image.asset.metadata.dimensions.height}
+            src={`${gallery[0].asset.url}?w=1024&h=768&fit=crop&q=80`}
+            alt={gallery[0].alt}
+            width={gallery[0].asset.metadata?.dimensions?.width}
+            height={gallery[0].asset.metadata?.dimensions?.height}
             className="mb-8"
           />
-        ) : null}
+        ) }
       </div>
       {body ? (
-        <div className="prose">
+        <Prose>
           <time>{new Date(date).toLocaleDateString("en-US")}</time>
           <PortableText value={body} components={components} />
-        </div>
+        </Prose>
       ) : null}
     </div>
   );

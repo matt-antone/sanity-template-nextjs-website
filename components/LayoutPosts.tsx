@@ -30,7 +30,7 @@ export default function LayoutPosts({ posts }: { posts: SanityDocument[] }) {
     setLoading(false);
     return result;
   }
-  return (
+  return list && (
     <div>
       {list?.length > 0 ? (
         list.map((post) => (
