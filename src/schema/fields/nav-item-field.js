@@ -1,9 +1,8 @@
-//File name: navItem.js
-//File location: schemas/objects
+import { defineType } from "sanity";
 import { GrNavigate } from "react-icons/gr";
 
-export const navItem = {
-    name: 'navigationItem',
+export const navItem = defineType({
+    name: 'navItem',
     title: 'Navigation Item',
     type: 'object',
     icon: GrNavigate,
@@ -25,8 +24,8 @@ export const navItem = {
             type: "array",
             title: "Dropdown Items",
             description: 'Add dropdown items to the navigation item.',
-            of: [{ type: "navigationItem" }],
+            of: [{ type: "navItem" }],
             description: "Optional sub-navigation items",
           }
     ]
-}
+})

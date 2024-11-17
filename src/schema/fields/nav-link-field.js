@@ -1,7 +1,5 @@
-//File name: link.js
-//File location: schemas/navigation
-
-export const link = {
+import { defineType } from "sanity";
+export const navLink = defineType({
   name: "navLink",
   type: "object",
   title: "Link",
@@ -19,4 +17,4 @@ export const link = {
       type: "url",
     },
   ],
-};
+})

@@ -1,8 +1,8 @@
 import { defineType } from "sanity";
-import * as fields from "./fields";
+import * as fields from "../fields";
 import { FaPerson } from "react-icons/fa6";
 
-export default defineType({
+export const profile = defineType({
   name: "profile",
   title: "Profiles",
   type: "document",

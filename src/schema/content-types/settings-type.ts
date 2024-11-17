@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 import { GrSettingsOption } from "react-icons/gr";
-import { localBusinessType } from "./fields/localBusinessType";
-import * as fields from "./fields";
-export default defineType({
+import * as fields from "../fields";
+
+export const settings = defineType({
   name: "settings",
   title: "Settings",
   type: "document",
@@ -51,7 +51,7 @@ export default defineType({
               name: "name",
               title: "Name",
             }),
-            localBusinessType,
+            fields.localBusinessType,
             defineField({
               type: "url",
               name: "homepage",

@@ -1,5 +1,4 @@
-import { defineType, validation } from 'sanity'
-
+import { defineType } from 'sanity'
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -11,7 +10,7 @@ import { defineType, validation } from 'sanity'
  *    type: 'blockContent'
  *  }
  */
-export default defineType({
+export const blockContent = defineType({
   title: 'Block Content',
   name: 'blockContent',
   type: 'array',

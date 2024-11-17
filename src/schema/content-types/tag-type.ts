@@ -1,9 +1,9 @@
 import { defineType } from 'sanity'
-import * as fields from './fields'
+import * as fields from '../fields'
 import { GrTag } from "react-icons/gr";
 
 
-export default defineType({
+export const tag = defineType({
   name: 'tag',
   title: 'Tags',
   type: 'document',

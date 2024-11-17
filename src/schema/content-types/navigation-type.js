@@ -1,10 +1,8 @@
-//File name: navigation.js
-//File location: schemas/documents
-
+import { defineType } from "sanity";
 import { GrNavigate } from "react-icons/gr";
-import { slug } from "../fields/slug";
+import { slug } from "../fields";
 
-export const navigation = {
+export const navigation = defineType({
     name: 'navigation',
     title: 'Navigation',
     type: 'document',
@@ -22,7 +20,7 @@ export const navigation = {
             type: "array",
             title: "Navigation items",
             description: 'Add the items to the menu.',
-            of: [{ type: "navigationItem" }]
+            of: [{ type: "navItem" }]
           }
     ]
-}
+})

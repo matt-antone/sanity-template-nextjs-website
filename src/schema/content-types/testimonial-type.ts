@@ -1,8 +1,8 @@
 import { defineType } from 'sanity'
-import * as fields from './fields'
+import * as fields from '../fields'
 import { GrBlockQuote } from "react-icons/gr";
 
-export default defineType({
+export const testimonial = defineType({
   name: 'testimonial',
   title: 'Testimonials',
   type: 'document',

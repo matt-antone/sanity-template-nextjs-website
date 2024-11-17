@@ -1,8 +1,8 @@
 import { defineType } from 'sanity'
-import * as fields from './fields'
+import * as fields from '../fields'
 import { GrHome} from "react-icons/gr";
 
-export default defineType({
+export const home = defineType({
   name: 'home',
   title: 'Home',
   type: 'document',

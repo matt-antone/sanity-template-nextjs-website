@@ -1,8 +1,8 @@
 import { defineType } from 'sanity'
-import * as fields from './fields'
+import * as fields from '../fields'
 import { RiPagesLine } from "react-icons/ri";
 
-export default defineType({
+export const page = defineType({
   name: 'page',
   title: 'Pages',
   type: 'document',
