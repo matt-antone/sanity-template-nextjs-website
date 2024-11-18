@@ -2,10 +2,11 @@ import { ImageBlock } from "./ImageBlock";
 import { GalleryBlock } from "./GalleryBlock";
 import Link from "next/link";
 import Player from "@/components/VideoPlayer";
-
+import custom from './custom'
 
 export const components = {
   types: {
+
     image: ({ value }: any) =>
       value && (
         <div className="not-prose my-12">
@@ -45,6 +46,7 @@ export const components = {
         </div>
       );
     },
+    ...custom,
   },
 
   marks: {
