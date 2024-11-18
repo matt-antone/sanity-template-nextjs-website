@@ -1,4 +1,5 @@
 import { defineType } from 'sanity'
+import * as blocks from "../blocks"
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -64,14 +65,6 @@ export const blockContent = defineType({
         ],
       },
     },
-    {
-      type: 'youtube',
-    },
-    {
-      type: 'vimeo',
-    },
-    {
-      type: 'galleryBlock',
-    },
+    ...Object.values(blocks).map((block: any) => ({ type: block.name })),
   ],
 })

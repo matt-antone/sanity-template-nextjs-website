@@ -1,11 +1,10 @@
 import { SchemaTypeDefinition } from 'sanity'
-import types from './content-types'
-import blocks from './objects'
+import * as types from './content-types'
+import * as blocks from './blocks'
 
 export const schemaTypes: { types: SchemaTypeDefinition[] } = {
   types: [
-    ...types,
-    /* object types */
-    // ...blocks,
+    ...Object.values(blocks),
+    ...Object.values(types),
   ],
 }

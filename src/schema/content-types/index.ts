@@ -1,46 +1,15 @@
 import type { SchemaTypeDefinition } from 'sanity'
-import { blockContent } from './blockContent'
-import {category} from './category-type'
-import {home} from './home-type'
-import {navigation} from './navigation-type'
-import {page} from './page-type'
-import {post} from './post-type'
-import {profile} from './profile-type'
-import {settings} from './settings-type'
-import {tag} from './tag-type'
-import {testimonial} from './testimonial-type'
-import blocks from '../blocks'
-import custom from './custom'
 
-export {
-  category,
-  home,
-  navigation,
-  page,
-  post,
-  profile,
-  settings,
-  tag,
-  testimonial,
-  blockContent,
-}
 
+export * from './blockContent';
+export * from './category-type';
+export * from './home-type';
+export * from './navigation-type';
+export * from './nav-item-type';
+export * from './page-type';
+export * from './post-type';
+export * from './profile-type';
+export * from './settings-type';
+export * from './tag-type';
+export * from './testimonial-type';
 export * from './custom';
-
-
-const schemas = [
-  ...blocks,
-  blockContent,
-  home,
-  navigation,
-  page,
-  post,
-  profile,
-  testimonial,
-  settings,
-  category,
-  tag,
-  ...Object.values(custom)
-] as SchemaTypeDefinition[];
-
-export default schemas;

@@ -16,7 +16,7 @@ import { slug } from "./slug-field";
 import { tags } from "./tags-field";
 import { title } from "./title-field";
 import { url } from "./url-field";
-import custom from "./custom"
+import * as custom from "./custom"
 
 export {
   body,
