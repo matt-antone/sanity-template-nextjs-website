@@ -26,6 +26,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
           {/* Top Level */}
           {nav?.items &&
             nav.items.map((item: any) => {
+              console.log(item);
               return (
                 <li
                   key={`${slugify(item.text)}-main`}
@@ -34,7 +35,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                   {!item.children && (
                     <Link
                       href={
-                        item?.navigationItemUrl?.relativePath ||
+                        item?.relativePath ||
                         `/${item?.page?.slug?.current}`
                       }
                       className="uppercase text-navigation text-sm font-medium"
