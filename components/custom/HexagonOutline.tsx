@@ -7,7 +7,7 @@ interface IHexagonOutlineProps {
 
 const HexagonOutline: React.FunctionComponent<IHexagonOutlineProps> = ({
   className,
-  number = 1,
+  number = null,
 }) => {
   return (
     <svg
@@ -19,8 +19,8 @@ const HexagonOutline: React.FunctionComponent<IHexagonOutlineProps> = ({
       <text
         x="50%"
         y="50%"
-        dominant-baseline="middle"
-        text-anchor="middle"
+        dominantBaseline="middle"
+        textAnchor="middle"
         fontSize="144px"
         fill={'#000'}
         className="font-bold text-center flex items-center justify-center"
