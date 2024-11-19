@@ -31,10 +31,6 @@ const PaintList: React.FunctionComponent<IPaintListProps> = ({
                         : paint.mix.length === 1
                           ? ""
                           : "lg:ml-10";
-                    const textColor = bestContrast(
-                      p.paint.color?.hex || "#000",
-                      possibleColors
-                    );
                     return (
                       <li
                         key={p._key}
@@ -42,26 +38,26 @@ const PaintList: React.FunctionComponent<IPaintListProps> = ({
                       >
                         <span
                           className={`inline-block relative ${margin}`}
-                          style={{
-                            color: p.paint?.color ? textColor : "#000",
-                          }}
                         >
                           {p.paint.color ? (
                             <Hexagon
-                              className={`w-10 h-10 lg:w-12 lg:h-12`}
-                              color={p.paint.color.hex} 
-                              // style={{
-                              //   fill: p.paint.color.hex || "#000",
-                              // }}
+                              className={`w-10 h-10 lg:w-12 lg:h-12 text-center`}
+                              color={p.paint.color.hex}
+                              textColor={bestContrast(
+                                p.paint.color?.hex || "#FFFFFF",
+                                possibleColors
+                              )}
+                              number={p.parts}
                             />
                           ) : (
                             <HexagonOutline
                               className={`w-10 h-10 lg:w-12 lg:h-12 fill-slate-300`}
+                              number={p.parts}
                             />
                           )}
-                          <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-xs font-bold">
+                          {/* <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-xs font-bold">
                             {p.parts}
-                          </span>
+                          </span> */}
                         </span>
                         <span className={`flex pl-4`}>
                           <span>
