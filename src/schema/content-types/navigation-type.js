@@ -20,7 +20,7 @@ export const navigation = defineType({
             type: "array",
             title: "Navigation items",
             description: 'Add the items to the menu.',
-            of: [{ type: "navItem" }]
+            of: [{ type: "navigationItem" }]
           }
     ]
 })

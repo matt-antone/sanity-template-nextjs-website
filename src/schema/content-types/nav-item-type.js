@@ -1,8 +1,8 @@
 import { defineType } from "sanity";
 import { GrNavigate } from "react-icons/gr";
 
-export const navItem = defineType({
-  name: "navItem",
+export const navigationItem = defineType({
+  name: "navigationItem",
   title: "Navigation Item",
   type: "object",
   icon: GrNavigate,
@@ -12,6 +12,12 @@ export const navItem = defineType({
       type: "string",
       title: "Navigation Text",
       description: "Enter the text for the navigation item.",
+    },
+    {
+      name: "relativePath",
+      type: "string",
+      title: "Relative Path",
+      description: "Enter a relative path for the link.",
     },
     {
       name: "navigationItemUrl",
