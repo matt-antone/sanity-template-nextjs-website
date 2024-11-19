@@ -49,9 +49,10 @@ const PaintList: React.FunctionComponent<IPaintListProps> = ({
                           {p.paint.color ? (
                             <Hexagon
                               className={`w-10 h-10 lg:w-12 lg:h-12`}
-                              style={{
-                                fill: p.paint.color.hex || "#000",
-                              }}
+                              color={p.paint.color.hex} 
+                              // style={{
+                              //   fill: p.paint.color.hex || "#000",
+                              // }}
                             />
                           ) : (
                             <HexagonOutline
