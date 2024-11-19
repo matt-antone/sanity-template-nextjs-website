@@ -1,14 +1,13 @@
 import type { Metadata, ResolvingMetadata, MetaDataProps, PostDocument } from '@/src/types'
 import { WALKTHROUGH_QUERY, WALKTHROUGHS_ALL_QUERY } from "@/lib/queries";
 import { QueryParams } from "next-sanity";
-import { draftMode } from "next/headers";
 import { client } from "@/sanity/lib/client";
 import { loadQuery } from "@/sanity/lib/store";
-import Post from "@/components/LayoutPost";
-import LayoutHeading from '@/components/LayoutHeading';
-import Container from '@/components/Container';
 import { getStructuredPost } from '@/lib/structuredData';
+import { notFound } from 'next/navigation';
+import Container from '@/components/Container';
 import LayoutWalkthrough from '@/components/custom/LayoutWalkthrough';
+import LayoutHeading from '@/components/LayoutHeading';
 
 // Generate Static Page Slugs
 export async function generateStaticParams() {
@@ -46,20 +45,25 @@ export async function generateMetadata(
 
 // Page Component
 export default async function Page({ params }: { params: QueryParams }) {
-  const initial = await loadQuery<PostDocument>(WALKTHROUGH_QUERY, params, {
+  const { data }= await loadQuery<PostDocument>(WALKTHROUGH_QUERY, params, {
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
       tags: [params.slug],
     },
   });
 
-  const structuredData = await getStructuredPost(initial.data, params.slug);
-  // console.log(initial.data);
+  if (!data) {
+    notFound();
+  }
+
+
+
+  const structuredData = await getStructuredPost(data, params.slug);
   return (
     <Container>
       <script dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} id="post-jsonld" />
-      <LayoutHeading text={initial?.data?.title || "Untitled"}/>
-      <LayoutWalkthrough {...initial.data} />
+      <LayoutHeading text={data?.title || "Untitled"}/>
+      <LayoutWalkthrough {...data} />
     </Container>
   )
 }

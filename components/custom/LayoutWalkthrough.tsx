@@ -3,10 +3,23 @@ import Image from "next/image";
 import { components } from "@/components/blocks";
 import Prose from "../Prose";
 import SanityPortableText from "../SanityPortableText";
-import PaintList from "./PaintList";
+import PaintMixes from "./PaintMixes";
 import Steps from "./Steps";
+import PaintList from "./PaintList";
 export default function LayoutWalkthrough(props: any) {
   const { body = null, date = "", gallery = [], walkthroughSteps = [] } = props;
+  const paints = new Set();
+  walkthroughSteps.forEach((step: any) => {
+    return step.paintList.flatMap((paint: any) => {
+      return paint.mix.map((p: any) => {
+        paints.add(JSON.stringify({
+          name: p.paint.title.trim(),
+          color: p.paint.color?.hex || null,
+        }));
+      });
+    });
+  });
+  console.log([...paints]);
   return (
     <div className="">
       <div className="relative">
@@ -20,9 +33,9 @@ export default function LayoutWalkthrough(props: any) {
           />
         )}
       </div>
+      <PaintList paintList={Array.from(paints).map((p: any) => JSON.parse(p))} />
       {body ? (
         <Prose>
-          <time>{new Date(date).toLocaleDateString("en-US")}</time>
           <SanityPortableText blocks={body} />
           <Steps steps={walkthroughSteps} />
         </Prose>

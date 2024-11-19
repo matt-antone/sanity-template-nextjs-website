@@ -5,7 +5,7 @@ interface IProseProps {
 }
 
 const Prose: React.FunctionComponent<IProseProps> = (props) => {
-  return <div className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl mx-auto">{props.children}</div>;
+  return <div className="prose prose-sm sm:prose-base mx-auto max-w-[75ch]">{props.children}</div>;
 };
 
 export default Prose;
