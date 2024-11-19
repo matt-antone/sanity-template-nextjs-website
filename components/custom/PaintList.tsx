@@ -65,7 +65,6 @@ const PaintList: React.FunctionComponent<IPaintListProps> = ({
                         </span>
                         <span className={`flex pl-4`}>
                           <span>
-                            {p.paint.color?.hex || "no color"}
                             <span className="font-bold">{p.paint.title}</span> (
                             {p.parts} {`part${p.parts > 1 ? "s" : ""}`})
                           </span>
