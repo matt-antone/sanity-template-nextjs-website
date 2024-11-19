@@ -15,20 +15,18 @@ export const proTip = defineType({
     defineField({
       name: "content",
       title: "Content",
-      type: "text",
+      type: "blockContent",
       validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
       title: "title",
-      content: "content",
     },
     prepare(selection) {
-      const { title, content } = selection;
+      const { title } = selection;
       return {
         title: `Pro Tip: ${title}`,
-        subtitle: content,
       };
     },
   },

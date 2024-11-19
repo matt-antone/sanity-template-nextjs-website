@@ -25,7 +25,6 @@ export default async function BlogPage({
       <LayoutHeading text="Walkthroughs" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post: SanityDocument) => {
-          console.log(post);
           return (
             <div key={post._id} className="flex flex-col">
               <Link href={`/walkthroughs/${post.slug.current}`}>

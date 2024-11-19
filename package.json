@@ -34,6 +34,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
+    "get-best-contrast-color": "^0.3.1",
     "instantsearch.js": "^4.74.1",
     "libphonenumber-js": "^1.11.7",
     "lucide-react": "^0.436.0",
@@ -54,6 +55,7 @@
     "sanity-plugin-vercel-deploy": "^3.3.4",
     "slugify": "^1.6.6",
     "styled-components": "^6.1.13",
+    "tailwind": "^4.0.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "title-case": "^4.3.1"

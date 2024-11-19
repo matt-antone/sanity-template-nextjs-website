@@ -4,10 +4,8 @@ import { HOME_PAGE_QUERY } from "@/lib/queries";
 import Container from "@/components/Container";
 import { notFound } from "next/navigation";
 import { getStructuredPage } from "@/lib/structuredData";
-import LayoutPage from "@/components/LayoutPage";
 import Prose from "@/components/Prose";
-import { PortableText } from "@portabletext/react";
-import { components } from "@/components/blocks";
+import SanityPortableText from "@/components/SanityPortableText";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -40,7 +38,7 @@ export default async function Page() {
         id="page-jsonld"
       />
       <Prose>
-        <PortableText value={initial.data.body} components={components} />
+        <SanityPortableText blocks={initial.data.body} />
       </Prose>
     </Container>
   );

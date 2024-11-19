@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {PortableText} from '@portabletext/react';
-import {components} from '@/components/blocks';
+import SanityPortableText from "@/components/SanityPortableText";
 import LayoutHeading from "@/components/LayoutHeading";
 import Prose from './Prose';
 
@@ -14,7 +13,7 @@ const LayoutPage: React.FunctionComponent<ILayouPageProps> = ({body,title}) => {
     <div>
       <LayoutHeading text={title || "Untitled"} />
       <Prose>
-        <PortableText value={body} components={components} />
+        <SanityPortableText blocks={body} />
       </Prose>
     </div>
   );
