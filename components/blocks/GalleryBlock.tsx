@@ -23,9 +23,8 @@ export const GalleryBlock: React.FunctionComponent<IGalleryProps> = ({
           }
         );
         return (
-          <div className="flex-1">
+          <div className="flex-1" key={image.asset._ref}>
             <img
-              key={image.asset._ref}
               src={`${asset?.url}?w=400&h=400&fit=crop&dpr=2&auto=format`}
               alt={asset.altText || ""}
               width={400}
