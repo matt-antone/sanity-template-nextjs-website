@@ -11,7 +11,7 @@ export const GalleryBlock: React.FunctionComponent<IGalleryProps> = ({
   images = [],
 }) => {
   return images.length > 0 ? (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-1 w-[400px] md:w-[600px] mx-auto mb-16">
+    <div className="flex flex-wrap justify-start gap-1 mx-auto mb-16">
       {images.map(async (image) => {
         const { data: asset }: { data: SanityAsset } = await loadQuery(
           ASSET_QUERY,
@@ -23,14 +23,16 @@ export const GalleryBlock: React.FunctionComponent<IGalleryProps> = ({
           }
         );
         return (
-          <img
-            key={image.asset._ref}
-            src={`${asset?.url}?w=200&h=200&fit=crop&dpr=2&auto=format`}
-            alt={asset.altText || ""}
-            width={200}
-            height={200}
-            className="mx-auto"
-          />
+          <div className="flex-1">
+            <img
+              key={image.asset._ref}
+              src={`${asset?.url}?w=400&h=400&fit=crop&dpr=2&auto=format`}
+              alt={asset.altText || ""}
+              width={400}
+              height={400}
+              className="w-full max-w-[400px] mx-auto"
+            />
+          </div>
         );
       })}
     </div>

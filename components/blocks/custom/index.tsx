@@ -1,4 +1,5 @@
-import ProTip from './ProTip'
+import ProTip from "./ProTip";
+
 export default {
   proTip: ({ value }: any) =>
     value && (
@@ -6,4 +7,4 @@ export default {
         <ProTip {...value} />
       </div>
     ),
-}
+};
