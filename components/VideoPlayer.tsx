@@ -18,8 +18,8 @@ const VideoPlayer: React.FunctionComponent<IAppProps> = (props) => {
   return (
     <ReactPlayer
       url={props.url}
-      width="640"
-      height="360"
+      width="480"
+      height="270"
       className="aspect-video mx-auto"
     />
   );

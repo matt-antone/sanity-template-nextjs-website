@@ -6,11 +6,7 @@ interface ITemplateProps {
 }
 
 const Template: React.FunctionComponent<ITemplateProps> = (props) => {
-  return (
-    <PageTransition>
-      {props.children}
-    </PageTransition>
-  );
+  return props.children;
 };
 
 export default Template;

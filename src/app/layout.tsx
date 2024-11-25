@@ -8,6 +8,8 @@ import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Content from "@/components/Content";
 import Fonts from "@/components/Fonts";
+import FlexCol from "@/components/FlexCol";
+import HexGrid from "@/components/custom/HexImageGrid";
 
 // set viewport
 export const viewport: Viewport = {
@@ -23,14 +25,20 @@ interface ILayoutProps {
 
 const Layout: React.FunctionComponent<ILayoutProps> = async ({ children }) => {
   return (
-    <html lang="en">
-      <body className={`bg-background text-black`}>
-        <Fonts>
-          <SkipMenu />
-          <Header />
-          <Content>{children}</Content>
-          <Footer />
-        </Fonts>
+    <html lang="en" className="">
+      <body
+        className={`bg-gradient-to-b from-slate-400 to-white text-black min-h-screen max-w-screen overflow-x-hidden relative`}
+      >
+        <div className="hex-grid"></div>
+        <div className="relative z-10">
+          <Fonts>
+            <SkipMenu />
+            <Header />
+            <Content>{children}</Content>
+            <Footer />
+          </Fonts>
+        </div>
+
         {/* add google tag manager */}
         {/* <SpeedInsights />
         {process.env.NEXT_PUBLIC_GOOGLE_TM && (

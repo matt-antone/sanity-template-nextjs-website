@@ -1,14 +1,14 @@
 import type { Config } from "tailwindcss";
-
+import plugin from "tailwindcss/plugin";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -68,14 +68,39 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        fadeInOut: {
+          "0%, 100%": { opacity: "0" },
+          "50%": { opacity: "1", duration: "1s" },
+        },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 0.5s ease-out",
+        "accordion-up": "accordion-up 0.5s ease-out",
+        "fade-in-out-sm": "fadeInOut 5s ease-in-out infinite",
+        "fade-in-out-md": "fadeInOut 8s ease-in-out infinite",
+        "fade-in-out-lg": "fadeInOut 10s ease-in-out infinite",
       },
+      transitionDelay: {
+        "1200": "1200ms",
+        "1400": "1400ms",
+        "1600": "1600ms",
+        "1800": "1800ms",
+        "2000": "2000ms",
+      },
+      transitionDuration: {
+        "2000": "2000ms",
+        "3000": "3000ms",
+        "4000": "4000ms",
+        "5000": "5000ms",
+      },
+
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

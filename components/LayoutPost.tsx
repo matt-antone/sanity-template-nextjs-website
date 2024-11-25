@@ -3,28 +3,34 @@ import Image from "next/image";
 import { components } from "@/components/blocks";
 import Prose from "./Prose";
 import SanityPortableText from "./SanityPortableText";
-
+import Steps from "./custom/Steps";
+import PaintList from "./custom/PaintList";
 export default function LayoutPost(props: any) {
-  const { body = null, date = '', gallery = [] } = props;
-  return (
-    <div className="">
-      <div className="relative">
-        { gallery.length>0 && gallery[0]?.asset?.url && (
-          <Image
-            src={`${gallery[0].asset.url}?w=1024&h=768&fit=crop&q=80`}
-            alt={gallery[0].alt}
-            width={gallery[0].asset.metadata?.dimensions?.width}
-            height={gallery[0].asset.metadata?.dimensions?.height}
-            className="mb-8"
-          />
-        ) }
-      </div>
-      {body ? (
-        <Prose>
-          <time>{new Date(date).toLocaleDateString("en-US")}</time>
-          <SanityPortableText blocks={body} />
-        </Prose>
-      ) : null}
-    </div>
-  );
+  const { body = null, date = "", gallery = [], steps = [] } = props;
+
+  // if this is a guide, we need to get the paints
+  const paints = new Set();
+  steps?.forEach((step: any) => {
+    return step?.paintList?.flatMap((paint: any) => {
+      return paint.mix.map((p: any) => {
+        paints.add(
+          JSON.stringify({
+            name: p.paint.title.trim(),
+            color: p.paint.color?.hex || null,
+          })
+        );
+      });
+    });
+  });
+  return body ? (
+    <>
+      <Prose>
+        <time>{new Date(date).toLocaleDateString("en-US")}</time>
+        <SanityPortableText blocks={body} />
+      </Prose>
+      {/* used for guides */}
+      {paints && <PaintList paintList={Array.from(paints).map((p: any) => JSON.parse(p))} />}
+      {steps && <Steps steps={steps} />}
+    </>
+  ) : null;
 }

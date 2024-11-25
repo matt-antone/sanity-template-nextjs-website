@@ -4,7 +4,7 @@ import type {
   MetaDataProps,
   PostDocument,
 } from "@/src/types";
-import { POST_QUERY, POSTS_ALL_QUERY } from "@/lib/queries";
+import { GUIDE_QUERY, GUIDES_ALL_QUERY } from "@/lib/queries";
 import { QueryParams } from "next-sanity";
 import { draftMode } from "next/headers";
 import { client } from "@/sanity/lib/client";
@@ -20,7 +20,7 @@ import HexagonImage from "@/components/custom/HexagonImage";
 
 // Generate Static Page Slugs
 export async function generateStaticParams() {
-  const posts = await client.fetch<PostDocument[]>(POSTS_ALL_QUERY);
+  const posts = await client.fetch<PostDocument[]>(GUIDES_ALL_QUERY);
   return posts.map((post) => ({
     slug: post.slug.current,
   }));
@@ -32,7 +32,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const post = await client.fetch<PostDocument>(
-    POST_QUERY,
+    GUIDE_QUERY,
     { slug },
     {
       next: {
@@ -56,7 +56,7 @@ export async function generateMetadata(
 
 // Page Component
 export default async function Page({ params }: { params: QueryParams }) {
-  const { data } = await loadQuery<PostDocument>(POST_QUERY, params, {
+  const { data } = await loadQuery<PostDocument>(GUIDE_QUERY, params, {
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
       tags: [params.slug],

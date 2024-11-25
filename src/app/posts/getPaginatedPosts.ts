@@ -1,12 +1,12 @@
 "use server";
 import { client } from "@/sanity/lib/client";
 
-export async function getPaginatedPosts(pageSize: number = 9, pageIndex: number = 0) {
+export async function getPaginatedPosts(pageSize: number = 12, pageIndex: number = 0) {
   const start = pageIndex * pageSize;
   const end = start + pageSize;
 
   const query = `
-    *[_type == "post"] | order(publishedAt desc) {
+    *[_type == "post"] | order(date desc) {
       ...,
       gallery[]{...,asset->},
       "categories": categories[]->{title}

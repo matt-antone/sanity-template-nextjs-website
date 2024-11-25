@@ -48,16 +48,14 @@ export const paintList = defineField({
       preview: {
         select: {
           name: "name",
-          mix: "mix",
+          p1: "mix.0.paint.title",
+          p2: "mix.1.paint.title",
+          p3: "mix.2.paint.title",
+          p4: "mix.3.paint.title",
         },
         prepare(selection) {
-          const { name, mix } = selection;
-          const mixCount = mix?.length || 0;
-          const subtitle =
-            mixCount > 0
-              ? `${mixCount} paint${mixCount === 1 ? "" : "s"} in mix`
-              : "No mix";
-
+          const { name, p1, p2, p3, p4 } = selection;
+          const subtitle = `${p1 ? p1 : ""}${p2 ? ` / ${p2}` : ""}${p3 ? ` / ${p3}` : ""}${p4 ? ` / ${p4}` : ""}`;
           return {
             title: name,
             subtitle: subtitle,

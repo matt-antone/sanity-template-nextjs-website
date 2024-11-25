@@ -22,9 +22,9 @@ const Header = async (props: IHeaderProps) => {
   const mainNav = await client.fetch<SanityDocument>(HEADER_NAVIGATION_QUERY);
 
   return (
-    <header className="relative z-50">
+    <header className="relative z-50 pt-8">
       <Container>
-        <div className="flex justify-between items-center py-4 md:py-8 gap-12">
+        <div className="flex justify-between items-baseline gap-12">
           <div>
             {settings?.siteLogo ? (
               <Link href="/" className="block w-[175px] lg:w-[300px]">
@@ -36,7 +36,7 @@ const Header = async (props: IHeaderProps) => {
                 />
               </Link>
             ) : settings?.siteTitle ? (
-              <a href="/" className="text-xl font-bold">
+              <a href="/" className="text-[1.5rem] sm:text-[2rem] lg:text-[4rem] font-light tracking-tighter">
                 {settings.siteTitle}
               </a>
             ) : (

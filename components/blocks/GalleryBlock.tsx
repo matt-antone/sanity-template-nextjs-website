@@ -23,7 +23,7 @@ export const GalleryBlock: React.FunctionComponent<IGalleryProps> = ({
           }
         );
         return (
-          <div className="flex-1" key={image.asset._ref}>
+          <figure className="flex-1" key={image.asset._ref}>
             <img
               src={`${asset?.url}?w=400&h=400&fit=crop&dpr=2&auto=format`}
               alt={asset.altText || ""}
@@ -31,7 +31,8 @@ export const GalleryBlock: React.FunctionComponent<IGalleryProps> = ({
               height={400}
               className="w-full max-w-[400px] mx-auto"
             />
-          </div>
+            <figcaption className="p-2 text-xs text-center">{asset.description || ""}</figcaption>
+          </figure>
         );
       })}
     </div>

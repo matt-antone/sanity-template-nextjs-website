@@ -6,7 +6,7 @@ export async function getPaginatedPosts(pageSize: number = 9, pageIndex: number 
   const end = start + pageSize;
 
   const query = `
-    *[_type == "walkthrough"] | order(publishedAt desc) {
+    *[_type == "guide"] | order(publishedAt desc) {
       ...,
       gallery[]{...,asset->},
       "categories": categories[]->{title}
@@ -16,7 +16,7 @@ export async function getPaginatedPosts(pageSize: number = 9, pageIndex: number 
   const posts = await client.fetch(query);
   
   // Get total count for pagination
-  const totalQuery = `count(*[_type == "walkthrough"])`;
+  const totalQuery = `count(*[_type == "guide"])`;
   const total = await client.fetch(totalQuery);
 
   return {

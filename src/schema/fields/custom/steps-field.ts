@@ -1,9 +1,9 @@
 import { defineField } from "sanity";
 import { paintList } from "./paint-list-field";
 
-export const walkthroughStepsField = defineField({
-  name: "walkthroughSteps",
-  title: "Walkthrough Steps",
+export const steps = defineField({
+  name: "steps",
+  title: "Guide Steps",
   type: "array",
   of: [      {
     type: "object",

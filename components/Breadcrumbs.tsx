@@ -12,7 +12,7 @@ const Breadcrumbs: React.FunctionComponent<IBreadcrumbsProps> = ({title}) => {
     <div>
       <BC
         //styles are in globals.css
-        containerClassName="breadcrumbs mt-2"
+        containerClassName="breadcrumbs"
         listClassName="flex gap-4"
         inactiveItemClassName="text-sm text-darkblue relative"
         activeItemClassName="text-sm font-bold relative line-clamp-1"

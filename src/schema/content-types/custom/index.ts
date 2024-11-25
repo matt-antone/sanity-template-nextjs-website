@@ -3,4 +3,4 @@
 // EXAMPLE: export * from './custom-type'
 export default {}
 export * from './paint-type'
-export * from './walkthrough-type'
+export * from './guide-type'

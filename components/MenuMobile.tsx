@@ -20,7 +20,7 @@ interface IMenuMobileProps {
 
 const MenuMobile = ({ nav, settings }: IMenuMobileProps) => {
   return nav.items && (
-    <div className="lg:hidden flex items-center">
+    <div className="sm:hidden flex items-center">
       <NavigationMenu>
         <NavigationMenuList className="w-full">
           <NavigationMenuItem>

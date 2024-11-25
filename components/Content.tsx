@@ -6,7 +6,7 @@ interface IContentProps {
 
 const Content: React.FunctionComponent<IContentProps> = (props) => {
   return (
-    <div id="content" className='min-h-[calc(100vh-22rem)] w-full mb-16'>
+    <div id="content" className='min-h-[calc(100vh-16rem)] w-full'>
       {props.children}
     </div>
   );

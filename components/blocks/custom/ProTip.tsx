@@ -8,7 +8,7 @@ interface IProTipProps {
 }
 
 const ProTip: React.FunctionComponent<IProTipProps> = (props) => {
-  return <div className="bg-slate-100 p-4 rounded-md text-sm">
+  return <div className="bg-slate-300 p-4 rounded-md text-sm">
     <h3 className="text-lg font-bold">Pro Tip: {props.title}</h3>
     <SanityPortableText blocks={props.content} />
   </div>;

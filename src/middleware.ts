@@ -55,9 +55,11 @@ export function middleware(request: NextRequest, ev: NextFetchEvent) {
     connect-src 'self' ${allowedOrigins.join(' ')};
     script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""} ${allowedOrigins.join(' ')};
     style-src 'self' ${process.env.NODE_ENV === "development" ? "'unsafe-inline'" :  `'nonce-${nonce}'`} ${allowedOrigins.join(' ')};
+    style-src-attr 'self' 'unsafe-inline' ${allowedOrigins.join(' ')};
+    style-src-elem 'self' 'unsafe-inline' ${allowedOrigins.join(' ')};
     img-src 'self' blob: data:  ${allowedOrigins.join(' ')};
     media-src 'self' blob: data: ${allowedOrigins.join(' ')};
-    font-src 'self' data:;
+    font-src 'self' data: ${allowedOrigins.join(' ')};
     object-src 'none';
     base-uri 'self';
     form-action 'self';

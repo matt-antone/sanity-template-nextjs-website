@@ -10,12 +10,9 @@ interface ILayouPageProps {
 
 const LayoutPage: React.FunctionComponent<ILayouPageProps> = ({body,title}) => {
   return body && (
-    <div>
-      <LayoutHeading text={title || "Untitled"} />
-      <Prose>
-        <SanityPortableText blocks={body} />
-      </Prose>
-    </div>
+    <Prose>
+      <SanityPortableText blocks={body} />
+    </Prose>
   );
 };
 
