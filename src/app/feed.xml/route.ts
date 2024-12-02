@@ -53,7 +53,7 @@ export async function GET() {
       title: post.title,
       description: post.description || 'no description',
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/${post.slug}`,
-      date: post.date,
+      date: new Date(post.date).toUTCString(),
       guid: `${process.env.NEXT_PUBLIC_BASE_URL}/${post.slug}`,
       categories: post.categories?.map((cat: any) => cat.title) || [],
       author: post.author?.name || settings.data?.author?.name || '',
