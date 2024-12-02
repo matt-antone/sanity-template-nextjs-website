@@ -9,11 +9,17 @@ import {toHTML} from '@portabletext/to-html'
 export async function GET() {
   const settings = await loadQuery<SanityDocument>(SITE_SETTINGS_QUERY);
   const posts = await loadQuery<SanityDocument[]>(`*[_type == "post"] | order(publishedAt desc) {
+    ...,
     title,
     description,
     "slug": slug.current,
     publishedAt,
-    body
+    body,
+    "image": gallery[0].asset->,
+    gallery[]{
+     ...,
+     asset->,
+    },
   }`);
 
   const options = {
@@ -22,7 +28,7 @@ export async function GET() {
     feed_url: process.env.NEXT_PUBLIC_BASE_URL ? `${process.env.NEXT_PUBLIC_BASE_URL}/feed.xml` : '',
     site_url: process.env.NEXT_PUBLIC_BASE_URL || '',
     language: 'en',
-    image_url: settings.data?.image?.url || '',
+    image_url: settings.data?.logo?.url || '',
     copyright: `Copyright ${new Date().getFullYear()} ${settings.data?.siteTitle || 'Untitled'}`,
     // managingEditor: settings.data?.author?.email || '',
     // webMaster: settings.data?.author?.email || '',
@@ -41,6 +47,7 @@ export async function GET() {
   const feed = new RSS(options);
 
   posts.data?.forEach((post) => {
+    console.log(post.image)
     feed.item({
       title: post.title,
       description: post.description || 'no description',
@@ -50,9 +57,20 @@ export async function GET() {
       categories: post.categories?.map((cat: any) => cat.title) || [],
       author: post.author?.name || settings.data?.author?.name || '',
       custom_elements: [
-        { 'content:encoded': toHTML(post.body) || '' }
+        { 'content:encoded': toHTML(post.body) || '' },
+        { 'media:content': {
+          _attr: {
+            url: post.image?.url || '',
+            medium: 'image',
+            type: 'image/jpeg'
+          }
+        }}
       ]
-
+      ,
+      enclosure: post.mainImage?.url ? {
+        url: post.mainImage.url,
+        type: 'image/jpeg'
+      } : undefined,
     });
   });
 
