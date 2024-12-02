@@ -56,6 +56,10 @@ export async function GET() {
       guid: `${process.env.NEXT_PUBLIC_BASE_URL}/${post.slug}`,
       categories: post.categories?.map((cat: any) => cat.title) || [],
       author: post.author?.name || settings.data?.author?.name || '',
+      enclosure: post.image?.url ? {
+        url: post.image.url,
+        type: 'image/jpeg'
+      } : undefined,
       custom_elements: [
         { 'content:encoded': toHTML(post.body) || '' },
         // { 'media:content': {
