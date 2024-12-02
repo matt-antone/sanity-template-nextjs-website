@@ -15,7 +15,7 @@ import LayoutPage from "@/components/LayoutPage";
 import { getStructuredPage } from "@/lib/structuredData";
 
 export default async function NormalPage({ params }: { params: QueryParams }) {
-  const initial = await loadQuery<PageDocument>(PAGE_QUERY, params, {
+  const initial = await loadQuery<PageDocument>(PAGE_QUERY, { slug: params.page }, {
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
       tags: [params.slug],

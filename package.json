@@ -13,6 +13,7 @@
   "dependencies": {
     "@marketsystems/nextjs13-appdir-breadcrumbs": "^1.0.4",
     "@next/third-parties": "^14.2.3",
+    "@portabletext/to-html": "^2.0.13",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-slot": "^1.0.2",
@@ -26,6 +27,7 @@
     "@sanity/ui": "^2.0",
     "@sanity/vision": "3",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/rss": "^0.0.32",
     "@vercel/node": "^3.0.26",
     "@vercel/speed-insights": "^1.0.12",
     "@xpd/tailwind-3dtransforms": "^1.0.3",
@@ -47,6 +49,7 @@
     "react-instantsearch": "^7.13.1",
     "react-player": "^2.15.1",
     "react-share": "^5.1.0",
+    "rss": "^1.2.2",
     "sanity": "^3.25",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "sanity-plugin-media": "^2.3.2",
