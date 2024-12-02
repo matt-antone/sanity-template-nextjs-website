@@ -58,7 +58,14 @@ export async function GET() {
       author: post.author?.name || settings.data?.author?.name || '',
       custom_elements: [
         { 'content:encoded': toHTML(post.body) || '' },
-        { 'media:content': {
+        // { 'media:content': {
+        //   _attr: {
+        //     url: post.image?.url || '',
+        //     medium: 'image',
+        //     type: 'image/jpeg'
+        //   }
+        // }},
+        { 'media:thumbnail': {
           _attr: {
             url: post.image?.url || '',
             medium: 'image',
