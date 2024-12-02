@@ -2,7 +2,8 @@ import RSS from 'rss';
 import { SITE_SETTINGS_QUERY } from '@/lib/queries';
 import { SanityDocument } from 'next-sanity';
 import { loadQuery } from '@/sanity/lib/store';
-import {toHTML} from '@portabletext/to-html'
+import {toHTML} from '@portabletext/to-html';
+import { components } from "@/components/blocks";
 
 
 
@@ -61,14 +62,14 @@ export async function GET() {
         type: 'image/jpeg'
       } : undefined,
       custom_elements: [
-        { 'content:encoded': toHTML(post.body) || '' },
-        // { 'media:content': {
-        //   _attr: {
-        //     url: post.image?.url || '',
-        //     medium: 'image',
-        //     type: 'image/jpeg'
-        //   }
-        // }},
+        { 'content:encoded': toHTML(post.body, { 
+          components: {
+            types: {
+              image: components.types.image,
+              youtube: ({value}: any) => `<div>Video: ${value.url}</div>`
+            }
+          }
+        }) || '' },
         { 'media:thumbnail': {
           _attr: {
             url: post.image?.url || '',
