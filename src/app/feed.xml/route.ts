@@ -41,7 +41,7 @@ export async function GET() {
       'media': 'http://search.yahoo.com/mrss/',
       'atom': 'http://www.w3.org/2005/Atom'
     },
-    pubDate: new Date().toUTCString(),
+    // pubDate: new Date().toUTCString(),
     generator: 'RSS for Node',
     docs: 'https://validator.w3.org/feed/docs/rss2.html'
   }
