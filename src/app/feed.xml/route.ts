@@ -76,12 +76,7 @@ export async function GET() {
             type: 'image/jpeg'
           }
         }}
-      ]
-      ,
-      enclosure: post.mainImage?.url ? {
-        url: post.mainImage.url,
-        type: 'image/jpeg'
-      } : undefined,
+      ],
     });
   });
 
