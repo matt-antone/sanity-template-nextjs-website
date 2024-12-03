@@ -9,11 +9,11 @@ enum DocumentType {
 const getRevalidateTags = (docType: string, slug: string) => {
   switch (docType) {
     case DocumentType.Home:
-      return ["home", "sitemap"];
+      return ["home", "sitemap", "rss"];
     case DocumentType.Page:
-      return [slug, "sitemap"];
+      return [slug, "sitemap", "rss"];
     case DocumentType.Post:
-      return [slug, "posts", "home", "sitemap"];
+      return [slug, "posts", "home", "sitemap", "rss"];
     default:
       return [];
   }

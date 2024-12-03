@@ -21,7 +21,12 @@ export async function GET() {
      ...,
      asset->,
     },
-  }`);
+  }`,{}, {
+    next: {
+      revalidate: 60,
+      tags: ["rss"],
+    },
+  });
 
   const options = {
     title: settings.data?.siteTitle || "Untitled",
