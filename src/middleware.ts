@@ -32,9 +32,9 @@ export function middleware(request: NextRequest, ev: NextFetchEvent) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 
   const allowedOrigins: string[] = [
-    "*.algolia.net",
-    "*.algolianet.com",
-    "*.algolia.io",
+    // "*.algolia.net",
+    // "*.algolianet.com",
+    // "*.algolia.io",
     "*.googleapis.com",
     "*.google-analytics.com",
     "*.googletagmanager.com",
@@ -47,17 +47,21 @@ export function middleware(request: NextRequest, ev: NextFetchEvent) {
   ];
 
   if(process.env.NODE_ENV === "development"){
-    allowedOrigins.push("http://localhost:*");
+    allowedOrigins.push("http://localhost:3000");
+    allowedOrigins.push("https://localhost:3000");
+
   }
 
   const cspHeader = `
     default-src 'self' ${allowedOrigins.join(' ')};
     connect-src 'self' ${allowedOrigins.join(' ')};
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""} ${allowedOrigins.join(' ')};
+    script-src 'self' 'nonce-${nonce}' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : "'strict-dynamic'"} ${allowedOrigins.join(' ')};
     style-src 'self' ${process.env.NODE_ENV === "development" ? "'unsafe-inline'" :  `'nonce-${nonce}'`} ${allowedOrigins.join(' ')};
+    style-src-attr 'self' 'unsafe-inline' ${allowedOrigins.join(' ')};
+    style-src-elem 'self' 'unsafe-inline' ${allowedOrigins.join(' ')};
     img-src 'self' blob: data:  ${allowedOrigins.join(' ')};
     media-src 'self' blob: data: ${allowedOrigins.join(' ')};
-    font-src 'self' data:;
+    font-src 'self' data: ${allowedOrigins.join(' ')};
     object-src 'none';
     base-uri 'self';
     form-action 'self';

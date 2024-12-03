@@ -23,3 +23,17 @@ export type SettingsDocument = SanityDocument & {
   siteDescription: string;
   siteLogo: SanityImageAssetDocument;
 }
+
+export type NavigationItem = {
+  text: string;
+  url: string;
+  children: NavigationItem[];
+}
+
+export type MobileNavigationDocument = SanityDocument & {
+  items: NavigationItem[];
+}
+
+export type MainNavigationDocument = SanityDocument & {
+  items: NavigationItem[];
+}

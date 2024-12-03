@@ -19,6 +19,7 @@ interface IMenuMobileProps {
 }
 
 const MenuMobile = ({ nav, settings }: IMenuMobileProps) => {
+  console.log(nav);
   return nav.items && (
     <div className="lg:hidden flex items-center">
       <NavigationMenu>
@@ -37,7 +38,7 @@ const MenuMobile = ({ nav, settings }: IMenuMobileProps) => {
                 >
                   <Link
                     key={`${child._id}-mobile`}
-                    href={child.link || `/${child?.page?.slug?.current}`}
+                    href={child.relativePath || `#`}
                     className="text-base"
                   >
                     {child.text}{" "}

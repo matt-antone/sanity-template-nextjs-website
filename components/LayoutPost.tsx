@@ -5,7 +5,6 @@ import Prose from "./Prose";
 
 export default function LayoutPost(props: any) {
   const { body = null, date = '', gallery = [] } = props;
-  console.log(gallery);
   return (
     <div className="">
       <div className="relative">

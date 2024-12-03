@@ -24,25 +24,7 @@ export const navItem = defineType({
       type: "array",
       title: "Dropdown Items",
       description: "Add dropdown items to the navigation item.",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "text",
-              type: "string",
-              title: "Navigation Text",
-              description: "Enter the text for the navigation item.",
-            },
-            {
-              name: "navigationItemUrl",
-              type: "url",
-              title: "Navigation Item URL",
-              description: "Select the link for the navigation item.",
-            },
-          ],
-        },
-      ],
+      of: [{ type: "navItem" }],
       description: "Optional sub-navigation items",
     },
   ],

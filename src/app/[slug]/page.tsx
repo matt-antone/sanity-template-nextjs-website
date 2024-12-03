@@ -4,7 +4,6 @@ import type {
   ResolvingMetadata,
   Metadata,
 } from "@/src/types";
-import { QueryParams } from "next-sanity";
 import { loadQuery } from "@/sanity/lib/store";
 import { PAGES_QUERY, PAGE_QUERY } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
@@ -14,8 +13,19 @@ import { notFound } from "next/navigation";
 import LayoutPage from "@/components/LayoutPage";
 import { getStructuredPage } from "@/lib/structuredData";
 
-export default async function NormalPage({ params }: { params: QueryParams }) {
-  const initial = await loadQuery<PageDocument>(PAGE_QUERY, { slug: params.page }, {
+
+type Params = Promise<{ slug: string }>
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+
+export default async function NormalPage(props: {
+  params: Params
+  searchParams: SearchParams
+}) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
+
+  const initial = await loadQuery<PageDocument>(PAGE_QUERY, { slug: params.slug }, {
     next: {
       revalidate: process.env.NODE_ENV === "production" ? 2.628e9 : 0,
       tags: [params.slug],
@@ -45,17 +55,20 @@ export default async function NormalPage({ params }: { params: QueryParams }) {
 // Generate Static Page Slugs
 export async function generateStaticParams() {
   const pages = await client.fetch<PageDocument[]>(PAGES_QUERY);
-  return pages.map((page) => ({
+  return pages.map((page: PageDocument) => ({
     slug: page.slug.current,
   }));
 }
 
 // Generate Metadata
-export async function generateMetadata(
-  { params: { slug }, searchParams }: MetaDataProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const post = await client.fetch<PageDocument>(PAGE_QUERY, { slug });
+export async function generateMetadata(props: {
+  params: Params
+  searchParams: SearchParams
+}): Promise<Metadata> {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
+ 
+  const post = await client.fetch<PageDocument>(PAGE_QUERY, { slug: params.slug });
   const images = [];
   if (post?.image) {
     images.push(post.image.asset.url);

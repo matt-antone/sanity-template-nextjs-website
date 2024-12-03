@@ -1,15 +1,15 @@
 import { MetadataRoute } from 'next'
-import { SanityDocument } from "next-sanity";
 import dotenv from 'dotenv';
 dotenv.config();
 
 import { loadQuery } from "@/sanity/lib/store";
 import { SITEMAP_QUERY } from "@/lib/queries";
+import { PageDocument, PostDocument } from '../types';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const {
     data: { posts, pages },
-  } = await loadQuery<SanityDocument>(SITEMAP_QUERY);
+  } = await loadQuery<PostDocument | PageDocument>(SITEMAP_QUERY);
 
   const getURL = (page:any,path:string = '')=>{
     return {

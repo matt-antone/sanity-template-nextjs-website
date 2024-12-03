@@ -8,9 +8,6 @@ export const settings = defineType({
   type: "document",
   icon: GrSettingsOption,
   description: 'Settings for the site.',
-  options: {
-    singleton: true, // Identify this document as a singleton
-  },
   fields: [
     defineField({
       type: "string",

@@ -34,8 +34,8 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                   {!item.children && (
                     <Link
                       href={
-                        item?.navigationItemUrl?.relativePath ||
-                        `/${item?.page?.slug?.current}`
+                        item?.relativePath ||
+                        `#`
                       }
                       className="uppercase text-navigation text-sm font-medium"
                       tabIndex={0}

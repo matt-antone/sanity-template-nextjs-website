@@ -4,18 +4,19 @@ import Container from "@/components/Container";
 import { getPaginatedPosts } from "./getPaginatedPosts";
 import Link from "next/link";
 import Image from "next/image";
-import { SanityDocument } from "next-sanity";
+import { PostDocument } from "@/src/types";
 
 export const metadata: Metadata = {
   title: "Posts",
   description: "Our latest posts.",
 };
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: { page?: string };
-}) {
+export default async function BlogPage(
+  props: {
+    searchParams: Promise<{ page?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const page = Number(searchParams.page) || 1;
   const pageSize = 9;
 
@@ -24,8 +25,7 @@ export default async function BlogPage({
     <Container>
       <LayoutHeading text="Posts" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post: SanityDocument) => {
-          console.log(post);
+        {posts.map((post: PostDocument) => {
           return (
             <div key={post._id} className="flex flex-col">
               <Link href={`/posts/${post.slug.current}`}>

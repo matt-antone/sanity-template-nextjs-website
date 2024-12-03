@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { QueryParams, SanityDocument } from "next-sanity";
+import { SanityDocument } from "next-sanity";
 import { loadQuery } from "@/sanity/lib/store";
 import { SITEMAP_QUERY } from "@/lib/queries";
 import Container from "@/components/Container";
 import LayoutHeading from "@/components/LayoutHeading";
+
+type Params = Promise<{ [key: string]: string | string[] | undefined }>
+
 
 export const metadata: Metadata = {
   title: "Sitemap",
   description: "All the content available on our site",
 };
 
-export default async function Page({ params }: { params: QueryParams }) {
+export default async function Page(props: {
+  params: Params  
+}) {
+  const params = await props.params;
   const {
     data: { posts, pages },
   } = await loadQuery<SanityDocument>(SITEMAP_QUERY,{},{

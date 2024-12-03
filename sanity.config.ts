@@ -34,4 +34,8 @@ export default defineConfig({
       },
     },
   },
+  document: {
+    actions: (input, context) => 
+      ['home', 'settings'].includes(context.schemaType) ? input.filter(({action}) => action !== 'delete' && action !== 'duplicate') : input,
+  },
 });

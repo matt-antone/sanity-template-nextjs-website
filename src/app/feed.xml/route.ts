@@ -53,7 +53,6 @@ export async function GET() {
   const feed = new RSS(options);
 
   posts.data?.forEach((post) => {
-    console.log(post.image)
     feed.item({
       title: post.title,
       description: post.description || 'no description',

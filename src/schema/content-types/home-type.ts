@@ -8,9 +8,9 @@ export const home = defineType({
   type: 'document',
   icon: GrHome,
   description: 'The home page of the site.',
-  options: {
-    singleton: true, // Identify this document as a singleton
-  },
+  // options: {
+  //   singleton: true, // Identify this document as a singleton
+  // },
   fields: [
     fields.date,
     fields.title,

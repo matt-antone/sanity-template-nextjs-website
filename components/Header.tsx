@@ -5,21 +5,20 @@ import {
   MOBILE_NAVIGATION_QUERY,
 } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
-import { SanityDocument } from "next-sanity";
 import Container from "./Container";
 import Image from "next/image";
 import MenuMain from "@/components/MenuMain";
 import MenuMobile from "@/components/MenuMobile";
-
+import { SettingsDocument, MobileNavigationDocument, MainNavigationDocument } from "@/src/types";
 import Link from "next/link";
 
 interface IHeaderProps {}
 
 const Header = async (props: IHeaderProps) => {
   // Fetch the site settings and navigation items
-  const settings = await client.fetch<SanityDocument>(SITE_SETTINGS_QUERY);
-  const mobileNav = await client.fetch<SanityDocument>(MOBILE_NAVIGATION_QUERY);
-  const mainNav = await client.fetch<SanityDocument>(HEADER_NAVIGATION_QUERY);
+  const settings = await client.fetch<SettingsDocument>(SITE_SETTINGS_QUERY);
+  const mobileNav = await client.fetch<MobileNavigationDocument>(MOBILE_NAVIGATION_QUERY);
+  const mainNav = await client.fetch<MainNavigationDocument>(HEADER_NAVIGATION_QUERY);
 
   return (
     <header className="relative z-50">
@@ -36,14 +35,10 @@ const Header = async (props: IHeaderProps) => {
                 />
               </Link>
             ) : settings?.siteTitle ? (
-              <a href="/" className="text-xl font-bold">
+              <Link href="/" className="text-xl font-bold">
                 {settings.siteTitle}
-              </a>
-            ) : (
-              <a href="/studio/structure/settings" className="text-blue-800">
-                Add website name
-              </a>
-            )}
+              </Link>
+            ) : null}
           </div>
            {mainNav && <MenuMain nav={mainNav}/>}
            {mobileNav && settings && (
