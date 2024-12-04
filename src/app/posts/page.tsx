@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import { getPaginatedPosts } from "./getPaginatedPosts";
 import Link from "next/link";
 import Image from "next/image";
-import { PostDocument } from "@/src/types";
+import { PostDocument, SearchParams } from "@/src/types";
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function BlogPage(
   props: {
-    searchParams: Promise<{ page?: string }>;
+    searchParams: SearchParams;
   }
 ) {
   const searchParams = await props.searchParams;

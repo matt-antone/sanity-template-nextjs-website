@@ -6,9 +6,7 @@ import Post from "@/components/LayoutPost";
 import LayoutHeading from '@/components/LayoutHeading';
 import Container from '@/components/Container';
 import { getStructuredPost } from '@/lib/structuredData';
-
-type Params = Promise<{ slug: string }>
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+import { Params, SearchParams } from '@/src/types';
 
 // Page Component
 export default async function Page(props: {

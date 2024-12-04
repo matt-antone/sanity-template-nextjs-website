@@ -4,9 +4,7 @@ import { loadQuery } from "@/sanity/lib/store";
 import { SITEMAP_QUERY } from "@/lib/queries";
 import Container from "@/components/Container";
 import LayoutHeading from "@/components/LayoutHeading";
-
-type Params = Promise<{ [key: string]: string | string[] | undefined }>
-
+import { Params } from "@/src/types";
 
 export const metadata: Metadata = {
   title: "Sitemap",

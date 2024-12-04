@@ -1,22 +1,16 @@
 import type {
   PageDocument,
-  MetaDataProps,
-  ResolvingMetadata,
   Metadata,
+  Params,
+  SearchParams,
 } from "@/src/types";
 import { loadQuery } from "@/sanity/lib/store";
 import { PAGES_QUERY, PAGE_QUERY } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
-import LayoutHeading from "@/components/LayoutHeading";
 import Container from "@/components/Container";
 import { notFound } from "next/navigation";
 import LayoutPage from "@/components/LayoutPage";
 import { getStructuredPage } from "@/lib/structuredData";
-
-
-type Params = Promise<{ slug: string }>
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
-
 
 export default async function NormalPage(props: {
   params: Params

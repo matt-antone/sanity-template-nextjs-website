@@ -4,11 +4,12 @@ import type { PortableTextBlock } from "sanity";
 
 export type { Viewport } from 'next'
 
-export type MetaDataProps = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+// NextJS Types
+export type Params = Promise<{ slug: string }>
+export type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
+
+// Sanity Documents
 export type PostDocument = SanityDocument &{
   title: string;
   description: string;
