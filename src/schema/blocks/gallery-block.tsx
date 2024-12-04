@@ -37,7 +37,7 @@ export const galleryBlock = {
                       <img
                         key={image?._key}
                         src={urlFor(image).width(150).height(150).url()}
-                        // alt={image?.asset?.altText}
+                        alt={image.altText || image.alt || ""}
                         width={150}
                         height={150}
                       />

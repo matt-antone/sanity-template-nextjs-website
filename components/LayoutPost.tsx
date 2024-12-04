@@ -11,7 +11,7 @@ export default function LayoutPost(props: any) {
         { gallery.length>0 && gallery[0]?.asset?.url && (
           <Image
             src={`${gallery[0].asset.url}?w=1024&h=768&fit=crop&q=80`}
-            alt={gallery[0].alt}
+            alt={gallery[0].altText || gallery[0].alt || ""}
             width={gallery[0].asset.metadata?.dimensions?.width}
             height={gallery[0].asset.metadata?.dimensions?.height}
             className="mb-8"

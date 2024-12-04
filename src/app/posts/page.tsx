@@ -34,7 +34,7 @@ export default async function BlogPage(
                   <div className="relative aspect-video mb-4">
                     <Image
                       src={`${post.gallery[0].asset.url}?w=250&h=250&fit=crop`}
-                      alt={post.title}
+                      alt={post.gallery[0].altText || post.gallery[0].alt || ""}
                       fill
                       className="object-cover"
                     />
