@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata, MetaDataProps, PostDocument } from '@/src/types'
+import type { Metadata, PostDocument } from '@/src/types'
 import { POST_QUERY, POSTS_ALL_QUERY } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { loadQuery } from "@/sanity/lib/store";

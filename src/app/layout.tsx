@@ -24,7 +24,7 @@ interface ILayoutProps {
 const Layout: React.FunctionComponent<ILayoutProps> = async ({ children }) => {
   return (
     <html lang="en">
-      <body className={`bg-background text-black`}>
+      <body className={`bg-background text-foreground`}>
         <Fonts>
           <SkipMenu />
           <Header />

@@ -37,7 +37,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                         item?.relativePath ||
                         `#`
                       }
-                      className="uppercase text-navigation text-sm font-medium"
+                      className="text-navigation text-sm font-medium"
                       tabIndex={0}
                     >
                       {item.text}
@@ -47,7 +47,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                     // Sub Level
                     <DropdownMenu>
                       <DropdownMenuTrigger className="flex items-center gap-1">
-                        <span className="uppercase text-navigation text-sm font-medium">
+                        <span className="text-navigation text-sm font-medium">
                           {item.text}
                         </span>
                         <FaAngleDown className="text-navigation w-3 h-3" />
@@ -66,7 +66,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                                       child?.navigationItemUrl?.relativePath ||
                                       `/${child?.page?.slug?.current}`
                                     }
-                                    className="uppercase text-navigation whitespace-nowrap font-medium"
+                                    className="text-navigation whitespace-nowrap font-medium"
                                   >
                                     {child.text}
                                   </Link>
@@ -74,9 +74,9 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                               )}
                               {child.children && (
                                 <DropdownMenuSub>
-                                  <DropdownMenuSubTrigger  className="uppercase text-navigation whitespace-nowrap w-full flex items-center gap-1 justify-between">
+                                  <DropdownMenuSubTrigger  className="text-navigation whitespace-nowrap w-full flex items-center gap-1 justify-between">
                                     <div className="">
-                                      <span className="uppercase text-navigation whitespace-nowrap font-medium">
+                                      <span className="text-navigation whitespace-nowrap font-medium">
                                         {child.text}
                                       </span>
                                     </div>
@@ -100,7 +100,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                                                 ?.relativePath ||
                                               `/${item?.page?.slug?.current}`
                                             }
-                                            className="uppercase text-navigation whitespace-nowrap font-medium"
+                                            className="text-navigation whitespace-nowrap font-medium"
                                           >
                                             <Fonts>
                                               <span className="block">

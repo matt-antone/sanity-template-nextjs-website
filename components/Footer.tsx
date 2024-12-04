@@ -20,7 +20,7 @@ const Footer: React.FunctionComponent = async (props) => {
     "*[_type == 'location'][0...100] | order(order asc)"
   );
   return (
-    <footer className="bg-dark text-white py-16">
+    <footer className="bg-dark text-foreground py-16">
       <Container>
         {/* <nav>
           <ul className={`lg:flex gap-4 lg:text-center items-end`}>
@@ -52,9 +52,6 @@ const Footer: React.FunctionComponent = async (props) => {
           </ul>
         </nav>{" "} */}
         <p className="text-xs text-right flex gap-4 justify-end items-center">
-          <Link href={"/privacy-policy"}>Privacy Policy</Link>
-          <Link href={"/terms-of-use"}>Terms of Use</Link>
-          <Link href={"/sitemap"}>Sitemap</Link>
           <span>
             ©{new Date().getFullYear()} {settings?.siteTitle || "Untitled"}
           </span>

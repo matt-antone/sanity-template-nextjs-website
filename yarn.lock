@@ -3220,7 +3220,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-slot@npm:1.1.0, @radix-ui/react-slot@npm:^1.0.2":
+"@radix-ui/react-slot@npm:1.1.0, @radix-ui/react-slot@npm:^1.1.0":
   version: 1.1.0
   resolution: "@radix-ui/react-slot@npm:1.1.0"
   dependencies:
@@ -12697,7 +12697,7 @@ __metadata:
     "@portabletext/to-html": "npm:^2.0.13"
     "@radix-ui/react-dropdown-menu": "npm:^2.1.1"
     "@radix-ui/react-navigation-menu": "npm:^1.2.0"
-    "@radix-ui/react-slot": "npm:^1.0.2"
+    "@radix-ui/react-slot": "npm:^1.1.0"
     "@sanity/client": "npm:^6.12.4"
     "@sanity/color-input": "npm:^4.0.1"
     "@sanity/icons": "npm:^2.8"

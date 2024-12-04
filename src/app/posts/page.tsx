@@ -5,6 +5,7 @@ import { getPaginatedPosts } from "./getPaginatedPosts";
 import Link from "next/link";
 import Image from "next/image";
 import { PostDocument } from "@/src/types";
+import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Posts",
@@ -54,7 +55,7 @@ export default async function BlogPage(
         {page > 1 && (
           <Link
             href={`/posts?page=${page - 1}`}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className={buttonVariants({ variant: "outline" })}
           >
             Previous
           </Link>
@@ -63,11 +64,9 @@ export default async function BlogPage(
           <Link
             key={i}
             href={`/posts?page=${i + 1}`}
-            className={`px-4 py-2 rounded ${
-              page === i + 1
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
+            className={buttonVariants({
+              variant: page === i + 1 ? "default" : "outline",
+            })}
           >
             {i + 1}
           </Link>
@@ -75,7 +74,7 @@ export default async function BlogPage(
         {hasMore && (
           <Link
             href={`/posts?page=${page + 1}`}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className={buttonVariants({ variant: "outline" })}
           >
             Next
           </Link>

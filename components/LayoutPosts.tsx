@@ -5,6 +5,7 @@ import Link from "next/link";
 import Thumbnail from "@/components/Thumbnail";
 import { PAGINATION_QUERY } from "@/lib/queries";
 import { client } from "@/sanity/lib/client";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export default function LayoutPosts({ posts }: { posts: SanityDocument[] }) {
   const [list, setList] = useState(posts || []);
@@ -50,19 +51,19 @@ export default function LayoutPosts({ posts }: { posts: SanityDocument[] }) {
           </Link>
         ))
       ) : (
-        <div className="p-4 text-red-500">No posts found</div>
+        <div className="p-4 text-destructive">No posts found</div>
       )}
-      <button
-        className="py-1 px-2 rounded bg-slate-500 text-white disabled:bg-slate-400"
+      <Button
         disabled={loading}
         onClick={getNextPage}
+        variant="default"
       >
         {loading
           ? "Loading..."
           : !lastDate
           ? "No More Posts"
           : "Load More Posts"}
-      </button>
+      </Button>
     </div>
   );
 }
