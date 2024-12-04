@@ -2,6 +2,7 @@ import { SanityAsset } from "@sanity/image-url/lib/types/types";
 import * as React from "react";
 import { loadQuery } from "@/sanity/lib/store";
 import { ASSET_QUERY } from "@/lib/queries/asset";
+import Image from "next/image";
 
 interface IGalleryProps {
   images: SanityAsset[];
@@ -23,7 +24,7 @@ export const GalleryBlock: React.FunctionComponent<IGalleryProps> = ({
           }
         );
         return (
-          <img
+          <Image
             key={image.asset._ref}
             src={`${asset?.url}?w=200&h=200&fit=crop&dpr=2&auto=format`}
             alt={asset.altText || ""}

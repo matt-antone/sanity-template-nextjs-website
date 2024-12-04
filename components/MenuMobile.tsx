@@ -19,7 +19,6 @@ interface IMenuMobileProps {
 }
 
 const MenuMobile = ({ nav, settings }: IMenuMobileProps) => {
-  console.log(nav);
   return nav.items && (
     <div className="lg:hidden flex items-center">
       <NavigationMenu>

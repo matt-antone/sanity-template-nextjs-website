@@ -1,6 +1,7 @@
 import { Box as SanityBox, Grid } from "@sanity/ui";
 import urlBuilder from "@sanity/image-url";
 import { client } from "../../../sanity/lib/client";
+import Image from "next/image";
 const urlFor = (source: any) => urlBuilder(client).image(source);
 
 export const galleryBlock = {
@@ -34,7 +35,7 @@ export const galleryBlock = {
                 <Grid columns={[2, 3]} gap={[1, 1, 2, 3]} padding={4}>
                   {images?.map((image: any) => {
                     return image.asset ? (
-                      <img
+                      <Image
                         key={image?._key}
                         src={urlFor(image).width(150).height(150).url()}
                         alt={image.altText || image.alt || ""}
