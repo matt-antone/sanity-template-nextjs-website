@@ -11,8 +11,8 @@ export const getStructuredPost = async (post: any, section?: string | null) => {
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": section
-        ? `${process.env.NEXT_PUBLIC_BASE_URL}/${section}/${post.slug.current}`
-        : `${process.env.NEXT_PUBLIC_BASE_URL}/${post?.slug?.current}`,
+        ? `${process.env.VERCEL_PRODUCTION_URL}/${section}/${post.slug.current}`
+        : `${process.env.VERCEL_PRODUCTION_URL}/${post?.slug?.current}`,
     },
   };
 };

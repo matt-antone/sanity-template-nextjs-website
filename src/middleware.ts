@@ -10,10 +10,6 @@ export function middleware(request: NextRequest, ev: NextFetchEvent) {
     ".html",
     ".shtml",
     ".php",
-    "/wp-",
-    "/tag",
-    "/category",
-    "/author",
   ];
 
   const is410 = (pathname: string) => {
@@ -32,31 +28,28 @@ export function middleware(request: NextRequest, ev: NextFetchEvent) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 
   const allowedOrigins: string[] = [
-    // "*.algolia.net",
-    // "*.algolianet.com",
-    // "*.algolia.io",
     "*.googleapis.com",
     "*.google-analytics.com",
     "*.googletagmanager.com",
     "*.sanity.io",
     "*.vimeo.com",
     "*.youtube.com",
-    "vercel.live",
     "www.googletagmanager.com",
     "www.google-analytics.com",
   ];
 
-  if(process.env.NODE_ENV === "development"){
+  if(process.env.NODE_ENV === "production"){
+    allowedOrigins.push(process.env.VERCEL_PRODUCTION_URL || "");
+  }else{
     allowedOrigins.push("http://localhost:3000");
     allowedOrigins.push("https://localhost:3000");
-
   }
-
+  // some 'unsafe-inline' is required for the radix ui to work
   const cspHeader = `
     default-src 'self' ${allowedOrigins.join(' ')};
     connect-src 'self' ${allowedOrigins.join(' ')};
-    script-src 'self' 'nonce-${nonce}' ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : "'strict-dynamic'"} ${allowedOrigins.join(' ')};
-    style-src 'self' ${process.env.NODE_ENV === "development" ? "'unsafe-inline'" :  `'nonce-${nonce}'`} ${allowedOrigins.join(' ')};
+    script-src 'self' 'nonce-${nonce}' ${process.env.NODE_ENV === "production" ? "'strict-dynamic'" : "'unsafe-eval'"} ${allowedOrigins.join(' ')};
+    style-src 'self' ${process.env.NODE_ENV === "production" ? `'nonce-${nonce}'` : "'unsafe-inline'"} ${allowedOrigins.join(' ')};
     style-src-attr 'self' 'unsafe-inline' ${allowedOrigins.join(' ')};
     style-src-elem 'self' 'unsafe-inline' ${allowedOrigins.join(' ')};
     img-src 'self' blob: data:  ${allowedOrigins.join(' ')};

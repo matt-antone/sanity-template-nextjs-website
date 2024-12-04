@@ -31,8 +31,8 @@ export async function GET() {
   const options = {
     title: settings.data?.siteTitle || "Untitled",
     description: settings.data?.description || 'no description',
-    feed_url: process.env.NEXT_PUBLIC_BASE_URL ? `${process.env.NEXT_PUBLIC_BASE_URL}/feed.xml` : '',
-    site_url: process.env.NEXT_PUBLIC_BASE_URL || '',
+    feed_url: process.env.VERCEL_PRODUCTION_URL ? `${process.env.VERCEL_PRODUCTION_URL}/feed.xml` : '',
+    site_url: process.env.VERCEL_PRODUCTION_URL || '',
     language: 'en',
     image_url: settings.data?.logo?.url || '',
     copyright: `Copyright ${new Date().getFullYear()} ${settings.data?.siteTitle || 'Untitled'}`,
@@ -56,9 +56,9 @@ export async function GET() {
     feed.item({
       title: post.title,
       description: post.description || 'no description',
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/${post.slug}`,
+      url: `${process.env.VERCEL_PRODUCTION_URL}/${post.slug}`,
       date: new Date(post.date).toUTCString(),
-      guid: `${process.env.NEXT_PUBLIC_BASE_URL}/${post.slug}`,
+      guid: `${process.env.VERCEL_PRODUCTION_URL}/${post.slug}`,
       categories: post.categories?.map((cat: any) => cat.title) || [],
       author: post.author?.name || settings.data?.author?.name || '',
       enclosure: post.image?.url ? {
