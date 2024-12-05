@@ -34,7 +34,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                   {!item.children && (
                     <Link
                       href={
-                        item?.relativePath ||
+                        item?.navigationItemUrl ||
                         `#`
                       }
                       className="text-navigation text-sm font-medium"
@@ -63,7 +63,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                                 >
                                   <Link
                                     href={
-                                      child?.navigationItemUrl?.relativePath ||
+                                      child?.navigationItemUrl?.navigationItemUrl ||
                                       `/${child?.page?.slug?.current}`
                                     }
                                     className="text-navigation whitespace-nowrap font-medium"
@@ -97,7 +97,7 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                                             href={
                                               item?.link ||
                                               item?.navigationItemUrl
-                                                ?.relativePath ||
+                                                ?.navigationItemUrl ||
                                               `/${item?.page?.slug?.current}`
                                             }
                                             className="text-navigation whitespace-nowrap font-medium"
@@ -123,9 +123,10 @@ const MenuMain: React.FunctionComponent<IMenuMainProps> = async ({ nav }) => {
                 </li>
               );
             })}
-            <li>
+            {/* Search or other stuff */}
+            {/* <li>
               <button>stuff</button>
-            </li>
+            </li> */}
         </ul>
       </nav>
     )

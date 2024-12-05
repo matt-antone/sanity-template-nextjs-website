@@ -23,8 +23,8 @@ export const profile = defineType({
         {
           type: "object",
           fields: [
-            { ...fields.url, name: "label", title: "Label" },
-            { ...fields.url, name: "url", title: "URL" },
+            { type: 'string', name: "label", title: "Label" },
+            { type: 'url', name: "url", title: "URL" },
           ],
         },
       ],

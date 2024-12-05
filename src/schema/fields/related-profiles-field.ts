@@ -1,13 +1,11 @@
 export const relatedProfiles = {
-  type: "array",
-  name: "profiles",
-  title: "Related Profiles",
-  weak: true,
-  description: "Optional. Select profiles for this testimonial.",
-  of: [
-    {
-      type: "reference",
-      to: [{ type: "profile" }],
-    },
-  ]
+  name: 'relatedProfiles',
+  title: 'Related Profiles',
+  type: 'array',
+  of: [{
+    type: 'reference',
+    weak: true,
+    to: [{type: 'profile'}]
+  }],
+  description: 'Select related profiles.'
 }

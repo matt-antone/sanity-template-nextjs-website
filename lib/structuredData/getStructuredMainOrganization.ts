@@ -3,16 +3,16 @@ import { loadQuery } from "@/sanity/lib/store";
 
 export const getStructuredMainOrganization = async () => {
   const {
-    data: { organization },
+    data,
   }: any = await loadQuery<SanityDocument>(
     `*[_type == "settings"][0]{
       "organization": organizations[0]
     }`
   );
-  return {
+  return data?.organization && {
     "@type": "Organization",
-    name: organization?.name || "",
-    url: organization?.homepage || "",
+    name: data.organization?.name || "",
+    url: data.organization?.homepage || "",
     // sameAs: organization.sameAs,
   };
 };

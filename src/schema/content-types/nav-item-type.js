@@ -15,9 +15,9 @@ export const navItem = defineType({
     },
     {
       name: "navigationItemUrl",
-      type: "url",
-      title: "Navigation Item URL",
-      description: "Select the link for the navigation item.",
+      type: "string",
+      title: "URL",
+      description: "Use a relative path for internal links or a full URL for external links.",
     },
     {
       name: "children",
@@ -25,7 +25,6 @@ export const navItem = defineType({
       title: "Dropdown Items",
       description: "Add dropdown items to the navigation item.",
       of: [{ type: "navItem" }],
-      description: "Optional sub-navigation items",
     },
   ],
 });
