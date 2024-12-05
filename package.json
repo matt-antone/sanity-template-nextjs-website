@@ -14,7 +14,8 @@
     "scaffold": "node scripts/scaffold-content.mjs",
     "settings": "node scripts/settings.mjs",
     "home": "node scripts/home.mjs",
-    "navigation": "node scripts/navigation.mjs"
+    "navigation": "node scripts/navigation.mjs",
+    "migrate": "node scripts/migrate.mjs"
   },
   "dependencies": {
     "@inquirer/prompts": "^3.3.0",
