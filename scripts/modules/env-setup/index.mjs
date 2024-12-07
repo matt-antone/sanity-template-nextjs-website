@@ -42,8 +42,9 @@ const ENV_VARS = [
   },
   {
     key: 'NEXT_PUBLIC_SANITY_DATASET',
-    message: 'Enter your public Sanity dataset:',
-    getValue: () => 'production'
+    message: 'Enter your Sanity dataset name:',
+    default: 'development',
+    required: true
   },
   {
     key: 'SANITY_API_READ_TOKEN',
@@ -71,7 +72,7 @@ export async function setupEnvironment() {
   let spinner = null
   
   try {
-    logInfo('\nSetting up environment variables...')
+    logInfo('Setting up environment variables...')
     
     // Check for existing .env
     const envExists = await fs.access('.env').then(() => true).catch(() => false)

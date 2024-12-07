@@ -1,10 +1,7 @@
 import inquirer from 'inquirer'
 import { createSpinner, logSuccess, logError, logInfo } from '../../utils/spinner.mjs'
-import { getDatasetChoice, validateDataset } from '../../utils/dataset.mjs'
 import { setupChoices, handleSetupChoice } from './actions.mjs'
 import dotenv from 'dotenv'
-import { validateEnvVars } from '../../utils/validation.mjs'
-import { setupEnvironment } from '../env-setup/index.mjs'
 
 // Only load .env file, not .env.local etc.
 dotenv.config({ path: '.env' })
@@ -15,7 +12,7 @@ export async function setupWizard() {
   try {
     logInfo('\nStarting setup wizard...')
     
-    // Get user action first
+    // Get user action
     const { action } = await inquirer.prompt([
       {
         type: 'list',
@@ -25,36 +22,10 @@ export async function setupWizard() {
       }
     ])
 
-    // If action is env setup, run it directly
-    if (action === 'env') {
-      await setupEnvironment()
-      // Reload environment variables after setup
-      dotenv.config({ path: '.env' })
-      return
-    }
-
-    // For other actions, check environment variables
-    const required = ['SANITY_STUDIO_PROJECT_ID', 'SANITY_API_WRITE_TOKEN']
-    if (!validateEnvVars(required)) {
-      logInfo('\nEnvironment variables need to be set up first.')
-      await setupEnvironment()
-      // Reload environment variables after setup
-      dotenv.config({ path: '.env' })
-      
-      // Check again after setup
-      if (!validateEnvVars(required)) {
-        throw new Error('Required environment variables are still missing after setup')
-      }
-    }
-
-    // Get and validate dataset
-    const dataset = await getDatasetChoice('Select dataset to work with:')
-    await validateDataset(dataset)
-
     currentSpinner = createSpinner('Processing your request...').start()
     currentSpinner.stop()
     
-    await handleSetupChoice(action, dataset)
+    await handleSetupChoice(action, process.env.NEXT_PUBLIC_SANITY_DATASET)
   } catch (error) {
     if (currentSpinner) {
       currentSpinner.fail()

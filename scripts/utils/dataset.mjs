@@ -75,29 +75,15 @@ export async function validateDataset(dataset) {
     const exists = datasets.find(d => d.name === dataset)
     
     if (!exists) {
-      try {
-        spinner.text = `Creating dataset "${dataset}"...`
-        await client.datasets.create(dataset)
-        spinner.succeed(`Created dataset "${dataset}"`)
-        logSuccess(`Dataset "${dataset}" is ready to use`)
-      } catch (error) {
-        if (error.message.includes('missing required grant')) {
-          spinner.fail()
-          logError('\nUnable to create dataset automatically.')
-          logInfo('\nPlease create the dataset manually in your Sanity project settings:')
-          logInfo('https://www.sanity.io/manage/project/' + process.env.SANITY_STUDIO_PROJECT_ID)
-          process.exit(1)
-        }
-        throw error
-      }
-    } else {
-      spinner.succeed(`Using existing dataset "${dataset}"`)
+      spinner.fail()
+      throw new Error('Dataset does not exist')
     }
     
-    return dataset
+    spinner.succeed(`Using dataset "${dataset}"`)
+    return true
   } catch (error) {
     spinner.fail()
-    throw new Error(`Failed to validate dataset: ${error.message}`)
+    throw error
   }
 }
 
