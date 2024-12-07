@@ -7,11 +7,12 @@ import dotenv from 'dotenv'
 
 export const setupChoices = [
   { name: 'Initialize Website', value: 'complete' },
-  // { name: 'Initialize environment variables', value: 'env' },
-  // { name: 'Create dataset', value: 'create-dataset' },
   { name: 'Change dataset', value: 'change-dataset' },
   { name: 'Migrate content between datasets', value: 'migrate' },
   { name: 'Deploy Sanity Studio', value: 'deploy' },
+  // Enable for individual setup steps
+  // { name: 'Initialize environment variables', value: 'env' },
+  // { name: 'Create dataset', value: 'create-dataset' },
   // { name: 'Configure site settings', value: 'settings' },
   // { name: 'Configure home page', value: 'home' },
   // { name: 'Configure navigation', value: 'navigation' },
