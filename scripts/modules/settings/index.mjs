@@ -1,11 +1,8 @@
 import { createClient } from '@sanity/client'
 import inquirer from 'inquirer'
-import dotenv from 'dotenv'
 import { createSpinner, logSuccess, logError, logInfo } from '../../utils/spinner.mjs'
-import { getUserSettings, generateAutoSettings } from './input.mjs'
+import { getUserSettings } from './input.mjs'
 import { deleteSettings } from './delete.mjs'
-
-dotenv.config()
 
 export async function configureSettings(dataset) {
   let currentSpinner = null

@@ -1,6 +1,6 @@
 import { createClient } from '@sanity/client'
 import { select } from "@inquirer/prompts"
-import { createSpinner, logSuccess, logError, logInfo } from '../../utils/spinner.mjs'
+import { createSpinner, logSuccess, logError } from '../../utils/spinner.mjs'
 import fs from 'fs/promises'
 import dotenv from 'dotenv'
 

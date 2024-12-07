@@ -1,9 +1,4 @@
 import { logSuccess, logError, logInfo } from '../../utils/spinner.mjs'
-import { getDatasetChoice } from '../../utils/dataset.mjs'
-import { runWithDataset } from './utils.mjs'
-import { setupEnvironment } from '../env-setup/index.mjs'
-import { validateEnvVars } from '../../utils/validation.mjs'
-import dotenv from 'dotenv'
 
 export const setupChoices = [
   { name: 'Initialize Website', value: 'complete' },
@@ -86,53 +81,6 @@ export async function handleSetupChoice(action, dataset) {
       await changeDataset()
       break
   }
-}
-
-async function handleDatasetAction(action) {
-  const dataset = await getDatasetChoice('Select dataset to work with:')
-  
-  switch (action) {
-    case 'settings':
-      const { configureSettings } = await import('../settings/index.mjs')
-      await configureSettings(dataset)
-      break
-      
-    case 'home':
-      const { configureHome } = await import('../home/index.mjs')
-      await configureHome(dataset)
-      break
-      
-    case 'navigation':
-      const { configureNavigation } = await import('../navigation/index.mjs')
-      await configureNavigation(dataset)
-      break
-      
-    case 'scaffold':
-      const { scaffoldContent } = await import('../scaffold/index.mjs')
-      await scaffoldContent(dataset)
-      break
-  }
-}
-
-async function handleCompleteSetup() {
-  logInfo('Running complete setup...')
-  
-  // const { setupEnvironment } = await import('../env-setup/index.mjs')
-  // await setupEnvironment()
-  
-  const dataset = await getDatasetChoice('Select dataset for content setup:')
-  
-  const { configureSettings } = await import('../settings/index.mjs')
-  const { configureHome } = await import('../home/index.mjs')
-  const { configureNavigation } = await import('../navigation/index.mjs')
-  const { scaffoldContent } = await import('../scaffold/index.mjs')
-  
-  await configureSettings(dataset)
-  await configureHome(dataset)
-  await scaffoldContent(dataset)
-  await configureNavigation(dataset)
-  
-  logSuccess('Complete setup finished!')
 }
 
 export function registerStandaloneCommands(program) {

@@ -11,10 +11,8 @@ export async function confirmAction(message, defaultValue = false) {
     })
     return result
   } catch (error) {
-    console.log('Confirm prompt error:', error.name)  // Debug log
     if (error.name === 'ExitPromptError') {
       // Gracefully handle the interrupt
-      console.log('Prompt interrupted')  // Debug log
       return false
     }
     throw error
