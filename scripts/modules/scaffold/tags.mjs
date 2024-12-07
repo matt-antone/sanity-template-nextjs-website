@@ -63,7 +63,7 @@ export async function generateTags(client) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nTag Generation Error:')
+    logError('Tag Generation Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

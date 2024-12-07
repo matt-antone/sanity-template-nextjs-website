@@ -147,7 +147,7 @@ export async function generateProfiles(client) {
     
     for (let i = 0; i < profilesData.length; i += BATCH_SIZE) {
       const batch = profilesData.slice(i, i + BATCH_SIZE)
-      currentSpinner.text = `Creating profiles (${i + 1}-${Math.min(i + BATCH_SIZE, profilesData.length)}/${profilesData.length})...`
+      // currentSpinner.text = `Creating profiles (${i + 1}-${Math.min(i + BATCH_SIZE, profilesData.length)}/${profilesData.length})...`
       
       try {
         // Create profile documents
@@ -177,7 +177,7 @@ export async function generateProfiles(client) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nProfile Generation Error:')
+    logError('Profile Generation Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

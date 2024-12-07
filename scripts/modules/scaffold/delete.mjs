@@ -46,7 +46,7 @@ export async function deleteAllContent(client) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nDeletion Error:')
+    logError('Deletion Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

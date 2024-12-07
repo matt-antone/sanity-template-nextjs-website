@@ -2,7 +2,6 @@ import { confirm } from '@inquirer/prompts'
 
 export async function confirmAction(message, defaultValue = false) {
   try {
-    console.log('Starting confirm prompt:', message)  // Debug log
     const result = await confirm({
       message,
       default: defaultValue,
@@ -10,7 +9,6 @@ export async function confirmAction(message, defaultValue = false) {
       prefix: '',
       waitForAnswer: true
     })
-    console.log('Confirm prompt result:', result)  // Debug log
     return result
   } catch (error) {
     console.log('Confirm prompt error:', error.name)  // Debug log

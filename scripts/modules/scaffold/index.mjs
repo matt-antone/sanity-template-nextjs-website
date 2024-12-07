@@ -10,7 +10,7 @@ export async function scaffoldContent(dataset) {
   let currentSpinner = null
   
   try {
-    logInfo('\nStarting content scaffolding...')
+    logInfo('Starting content scaffolding...')
     
     // Create client
     const client = createSanityClient(dataset)
@@ -29,7 +29,7 @@ export async function scaffoldContent(dataset) {
     
     // Only ask about deletion if content exists
     if (hasContent) {
-      logInfo('\nFound existing content:')
+      logInfo('Found existing content:')
       if (categoryCount > 0) logInfo(`- ${categoryCount} categories`)
       if (tagCount > 0) logInfo(`- ${tagCount} tags`)
       if (profileCount > 0) logInfo(`- ${profileCount} profiles`)
@@ -70,7 +70,7 @@ export async function scaffoldContent(dataset) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nContent Scaffolding Error:')
+    logError('Content Scaffolding Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

@@ -129,7 +129,7 @@ export async function generatePages(client, profiles) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nPage Generation Error:')
+    logError('Page Generation Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

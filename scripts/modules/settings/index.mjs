@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client'
 import inquirer from 'inquirer'
 import dotenv from 'dotenv'
-import { createSpinner, logSuccess, logError } from '../../utils/spinner.mjs'
+import { createSpinner, logSuccess, logError, logInfo } from '../../utils/spinner.mjs'
 import { getUserSettings, generateAutoSettings } from './input.mjs'
 import { deleteSettings } from './delete.mjs'
 
@@ -17,11 +17,8 @@ export async function configureSettings(dataset) {
       token: process.env.SANITY_API_WRITE_TOKEN,
       apiVersion: '2023-05-03',
       useCdn: false,
-    })
+    })    
 
-    console.log('🚀 Starting settings configuration...')
-    console.log(`📊 Using dataset: ${client.config().dataset}`)
-    
     // Check for existing settings
     currentSpinner = createSpinner('Checking for existing settings...').start()
     const existingSettings = await client.fetch(`*[_type == "settings"]`)
@@ -40,24 +37,24 @@ export async function configureSettings(dataset) {
       if (shouldDelete) {
         await deleteSettings(client)
       } else {
-        console.log('⚠️  Keeping existing settings')
+        logInfo('Keeping existing settings')
         return
       }
     }
     
-    console.log('📝 Creating settings...')
+    logInfo('Creating settings...')
     const settings = await getUserSettings(client)
     
     currentSpinner = createSpinner('Saving settings...').start()
     await client.create(settings)
     currentSpinner.succeed('Settings created successfully')
     
-    console.log('🎉 Settings configuration complete!')
+    logSuccess('Settings configuration complete!')
   } catch (error) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nSettings Configuration Error:')
+    logError('Settings Configuration Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

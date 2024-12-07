@@ -64,27 +64,18 @@ export async function getDatasetChoice(message = 'Select dataset:') {
 }
 
 export async function validateDataset(dataset) {
-  const spinner = createSpinner('Checking dataset...').start()
+  // Create client with specific dataset
+  const client = createSanityClient(dataset)
   
-  try {
-    // Create client with specific dataset
-    const client = createSanityClient(dataset)
-    
-    // Get list of datasets
-    const datasets = await client.datasets.list()
-    const exists = datasets.find(d => d.name === dataset)
-    
-    if (!exists) {
-      spinner.fail()
-      throw new Error('Dataset does not exist')
-    }
-    
-    spinner.succeed(`Using dataset "${dataset}"`)
-    return true
-  } catch (error) {
-    spinner.fail()
-    throw error
+  // Get list of datasets
+  const datasets = await client.datasets.list()
+  const exists = datasets.find(d => d.name === dataset)
+  
+  if (!exists) {
+    throw new Error('Dataset does not exist')
   }
+  
+  return true
 }
 
 export function getOppositeDataset(dataset) {

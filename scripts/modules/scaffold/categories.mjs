@@ -45,7 +45,7 @@ export async function generateCategories(client) {
     
     for (let i = 0; i < categories.length; i += BATCH_SIZE) {
       const batch = categories.slice(i, i + BATCH_SIZE)
-      currentSpinner.text = `Creating categories (${i + 1}-${Math.min(i + BATCH_SIZE, categories.length)}/${categories.length})...`
+      // currentSpinner.text = `Creating categories (${i + 1}-${Math.min(i + BATCH_SIZE, categories.length)}/${categories.length})...`
       
       try {
         const batchResults = await Promise.all(
@@ -66,7 +66,7 @@ export async function generateCategories(client) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nCategory Generation Error:')
+    logError('Category Generation Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

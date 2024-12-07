@@ -3,20 +3,22 @@
 import { runCLI } from './modules/cli/index.mjs'
 import { setupEnvironment } from './modules/env-setup/index.mjs'
 import { validateDataset } from './utils/dataset.mjs'
-import { logError, logInfo } from './utils/spinner.mjs'
+import { logError, logInfo, logSuccess, createSpinner } from './utils/spinner.mjs'
 import inquirer from 'inquirer'
 import dotenv from 'dotenv'
-
-// Load environment variables
-dotenv.config({ path: '.env' })
+import fs from 'fs/promises'
 
 // Run if called directly
 if (import.meta.url === `file://${process.argv[1]}`) {
   try {
-    // 1. Always run environment setup first
-    await setupEnvironment()
+    // 1. Check if .env exists and run setup if it doesn't
+    const envExists = await fs.access('.env').then(() => true).catch(() => false)
+    if (!envExists) {
+      await setupEnvironment()
+    }
+    logSuccess('Environment (.env) file exists.')
     
-    // Reload environment variables after setup
+    // Load environment variables
     dotenv.config({ path: '.env' })
 
     // 2. Now check the configured dataset
@@ -27,13 +29,17 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
     // 3. Validate dataset exists or guide creation
     let datasetExists = false
+    let currentSpinner = createSpinner('Checking dataset...').start()
+    
     while (!datasetExists) {
       try {
         await validateDataset(dataset)
         datasetExists = true
+        currentSpinner.succeed(`Dataset "${dataset}" exists`)
       } catch (error) {
-        logError('\nConfigured dataset does not exist.')
-        logInfo('\nTo create it, run:')
+        currentSpinner.fail()
+        logError('Configured dataset does not exist.')
+        logInfo('To create it, run:')
         logInfo(`npx sanity@latest dataset create "${dataset}" --project ${process.env.SANITY_STUDIO_PROJECT_ID}`)
         
         const { created } = await inquirer.prompt([
@@ -46,9 +52,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         ])
         
         if (!created) {
-          logInfo('\nPlease create the dataset before continuing.')
+          logInfo('Please create the dataset before continuing.')
           process.exit(0)
         }
+        currentSpinner = createSpinner('Checking dataset...').start()
       }
     }
 

@@ -81,7 +81,7 @@ export async function setupEnvironment() {
     let currentEnv = {}
     if (envExists) {
       currentEnv = dotenv.parse(await fs.readFile('.env', 'utf8'))
-      logInfo('\nFound existing .env file')
+      logInfo('Found existing .env file')
     }
     
     // Build prompts for missing vars
@@ -144,7 +144,7 @@ export async function setupEnvironment() {
     // Write new .env
     const envContent = Object.entries(envVars)
       .map(([key, value]) => `${key}=${value}`)
-      .join('\n')
+      .join('')
     
     await fs.writeFile('.env', envContent)
     spinner.succeed('Environment variables updated')

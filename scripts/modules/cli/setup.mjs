@@ -10,7 +10,7 @@ export async function setupWizard() {
   let currentSpinner = null
   
   try {
-    logInfo('\nStarting setup wizard...')
+    logInfo('Starting setup wizard...')
     
     // Get user action
     const { action } = await inquirer.prompt([
@@ -30,12 +30,12 @@ export async function setupWizard() {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nSetup Error:')
+    logError('Setup Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)
     }
-    logInfo('\nTry running the command again or check your configuration.')
+    logInfo('Try running the command again or check your configuration.')
     process.exit(1)
   }
 } 

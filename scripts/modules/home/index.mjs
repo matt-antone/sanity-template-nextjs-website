@@ -6,8 +6,6 @@ export async function configureHome(dataset) {
   let currentSpinner = null
   
   try {
-    logInfo('\nStarting home page configuration...')
-    
     // Create client
     const client = createSanityClient(dataset)
     
@@ -63,7 +61,7 @@ export async function configureHome(dataset) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nHome Page Configuration Error:')
+    logError('Home Page Configuration Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

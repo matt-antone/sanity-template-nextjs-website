@@ -20,7 +20,7 @@ export async function createDataset() {
   ])
   
   // Show CLI command
-  logInfo('\nTo create this dataset, run:')
+  logInfo('To create this dataset, run:')
   logInfo(`npx sanity@latest dataset create "${name}" --project ${process.env.SANITY_STUDIO_PROJECT_ID}`)
   
   // Wait for confirmation
@@ -34,7 +34,7 @@ export async function createDataset() {
   ])
   
   if (!isCreated) {
-    logInfo('\nPlease create the dataset before continuing.')
+    logInfo('Please create the dataset before continuing.')
     return null
   }
   

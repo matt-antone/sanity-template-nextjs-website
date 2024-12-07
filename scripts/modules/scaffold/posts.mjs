@@ -140,7 +140,7 @@ export async function generatePosts(client, profiles, categories, tags) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nPost Generation Error:')
+    logError('Post Generation Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

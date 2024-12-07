@@ -6,7 +6,7 @@ export async function configureNavigation(dataset) {
   let currentSpinner = null
   
   try {
-    logInfo('\nStarting navigation configuration...')
+    logInfo('Starting navigation configuration...')
     
     // Create client
     const client = createSanityClient(dataset)
@@ -65,7 +65,7 @@ export async function configureNavigation(dataset) {
     if (currentSpinner) {
       currentSpinner.fail()
     }
-    logError('\nNavigation Configuration Error:')
+    logError('Navigation Configuration Error:')
     logError(error.message)
     if (error.cause) {
       logError('Caused by:', error.cause)

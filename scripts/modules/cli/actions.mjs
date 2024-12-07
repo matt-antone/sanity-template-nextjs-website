@@ -7,46 +7,38 @@ import dotenv from 'dotenv'
 
 export const setupChoices = [
   { name: 'Initialize Website', value: 'complete' },
-  { name: 'Initialize environment variables', value: 'env' },
-  { name: 'Deploy Sanity Studio', value: 'deploy' },
-  { name: 'Create dataset', value: 'create-dataset' },
+  // { name: 'Initialize environment variables', value: 'env' },
+  // { name: 'Create dataset', value: 'create-dataset' },
+  { name: 'Change dataset', value: 'change-dataset' },
   { name: 'Migrate content between datasets', value: 'migrate' },
-  { name: 'Configure site settings', value: 'settings' },
-  { name: 'Configure home page', value: 'home' },
-  { name: 'Configure navigation', value: 'navigation' },
-  { name: 'Scaffold sample content', value: 'scaffold' }
+  { name: 'Deploy Sanity Studio', value: 'deploy' },
+  // { name: 'Configure site settings', value: 'settings' },
+  // { name: 'Configure home page', value: 'home' },
+  // { name: 'Configure navigation', value: 'navigation' },
+  // { name: 'Scaffold sample content', value: 'scaffold' }
 ]
 
 export async function handleSetupChoice(action, dataset) {
   switch (action) {
     case 'complete':
-      logInfo('\nRunning complete setup...')
+      logInfo('Running complete setup...')
       
-      // 1. Environment setup
-      await setupEnvironment()
-      // Reload environment variables after setup
-      dotenv.config({ path: '.env' })
-      
-      // Verify env setup was successful
-      const required = ['SANITY_STUDIO_PROJECT_ID', 'SANITY_API_WRITE_TOKEN']
-      if (!validateEnvVars(required)) {
-        throw new Error('Required environment variables are still missing after setup')
-      }
-      
-      // 2. Content setup - navigation should always be last
       const { configureSettings } = await import('../settings/index.mjs')
       const { configureHome } = await import('../home/index.mjs')
       const { scaffoldContent } = await import('../scaffold/index.mjs')
       const { configureNavigation } = await import('../navigation/index.mjs')
       
       // Run setup steps in sequence  - navigation should always be last
-      logInfo('\nConfiguring content...')
       await configureSettings(dataset)
       await configureHome(dataset)
-      await scaffoldContent(dataset)
-      await configureNavigation(dataset)
+      const { confirmAction } = await import('../../utils/confirm.mjs')
+      const shouldScaffold = await confirmAction('Do you want to scaffold sample content and navigation?', false)
+      if (shouldScaffold) {
+        await scaffoldContent(dataset)
+        await configureNavigation(dataset)
+      }
       
-      logSuccess('\nComplete setup finished!')
+      logSuccess('Complete setup finished!')
       break
       
     case 'env':
@@ -87,6 +79,11 @@ export async function handleSetupChoice(action, dataset) {
       const { createDataset } = await import('../dataset/index.mjs')
       await createDataset()
       break
+      
+    case 'change-dataset':
+      const { changeDataset } = await import('../dataset/change.mjs')
+      await changeDataset()
+      break
   }
 }
 
@@ -119,8 +116,8 @@ async function handleDatasetAction(action) {
 async function handleCompleteSetup() {
   logInfo('Running complete setup...')
   
-  const { setupEnvironment } = await import('../env-setup/index.mjs')
-  await setupEnvironment()
+  // const { setupEnvironment } = await import('../env-setup/index.mjs')
+  // await setupEnvironment()
   
   const dataset = await getDatasetChoice('Select dataset for content setup:')
   
