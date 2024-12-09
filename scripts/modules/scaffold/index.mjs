@@ -7,28 +7,26 @@ import { generateProfiles } from './profiles.mjs'
 import { generatePosts } from './posts.mjs'
 
 export async function scaffoldContent(dataset) {
-  let currentSpinner = null
+  let currentSpinner = createSpinner('Preparing to scaffold content...').start()
   
   try {
-    logInfo('Starting content scaffolding...')
-    
     // Create client
     const client = createSanityClient(dataset)
     
     // Check for existing content
-    currentSpinner = createSpinner('Checking for existing content...').start()
+    currentSpinner.text = 'Checking for existing content...'
     const [categoryCount, tagCount, profileCount, postCount] = await Promise.all([
       client.fetch('count(*[_type == "category"])'),
       client.fetch('count(*[_type == "tag"])'),
       client.fetch('count(*[_type == "profile"])'),
       client.fetch('count(*[_type == "post"])')
     ])
-    currentSpinner.stop()
     
     const hasContent = categoryCount > 0 || tagCount > 0 || profileCount > 0 || postCount > 0
     
     // Only ask about deletion if content exists
     if (hasContent) {
+      currentSpinner.stop()
       logInfo('Found existing content:')
       if (categoryCount > 0) logInfo(`- ${categoryCount} categories`)
       if (tagCount > 0) logInfo(`- ${tagCount} tags`)
@@ -47,13 +45,12 @@ export async function scaffoldContent(dataset) {
         ])
         currentSpinner.succeed('Deleted existing content')
       } else {
-        logInfo('Keeping existing content')
         return
       }
     }
     
     // Generate content
-    currentSpinner = createSpinner('Generating content...').start()
+    currentSpinner.text = 'Generating content...'
     
     try {
       const generatedProfiles = await generateProfiles(client)
@@ -61,7 +58,7 @@ export async function scaffoldContent(dataset) {
       const generatedTags = await generateTags(client)
       await generatePosts(client, generatedProfiles, generatedCategories, generatedTags)
       
-      currentSpinner.succeed('Generated all content')
+      currentSpinner.succeed('Content generation complete')
       logSuccess('Content scaffolding complete!')
     } catch (error) {
       throw new Error(`Failed to generate content: ${error.message}`)

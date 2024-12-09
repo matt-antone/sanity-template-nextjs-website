@@ -27,6 +27,16 @@ const questions = [
   },
   {
     type: 'input',
+    name: "SANITY_STUDIO_DEV_SUBDOMAIN",
+    message: "Enter your Sanity Studio development subdomain:",
+  },
+  {
+    type: 'input',
+    name: "SANITY_STUDIO_PROD_SUBDOMAIN",
+    message: "Enter your Sanity Studio production subdomain:",
+  },
+  {
+    type: 'input',
     name: "NEXT_PUBLIC_NAME",
     message: "Enter your site name:",
     default: "Sanity Blog",
@@ -41,16 +51,6 @@ const questions = [
     type: 'input',
     name: "NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID",
     message: "Enter your Google Analytics Measurement ID (optional):",
-  },
-  {
-    type: 'input',
-    name: "SANITY_STUDIO_DEV_SUBDOMAIN",
-    message: "Enter your Sanity Studio development subdomain:",
-  },
-  {
-    type: 'input',
-    name: "SANITY_STUDIO_PROD_SUBDOMAIN",
-    message: "Enter your Sanity Studio production subdomain:",
   },
 ]
 

@@ -2,11 +2,11 @@ import { createSpinner, logSuccess, logError } from '../../utils/spinner.mjs'
 
 export async function deleteAllContent(client) {
   const types = ['post', 'page', 'profile', 'category', 'tag']
-  let currentSpinner = null
+  let currentSpinner = createSpinner('Deleting content...').start()
   
   try {
     for (const type of types) {
-      currentSpinner = createSpinner(`Deleting ${type}s...`).start()
+      currentSpinner.text = `Deleting ${type}s...`
       
       try {
         // Fetch documents
@@ -32,16 +32,15 @@ export async function deleteAllContent(client) {
           }
           
           const plural = type === 'category' ? 'categories' : `${type}s`
-          currentSpinner.succeed()
           logSuccess(`Deleted ${documents.length} ${plural}`)
         } else {
-          currentSpinner.succeed(`No ${type}s to delete`)
+          logInfo(`No ${type}s to delete`)
         }
       } catch (error) {
-        currentSpinner.fail()
         throw new Error(`Error processing ${type}s: ${error.message}`)
       }
     }
+    currentSpinner.succeed('Content deletion complete')
   } catch (error) {
     if (currentSpinner) {
       currentSpinner.fail()

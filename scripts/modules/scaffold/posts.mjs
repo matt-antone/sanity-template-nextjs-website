@@ -89,11 +89,9 @@ async function createPost(client, profiles, categories, tags, index) {
 }
 
 export async function generatePosts(client, profiles, categories, tags) {
-  let currentSpinner = null
+  let currentSpinner = createSpinner('Preparing to generate posts...').start()
   
   try {
-    currentSpinner = createSpinner('Creating posts...').start()
-    
     // Validate input references
     if (!profiles?.length) throw new Error('No profiles available')
     if (!categories?.length) throw new Error('No categories available')
@@ -110,7 +108,7 @@ export async function generatePosts(client, profiles, categories, tags) {
       
       for (let j = 0; j < batchSize; j++) {
         const index = i + j
-        currentSpinner.text = `Creating post ${index + 1}/${numPosts}...`
+        currentSpinner.text = `Generating post ${index + 1}/${numPosts}...`
         
         try {
           const post = await createPost(client, profiles, categories, tags, index)
@@ -129,11 +127,9 @@ export async function generatePosts(client, profiles, categories, tags) {
       } catch (error) {
         throw new Error(`Failed to save batch of posts: ${error.message}`)
       }
-      
-      currentSpinner.text = `Created ${posts.length}/${numPosts} posts`
     }
     
-    currentSpinner.succeed()
+    currentSpinner.succeed('Posts created successfully')
     logSuccess(`Created ${posts.length} posts`)
     return posts
   } catch (error) {

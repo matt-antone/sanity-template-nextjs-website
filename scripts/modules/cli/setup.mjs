@@ -10,8 +10,6 @@ export async function setupWizard() {
   let currentSpinner = null
   
   try {
-    logInfo('Starting setup wizard...')
-    
     // Get user action
     const { action } = await inquirer.prompt([
       {

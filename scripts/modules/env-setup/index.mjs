@@ -28,22 +28,19 @@ const ENV_VARS = [
   {
     key: 'SANITY_STUDIO_PROJECT_ID',
     message: 'Enter your Sanity project ID:',
-    required: true
+    required: true,
+    related: ['NEXT_PUBLIC_SANITY_PROJECT_ID']  // Variables that should get the same value
+  },
+  {
+    key: 'SANITY_STUDIO_DATASET',
+    message: 'Enter your Sanity dataset name:',
+    default: 'development',
+    required: true,
+    related: ['NEXT_PUBLIC_SANITY_DATASET']  // Variables that should get the same value
   },
   {
     key: 'SANITY_API_WRITE_TOKEN',
     message: 'Enter your Sanity write token:',
-    required: true
-  },
-  {
-    key: 'NEXT_PUBLIC_SANITY_PROJECT_ID',
-    message: 'Enter your public Sanity project ID:',
-    getValue: (env) => env.SANITY_STUDIO_PROJECT_ID
-  },
-  {
-    key: 'NEXT_PUBLIC_SANITY_DATASET',
-    message: 'Enter your Sanity dataset name:',
-    default: 'development',
     required: true
   },
   {
@@ -58,8 +55,8 @@ const ENV_VARS = [
   },
   {
     key: 'VERCEL_PRODUCTION_URL',
-    message: 'Enter your production URL:',
-    default: 'https://your-site.com'
+    message: 'Enter your local development URL:',
+    default: 'https://localhost:3000'
   },
   {
     key: 'NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID',
@@ -87,9 +84,9 @@ export async function setupEnvironment() {
     // Build prompts for missing vars
     const prompts = []
     
-    for (const { key, message, required, default: defaultValue, optional, getValue } of ENV_VARS) {
-      // Skip if we can get value from another var
-      if (getValue && getValue(currentEnv)) {
+    for (const { key, message, required, default: defaultValue, optional } of ENV_VARS) {
+      // Skip related variables - they'll be set after collection
+      if (key.startsWith('NEXT_PUBLIC_') && key !== 'NEXT_PUBLIC_NAME' && key !== 'NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID') {
         continue
       }
       
@@ -102,10 +99,6 @@ export async function setupEnvironment() {
       const promptMessage = existingValue ? 
         `${message} (current: ${displayValue})` : 
         message
-      
-      const defaultDisplay = key.toLowerCase().includes('token') ? 
-        maskValue(existingValue || defaultValue) : 
-        truncateValue(existingValue || defaultValue)
       
       prompts.push({
         type: 'input',
@@ -124,7 +117,7 @@ export async function setupEnvironment() {
     // Start spinner for file operations
     spinner = createSpinner('Updating environment variables...').start()
     
-    // Combine with existing env and computed values
+    // Combine with existing env
     const envVars = {
       ...currentEnv,  // Keep existing values
       ...Object.fromEntries(  // Only update values that were actually changed
@@ -134,19 +127,21 @@ export async function setupEnvironment() {
       )
     }
     
-    // Add computed values
-    ENV_VARS.forEach(({ key, getValue }) => {
-      if (getValue && !envVars[key]) {
-        envVars[key] = getValue(envVars)
+    // Add related values
+    ENV_VARS.forEach(({ key, related }) => {
+      if (related && envVars[key]) {
+        related.forEach(relatedKey => {
+          envVars[relatedKey] = envVars[key]
+        })
       }
     })
     
     // Write new .env
     const envContent = Object.entries(envVars)
       .map(([key, value]) => `${key}=${value}`)
-      .join('')
+      .join('\n')
     
-    await fs.writeFile('.env', envContent)
+    await fs.writeFile('.env', envContent + '\n')
     spinner.succeed('Environment variables updated')
     
     // Reload environment variables

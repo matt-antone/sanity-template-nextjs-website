@@ -6,8 +6,6 @@ export async function configureNavigation(dataset) {
   let currentSpinner = null
   
   try {
-    logInfo('Starting navigation configuration...')
-    
     // Create client
     const client = createSanityClient(dataset)
     
@@ -18,8 +16,6 @@ export async function configureNavigation(dataset) {
     
     // Only ask about deletion if navigation exists
     if (existingNavigation > 0) {
-      logInfo(`\nFound ${existingNavigation} existing navigation items`)
-      
       const shouldDelete = await confirmAction('Do you want to delete existing navigation before creating new ones?', false)
       
       if (shouldDelete) {
@@ -27,7 +23,6 @@ export async function configureNavigation(dataset) {
         await client.delete({ query: '*[_type == "navigation"]' })
         currentSpinner.succeed('Deleted existing navigation')
       } else {
-        logInfo('Keeping existing navigation')
         return
       }
     }

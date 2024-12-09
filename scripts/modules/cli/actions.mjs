@@ -17,8 +17,6 @@ export const setupChoices = [
 export async function handleSetupChoice(action, dataset) {
   switch (action) {
     case 'complete':
-      logInfo('Running complete setup...')
-      
       const { configureSettings } = await import('../settings/index.mjs')
       const { configureHome } = await import('../home/index.mjs')
       const { scaffoldContent } = await import('../scaffold/index.mjs')

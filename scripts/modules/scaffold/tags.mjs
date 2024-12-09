@@ -23,11 +23,9 @@ function createTag(name) {
 }
 
 export async function generateTags(client) {
-  let currentSpinner = null
+  let currentSpinner = createSpinner('Creating tags...').start()
   
   try {
-    currentSpinner = createSpinner('Creating tags...').start()
-    
     // Create tag documents
     let tags
     try {
@@ -56,7 +54,7 @@ export async function generateTags(client) {
       }
     }
     
-    currentSpinner.succeed()
+    currentSpinner.succeed('Tags created successfully')
     logSuccess(`Created ${savedTags.length} tags`)
     return savedTags
   } catch (error) {

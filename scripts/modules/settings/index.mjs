@@ -34,7 +34,6 @@ export async function configureSettings(dataset) {
       if (shouldDelete) {
         await deleteSettings(client)
       } else {
-        logInfo('Keeping existing settings')
         return
       }
     }

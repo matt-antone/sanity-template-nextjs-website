@@ -23,7 +23,6 @@ export async function configureHome(dataset) {
         await client.delete(existingHome._id)
         currentSpinner.succeed('Deleted existing home page')
       } else {
-        logInfo('Keeping existing home page')
         return
       }
     }
