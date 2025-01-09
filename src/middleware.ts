@@ -44,7 +44,7 @@ export function middleware(request: NextRequest, ev: NextFetchEvent) {
     "vercel.live",
     "www.googletagmanager.com",
     "www.google-analytics.com",
-    "sanity.matthewantone.net"
+    "sanity.matthewantone.net",
   ];
 
   if(process.env.NODE_ENV === "development"){
