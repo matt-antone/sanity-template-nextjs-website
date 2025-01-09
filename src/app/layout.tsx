@@ -5,7 +5,6 @@ import SkipMenu from "@/components/SkipMenu";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import Content from "@/components/Content";
 import Fonts from "@/components/Fonts";
 
@@ -32,7 +31,6 @@ const Layout: React.FunctionComponent<ILayoutProps> = async ({ children }) => {
           <Footer />
         </Fonts>
         {/* add google tag manager */}
-        <SpeedInsights />
         {process.env.NEXT_PUBLIC_GOOGLE_TM && (
           <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TM} />
         )}

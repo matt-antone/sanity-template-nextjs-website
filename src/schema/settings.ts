@@ -7,9 +7,9 @@ export default defineType({
   title: "Settings",
   type: "document",
   icon: GrSettingsOption,
-  options: {
-    singleton: true, // Identify this document as a singleton
-  },
+  // options: {
+  //   singleton: true, // Identify this document as a singleton
+  // },
   fields: [
     defineField({
       type: "string",

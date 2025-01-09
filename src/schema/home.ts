@@ -7,9 +7,9 @@ export default defineType({
   title: 'Home',
   type: 'document',
   icon: GrDocument,
-  options: {
-    singleton: true, // Identify this document as a singleton
-  },
+  // options: {
+  //   singleton: true, // Identify this document as a singleton
+  // },
   fields: [
     fields.createdDate,
     fields.title,
