@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --experimental-https",
     "build": "next build",
-    "start": "next start --experimental-https",
+    "start": "next start",
     "lint": "next lint",
     "flush": "rm -rf .next && next dev --experimental-https"
   },
