@@ -1,0 +1,16 @@
+{
+    "name": "matthewantone/sanity-template-nextjs-website",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Matthewantone\\SanityTemplateNextjsWebsite\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matthew Antone",
+            "email": "matt.antone@gmail.com"
+        }
+    ],
+    "require": {}
+}
